@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Nutritional Value</title>
+  <style>
+    .user{
+      display: flex;
+      background:#f4f4f4;
+      padding:10px;
+      margin-bottom:10px;
+    }
+
+    .user ul{
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <button id="button">Load Nutritional Value USDA</button>
+  <br><br>
+  <h1>Github Users</h1>
+  <div id="foods"></div>
+
+  <script>
+    document.getElementById('button').addEventListener('click', loadUsers);
+
+    // Load Github Users
+    function loadUsers(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.nal.usda.gov/fdc/v1/search?api_key=yyCbbrQilZFV62cEeY2oIxz8AFH60Nnz7pflfKIe&generalSearchInput=Cheddar%20Cheese', true);
+
+      xhr.onload = function(){
+        if(this.status == 200){
+          var apires = JSON.parse(this.responseText);
+          var foodSearchIndex = (apires.foods);
+          
+          console.log(foodSearchIndex.length);
+          var output = '';
+          for(var i = 0 ; i<foodSearchIndex.length; i++) {
+            console.log(i);
+            output +=
+              '<div class="user">' +
+              '<ul>' +
+              '<li>Description: '+apires.foods[i].description+'</li>' +
+              '<li>Brand: '+apires.foods[i].brandOwner+'</li>' +
+              '<li>ingredients: '+apires.foods[i].ingredients+'</li>' +
+              '</ul>' +
+              '</div>';
+          }
+
+          document.getElementById('foods').innerHTML = output;
+        }
+      }
+
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
