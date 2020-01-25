@@ -19,9 +19,12 @@
   </style>
 </head>
 <body>
-  <button id="button">Load Nutritional Value USDA</button>
-  <button id="button2">Load Nutritional Value Nutritionix</button>
+  <!-- <button id="button">Load Nutritional Value USDA</button>
+  <button id="button2">Load Nutritional Value Nutritionix</button> -->
+
+  <input type="text" id="searchquery"></input>
   <button id="button3">Load Instant Nutritional Value Nutritionix</button>
+
   <br><br>
   <h1>Github Users</h1>
   <div id="foods"></div>
@@ -29,9 +32,16 @@
   <div id="foods3"></div>
 
   <script>
-    document.getElementById('button').addEventListener('click', loadUsers);
-    document.getElementById('button2').addEventListener('click', loadNutrionix);
+
+ //   document.getElementById('button').addEventListener('click', loadUsers);
+ //   document.getElementById('button2').addEventListener('click', loadNutrionix);
     document.getElementById('button3').addEventListener('click', loadNutrionix2);
+
+    var button = document.getElementById("button3");
+    //button.onclick(loadNutrionix2);
+    input = document.getElementById("searchquery");
+    console.log(input.value);
+    
 
     // Load Github Users
     function loadUsers(){
@@ -94,11 +104,17 @@
       xhr.send();
     }
 
+    
+    
+    
+    
+
     function loadNutrionix2(){
+
       // let h = new Headers();
       // h.append("x-app-id": "36e650cf", "x-app-key": "9ff34a709f1d44f63aa59fee827713d1");
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://trackapi.nutritionix.com/v2/search/instant?query=apple', true);
+      xhr.open('GET', 'https://trackapi.nutritionix.com/v2/search/instant?query='+input.value, true);
       //xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.setRequestHeader('x-app-id', '36e650cf');
       xhr.setRequestHeader('x-app-key', '9ff34a709f1d44f63aa59fee827713d1');
