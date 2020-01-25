@@ -21,14 +21,17 @@
 <body>
   <button id="button">Load Nutritional Value USDA</button>
   <button id="button2">Load Nutritional Value Nutritionix</button>
+  <button id="button3">Load Instant Nutritional Value Nutritionix</button>
   <br><br>
   <h1>Github Users</h1>
   <div id="foods"></div>
   <div id="foods2"></div>
+  <div id="foods3"></div>
 
   <script>
     document.getElementById('button').addEventListener('click', loadUsers);
     document.getElementById('button2').addEventListener('click', loadNutrionix);
+    document.getElementById('button3').addEventListener('click', loadNutrionix2);
 
     // Load Github Users
     function loadUsers(){
@@ -85,6 +88,46 @@
           }
 
           document.getElementById('foods2').innerHTML = output;
+        }
+      }
+
+      xhr.send();
+    }
+
+    function loadNutrionix2(){
+      // let h = new Headers();
+      // h.append("x-app-id": "36e650cf", "x-app-key": "9ff34a709f1d44f63aa59fee827713d1");
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://trackapi.nutritionix.com/v2/search/instant?query=apple', true);
+      //xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('x-app-id', '36e650cf');
+      xhr.setRequestHeader('x-app-key', '9ff34a709f1d44f63aa59fee827713d1');
+
+      // $.ajax({
+      // url: "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
+      // headers: {"x-app-id": "36e650cf", "x-app-key": "9ff34a709f1d44f63aa59fee827713d1"}
+      // });
+
+      xhr.onload = function(){
+        if(this.status == 200){
+          var apires = JSON.parse(this.responseText);
+          console.log(apires);
+          var foodSearchIndex = (apires.common);
+          
+          console.log(foodSearchIndex.length);
+          var output = '';
+          for(var i = 0 ; i<foodSearchIndex.length; i++) {
+            console.log(i);
+            output +=
+              '<div class="user">' +
+              '<ul>' +
+              '<li>Description: '+apires.common[i].food_name+'</li>' +
+              '<li> <img src= '+apires.common[i].photo.thumb+'> </li> </img>' +
+              '</ul>' +
+              '</div>';
+          }
+
+          document.getElementById('foods3').innerHTML = output;
         }
       }
 
