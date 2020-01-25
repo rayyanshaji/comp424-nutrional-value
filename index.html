@@ -20,12 +20,15 @@
 </head>
 <body>
   <button id="button">Load Nutritional Value USDA</button>
+  <button id="button2">Load Nutritional Value Nutritionix</button>
   <br><br>
   <h1>Github Users</h1>
   <div id="foods"></div>
+  <div id="foods2"></div>
 
   <script>
     document.getElementById('button').addEventListener('click', loadUsers);
+    document.getElementById('button2').addEventListener('click', loadNutrionix);
 
     // Load Github Users
     function loadUsers(){
@@ -52,6 +55,36 @@
           }
 
           document.getElementById('foods').innerHTML = output;
+        }
+      }
+
+      xhr.send();
+    }
+
+    function loadNutrionix(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.nutritionix.com/v1_1/search/taco?results=0%3A20&cal_min=0&cal_max=500&appId=36e650cf&appKey=9ff34a709f1d44f63aa59fee827713d1', true);
+
+      xhr.onload = function(){
+        if(this.status == 200){
+          var apires = JSON.parse(this.responseText);
+          console.log(apires);
+          var foodSearchIndex = (apires.hits);
+          
+          console.log(foodSearchIndex.length);
+          var output = '';
+          for(var i = 0 ; i<foodSearchIndex.length; i++) {
+            console.log(i);
+            output +=
+              '<div class="user">' +
+              '<ul>' +
+              '<li>Description: '+apires.hits[i].fields.item_name+'</li>' +
+              '<li>Brand: '+apires.hits[i].fields.brand_name+'</li>' +
+              '</ul>' +
+              '</div>';
+          }
+
+          document.getElementById('foods2').innerHTML = output;
         }
       }
 
