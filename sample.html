@@ -71,19 +71,24 @@ input[type=submit] {
 
 <h2>Autocomplete Food Search Items</h2>
 
-<p>Start typing:</p>
+<p>Search :</p>
 
 <!--Make sure the form has the autocomplete function switched off:-->
 <form class="form-group" autocomplete="off" id="addfoodform">
                 <div class="autocomplete">
                     <input id="myInput" class="form-control" type="text" placeholder="Search Foods">
-                    <button type="submit" class="btn btn-primary" id="addfoodsubmit" value="addfood">Add New Food</button>
+                    <button type="submit" id="addfoodsubmit" value="addfood">Add New Food</button>
                 </div>
 </form>
+    
+    <div id="result">
+    
+    </div>
 
 <script type="/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script type="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
 <script src="sample.js"></script>
 </body>
 </html>
