@@ -1,154 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Nutritional Value</title>
-  <style>
-    .user{
-      display: flex;
-      background:#f4f4f4;
-      padding:10px;
-      margin-bottom:10px;
-    }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Nutritional Value</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/grid.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <nav>
+                <a href="/">
+                    <div class="nav-tab">
+                        <i class="fas fa-home"></i> Home
+                    </div>
+                </a>
+                <a href="/diary">
+                    <div class="nav-tab">
+                        <i class="fas fa-book"></i> Food Diary
+                    </div>
+                </a>
+                <a href="/goals">
+                    <div class="nav-tab">
+                        <i class="fas fa-chart-bar"></i> Goals
+                    </div>
+                </a>
+            </nav>
+            <main>
+                <input type="search" class="" placeholder="What did you eat?"/>
+                <div class="food-search-add">
+                    <div class="query-item">
+                        <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                        <p class="name">Apple</p>
+                    </div>
+                    <input type="text" value="1">
+                </div>
+                <div class="list">
+                    <div class="meal-group" id="breakfast">
+                        <div class="meal-name">Breakfast</div>
+                        <ol class="items">
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                                <div class="item-info">
+                                    <p class="name">Apple</p>
+                                    <p class="values">1 serving</p>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                                <div class="item-info">
+                                    <p class="name">Apple</p>
+                                    <p class="values">1 serving</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="meal-group" id="lunch">
+                        <div class="meal-name">Lunch</div>
+                        <ol class="items"></ol>
+                    </div>
+                    <div class="meal-group" id="dinner">
+                        <div class="meal-name">Dinner</div>
+                        <ol class="items"></ol>
+                    </div>
+                    <div class="meal-group" id="snacks">
+                        <div class="meal-name">Snacks</div>
+                        <ol class="items"></ol>
+                    </div>
+                </div>
+            </main>
+            <aside>
 
-    .user ul{
-      list-style: none;
-    }
-  </style>
-</head>
-<body>
-  <!-- <button id="button">Load Nutritional Value USDA</button>
-  <button id="button2">Load Nutritional Value Nutritionix</button> -->
-
-  <input type="text" id="searchquery"></input>
-  <button id="button3">Load Instant Nutritional Value Nutritionix</button>
-
-  <br><br>
-  <h1>Github Users</h1>
-  <div id="foods"></div>
-  <div id="foods2"></div>
-  <div id="foods3"></div>
-
-  <script>
-
- //   document.getElementById('button').addEventListener('click', loadUsers);
- //   document.getElementById('button2').addEventListener('click', loadNutrionix);
-    document.getElementById('button3').addEventListener('click', loadNutrionix2);
-
-    var button = document.getElementById("button3");
-    //button.onclick(loadNutrionix2);
-    input = document.getElementById("searchquery");
-    console.log(input.value);
-    
-
-    // Load Github Users
-    function loadUsers(){
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://api.nal.usda.gov/fdc/v1/search?api_key=yyCbbrQilZFV62cEeY2oIxz8AFH60Nnz7pflfKIe&generalSearchInput=Cheddar%20Cheese', true);
-
-      xhr.onload = function(){
-        if(this.status == 200){
-          var apires = JSON.parse(this.responseText);
-          var foodSearchIndex = (apires.foods);
-          
-          console.log(foodSearchIndex.length);
-          var output = '';
-          for(var i = 0 ; i<foodSearchIndex.length; i++) {
-            console.log(i);
-            output +=
-              '<div class="user">' +
-              '<ul>' +
-              '<li>Description: '+apires.foods[i].description+'</li>' +
-              '<li>Brand: '+apires.foods[i].brandOwner+'</li>' +
-              '<li>ingredients: '+apires.foods[i].ingredients+'</li>' +
-              '</ul>' +
-              '</div>';
-          }
-
-          document.getElementById('foods').innerHTML = output;
-        }
-      }
-
-      xhr.send();
-    }
-
-    function loadNutrionix(){
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://api.nutritionix.com/v1_1/search/taco?results=0%3A20&cal_min=0&cal_max=500&appId=36e650cf&appKey=9ff34a709f1d44f63aa59fee827713d1', true);
-
-      xhr.onload = function(){
-        if(this.status == 200){
-          var apires = JSON.parse(this.responseText);
-          console.log(apires);
-          var foodSearchIndex = (apires.hits);
-          
-          console.log(foodSearchIndex.length);
-          var output = '';
-          for(var i = 0 ; i<foodSearchIndex.length; i++) {
-            console.log(i);
-            output +=
-              '<div class="user">' +
-              '<ul>' +
-              '<li>Description: '+apires.hits[i].fields.item_name+'</li>' +
-              '<li>Brand: '+apires.hits[i].fields.brand_name+'</li>' +
-              '</ul>' +
-              '</div>';
-          }
-
-          document.getElementById('foods2').innerHTML = output;
-        }
-      }
-
-      xhr.send();
-    }
-
-    
-    
-    
-    
-
-    function loadNutrionix2(){
-
-      // let h = new Headers();
-      // h.append("x-app-id": "36e650cf", "x-app-key": "9ff34a709f1d44f63aa59fee827713d1");
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://trackapi.nutritionix.com/v2/search/instant?query='+input.value, true);
-      //xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.setRequestHeader('x-app-id', '36e650cf');
-      xhr.setRequestHeader('x-app-key', '9ff34a709f1d44f63aa59fee827713d1');
-
-      // $.ajax({
-      // url: "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
-      // headers: {"x-app-id": "36e650cf", "x-app-key": "9ff34a709f1d44f63aa59fee827713d1"}
-      // });
-
-      xhr.onload = function(){
-        if(this.status == 200){
-          var apires = JSON.parse(this.responseText);
-          console.log(apires);
-          var foodSearchIndex = (apires.common);
-          
-          console.log(foodSearchIndex.length);
-          var output = '';
-          for(var i = 0 ; i<foodSearchIndex.length; i++) {
-            console.log(i);
-            output +=
-              '<div class="user">' +
-              '<ul>' +
-              '<li>Description: '+apires.common[i].food_name+'</li>' +
-              '<li> <img src= '+apires.common[i].photo.thumb+'> </li> </img>' +
-              '</ul>' +
-              '</div>';
-          }
-
-          document.getElementById('foods3').innerHTML = output;
-        }
-      }
-
-      xhr.send();
-    }
-  </script>
-</body>
+            </aside>
+        </div>
+    </body>
 </html>

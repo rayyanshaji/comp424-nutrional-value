@@ -1,0 +1,143 @@
+body, html {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    height: 100%;
+}
+
+/* NAV */
+
+nav {
+    border-right: 1px solid #000;
+}
+
+nav a {
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-tab {
+    font-size: 22px;
+    padding: 15px;
+    padding-left: 30px;
+    border-bottom: 1px solid #000;
+}
+
+.nav-tab i {
+    margin-right: 15px;
+}
+
+/* MAIN */
+
+main {
+    margin: 15px;
+}
+
+input[type=search] {
+    width: 50%;
+    padding: 5px;
+    border: 1px solid #ababab;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+    -webkit-appearance: textfield;
+    outline: 0;
+    margin-bottom: 15px;
+}
+
+.food-search-add {
+    border: 1px solid #000;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.food-search-add > .query-item {
+    display: inline-block;
+}
+
+.food-search-add > .query-item > img {
+    width: 72px;
+    height: 100%;
+    border: 1px solid #ababab;
+}
+
+.food-search-add > .query-item > .name {
+    margin: 0;
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.food-search-add > input[type=text] {
+    width: 50px;
+    padding: 3px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 20px;
+    vertical-align: top;
+}
+
+/* LIST */
+
+.list {
+    border: 1px solid #000;
+}
+
+.meal-group > .meal-name {
+    padding: 8px;
+    padding-left: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #FFB327;
+    border-bottom: 1px solid #000;
+}
+
+.meal-group:not(:first-child) > .meal-name {
+    border-top: 1px solid #000;
+}
+
+.meal-group > .items {
+    padding: 0 15px;
+    margin: 0;
+}
+
+.meal-group > .items:empty {
+    height: 80px;
+}
+
+.meal-group .item {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.meal-group .item:not(:last-child) {
+    border-bottom: 1px solid #ababab;
+}
+
+.meal-group .item > .item-info {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.meal-group .item >  img {
+    width: 64px;
+    height: 100%;
+    border: 1px solid #ababab;
+}
+
+.meal-group .item > .item-info > p {
+    margin: 0;
+}
+
+.meal-group .item > .item-info > .name {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
