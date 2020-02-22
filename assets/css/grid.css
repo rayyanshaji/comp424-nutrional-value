@@ -7,16 +7,21 @@
     grid-gap: 10px;
 }
 
-.wrapper {
-    /* grid-template-columns: 14% 1fr 40%; */
-    grid-template-columns: 235px 723px 672px;
-    grid-template-areas: "nav main aside";
+@media (max-width: 991px) {
+    main {
+        padding-top: 70px;
+    }
+}
+
+.wrapper{
+    grid-template-columns: 100%;
+    grid-template-areas: "main";
 }
 
 @media only screen and (min-width: 768px) {
     .wrapper{
-        grid-template-rows: 30% 1fr;
-        grid-template-columns: none;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "main aside";
     }
 }
 

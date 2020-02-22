@@ -4,14 +4,92 @@
 nav {
     grid-area: nav;
     position: fixed;
-    height: 100%;
     background-color: #f2f3f4;
-    border-right: 2px solid #000;
+    
 }
 
-@media (max-width: 992px) {
+nav a {
+    color: #000;
+    text-decoration: none;
+}
+
+@media (max-width: 991px) {
+    nav {
+        width: 100%;   
+        padding-top: 2px;
+        border-bottom: 1px solid #000;
+    }
+
+    .nav-title {
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .nav-tabs {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 14px;    
+    }
+
+    .nav-tab {
+        margin: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .nav-tab i {
+        margin-right: 5px;
+    }
+
+    .nav-link:hover .nav-tab,
+    .nav-link.active .nav-tab {
+        border-bottom: 2px solid #000;
+    }
+}
+
+@media (min-width: 992px) {
     nav {
         width: 200px;
+        height: 100%;
+        border-right: 2px solid #000;
+    }
+
+    .nav-title {
+        font-size: 32px;
+        text-align: center;
+        font-weight: 700;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #000;
+    }
+
+    .nav-link {
+        display: block;
+        font-size: 22px;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #000;
+    }
+
+    .nav-tab {
+        display: inline;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .nav-tab i {
+        margin-right: 10px;
+    }
+
+    .nav-link:hover .nav-tab,
+    .nav-link.active .nav-tab {
+        border-bottom: 2px solid #000;
     }
 }
 
@@ -21,41 +99,3 @@ nav {
     }
 }
 
-nav a {
-    color: #000;
-    text-decoration: none;
-}
-
-.nav-link {
-    display: block;
-    font-size: 22px;
-    /* top right bottom left */
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #000;
-}
-
-.nav-tab {
-    display: inline;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.nav-tab i {
-    margin-right: 10px;
-}
-
-.nav-title {
-    font-size: 32px;
-    text-align: center;
-    font-weight: 700;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #000;
-}
-
-.nav-link:hover .nav-tab,
-.nav-link.active .nav-tab {
-    border-bottom: 2px solid #000;
-}
