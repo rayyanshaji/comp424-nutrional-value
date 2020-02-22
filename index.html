@@ -5,25 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Nutritional Value</title>
-        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <!-- SLOW LOAD ... MAYBE CHANGE -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
         <link rel="stylesheet" type="text/css" href="./assets/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/nav.css">
     </head>
     <body>
         <div class="wrapper">
             <nav>
                 <a href="/">
+                    <div class="nav-title">
+                        Nutritional Calculator
+                    </div>
+                </a>
+                <a class="nav-link" href="/">
                     <div class="nav-tab">
                         <i class="fas fa-home"></i> Home
                     </div>
                 </a>
-                <a href="/diary">
+                <a class="nav-link active" href="/log">
                     <div class="nav-tab">
-                        <i class="fas fa-book"></i> Food Diary
+                        <i class="fas fa-book"></i> Food Log
                     </div>
                 </a>
-                <a href="/goals">
+                <a class="nav-link" href="/goals">
                     <div class="nav-tab">
                         <i class="fas fa-chart-bar"></i> Goals
                     </div>
