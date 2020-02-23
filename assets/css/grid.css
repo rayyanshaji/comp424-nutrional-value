@@ -7,12 +7,6 @@
     grid-gap: 10px;
 }
 
-@media (max-width: 991px) {
-    main {
-        padding-top: 70px;
-    }
-}
-
 .wrapper{
     grid-template-columns: 100%;
     grid-template-areas: "main";
@@ -27,7 +21,7 @@
 
 @media only screen and (min-width: 992px) {
     .wrapper {
-        grid-template-columns: 200px 1fr 35%;
+        grid-template-columns: 200px 45% 1fr;
         grid-template-areas: "nav main aside";
     }
 }
@@ -35,7 +29,7 @@
 @media only screen and (min-width: 1200px) {
     .wrapper {
         /* grid-template-columns: 14% 1fr 40%; */
-        grid-template-columns: 235px  723px 672px;
+        grid-template-columns: 235px 723px 672px;
         grid-template-areas: "nav main aside";
     }
 }
