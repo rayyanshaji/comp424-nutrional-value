@@ -8,7 +8,7 @@ nav {
 }
 
 nav a {
-    color: #fff;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
 }
 
@@ -63,7 +63,7 @@ nav a {
     nav {
         width: 210px;
         height: 100%;
-        box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.35)
+        box-shadow: 1.5px 0px 3px 0px rgba(0, 0, 0, 0.35)
     }
 
     .nav-title {
@@ -94,7 +94,7 @@ nav a {
     }
 
     .nav-tab i {
-        margin-right: 10px;
+        margin-right: 7px;
     }
 }
 
