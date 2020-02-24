@@ -4,50 +4,38 @@ body, html {
     height: 100%;
 }
 
-/* NAV */
-
-nav {
-    border-right: 1px solid #000;
-}
-
-nav a {
-    color: #000;
-    text-decoration: none;
-}
-
-.nav-tab {
-    font-size: 22px;
-    padding: 15px;
-    padding-left: 30px;
-    border-bottom: 1px solid #000;
-}
-
-.nav-tab i {
-    margin-right: 15px;
-}
-
 /* MAIN */
 
 main {
+    grid-area: main;
     margin: 15px;
 }
 
-input[type=search] {
-    width: 50%;
-    padding: 5px;
-    border: 1px solid #ababab;
-    border-radius: 5px;
-    font-size: 16px;
-    text-transform: uppercase;
-    -webkit-appearance: textfield;
-    outline: 0;
-    margin-bottom: 15px;
+@media (max-width: 991px) {
+    main {
+        padding-top: 60px;
+    }
 }
 
 .food-search-add {
     border: 1px solid #000;
     margin-bottom: 15px;
     padding: 15px;
+}
+
+.food-search-add > input[type=search] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ababab;
+    border-radius: 5px;
+    font-size: 16px;
+    -webkit-appearance: textfield;
+    outline: 0;
+    margin-bottom: 15px;
+}
+
+.food-search-add > input[type=search]::placeholder {
+    color: #6b6b6b;
 }
 
 .food-search-add > .query-item {
@@ -91,7 +79,7 @@ input[type=search] {
     font-size: 20px;
     font-weight: 700;
     color: #fff;
-    background-color: #FFB327;
+    background-color: #fb8721;
     border-bottom: 1px solid #000;
 }
 
@@ -140,4 +128,8 @@ input[type=search] {
     font-weight: 700;
     padding-bottom: 5px;
     margin-bottom: 10px;
+}
+
+aside {
+    grid-area: aside;
 }

@@ -5,33 +5,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Nutritional Value</title>
-        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <!-- SLOW LOAD ... MAYBE CHANGE -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
         <link rel="stylesheet" type="text/css" href="./assets/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/nav.css">
     </head>
     <body>
         <div class="wrapper">
             <nav>
                 <a href="/">
-                    <div class="nav-tab">
-                        <i class="fas fa-home"></i> Home
+                    <div class="nav-title">
+                        Nutritional Calculator
                     </div>
                 </a>
-                <a href="/diary">
-                    <div class="nav-tab">
-                        <i class="fas fa-book"></i> Food Diary
-                    </div>
-                </a>
-                <a href="/goals">
-                    <div class="nav-tab">
-                        <i class="fas fa-chart-bar"></i> Goals
-                    </div>
-                </a>
+                <div class="nav-tabs">
+                    <a class="nav-link" href="/">
+                        <div class="nav-tab">
+                            <i class="fas fa-home"></i> Home
+                        </div>
+                    </a>
+                    <a class="nav-link active" href="/log">
+                        <div class="nav-tab">
+                            <i class="fas fa-book"></i> Log
+                        </div>
+                    </a>
+                    <a class="nav-link" href="/goals">
+                        <div class="nav-tab">
+                            <i class="fas fa-chart-bar"></i> Goals
+                        </div>
+                    </a>
+                    <a class="nav-link" href="/account">
+                        <div class="nav-tab">
+                            <i class="fas fa-user"></i> Account
+                        </div>
+                    </a>
+                </div>
             </nav>
             <main>
-                <input type="search" class="" placeholder="What did you eat?"/>
                 <div class="food-search-add">
+                    <input type="search" class="" placeholder="What did you eat?"/>
                     <div class="query-item">
                         <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
                         <p class="name">Apple</p>
