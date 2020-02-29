@@ -1,0 +1,121 @@
+.list-add {
+    display: grid;
+    grid-template-areas:
+        "search search"
+        "result serving-input";
+    grid-template-columns: 100px 1fr;
+    border: 1px solid #000;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+}
+
+.list-add > input[type=search].food-search {
+    grid-area: search;
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #ababab;
+    border-radius: 5px;
+    font-size: 18px;
+    -webkit-appearance: textfield;
+    outline: 0;
+    margin-bottom: 15px;
+}
+
+.list-add > input[type=search].food-search:focus {
+    border: 1px solid #fb8721;
+}
+
+.list-add > .food-search::placeholder {
+    color: #6b6b6b;
+}
+
+.list-add > .search-result {
+    grid-area: result;
+    justify-self: center;
+}
+
+.list-add img {
+    justify-self: center;
+    width: 86px;
+    border: 1px solid #ababab;
+}
+
+.list-add .name {
+    text-align: center;
+    font-weight: 700;
+    padding-top: 5px;
+    margin: 0;
+}
+
+.list-add > .search-input {
+    grid-area: serving-input;
+    align-self: center;
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    height: 55px;
+    width: 45px;
+}
+
+/* LIST */
+
+.list {
+    border: 1px solid #000;
+}
+
+.meal-group > .meal-name {
+    padding: 8px;
+    padding-left: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #fb8721;
+    border-bottom: 1px solid #000;
+}
+
+.meal-group:not(:first-child) > .meal-name {
+    border-top: 1px solid #000;
+}
+
+.meal-group > .items {
+    padding: 0 15px;
+    margin: 0;
+}
+
+.meal-group > .items:empty {
+    height: 80px;
+}
+
+.meal-group .item {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.meal-group .item:not(:last-child) {
+    border-bottom: 1px solid #ababab;
+}
+
+.meal-group .item > .item-info {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.meal-group .item > img {
+    width: 64px;
+    height: 100%;
+    border: 1px solid #ababab;
+}
+
+.meal-group .item > .item-info > p {
+    margin: 0;
+}
+
+.meal-group .item > .item-info > .name {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
