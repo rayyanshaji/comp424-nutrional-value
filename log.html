@@ -7,9 +7,9 @@
         <title>Nutritional Calculator</title>
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/css/grid.css">
-        <link rel="stylesheet" href="/assets/css/main.css">
-        <link rel="stylesheet" href="/assets/css/log.css">
+        <link href="/assets/css/grid.css" rel="stylesheet">
+        <link href="/assets/css/common.css" rel="stylesheet">
+        <link href="/assets/css/log.css" rel="stylesheet">
     </head>
     <body>
         <div class="wrapper">
@@ -41,53 +41,53 @@
                 </div>
             </nav>
             <main>
-                <div class="list-add">
-                    <input type="search" class="food-search" placeholder="What did you eat?"/>
-                    <div class="search-result">
-                        <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                        <h2 class="name">Apple</h2>
+                <section>
+                    <div class="list-add">
+                        <input type="search" class="food-search" placeholder="What did you eat?"/>
+                        <div class="search-result">
+                            <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                            <h2 class="name">Apple</h2>
+                        </div>
+                        <div class="list-add-input">
+                            <input type="text" value="1">
+                        </div>
                     </div>
-                    <div class="list-add-input">
-                        <input type="text" value="1">
+                    <div class="list">
+                        <div class="meal-group" id="breakfast">
+                            <div class="meal-name">Breakfast</div>
+                            <ol class="items">
+                                <li class="item">
+                                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                                    <div class="item-info">
+                                        <p class="name">Apple</p>
+                                        <p class="values">1 serving</p>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                                    <div class="item-info">
+                                        <p class="name">Apple</p>
+                                        <p class="values">1 serving</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="meal-group" id="lunch">
+                            <div class="meal-name">Lunch</div>
+                            <ol class="items"></ol>
+                        </div>
+                        <div class="meal-group" id="dinner">
+                            <div class="meal-name">Dinner</div>
+                            <ol class="items"></ol>
+                        </div>
+                        <div class="meal-group" id="snacks">
+                            <div class="meal-name">Snacks</div>
+                            <ol class="items"></ol>
+                        </div>
                     </div>
-                </div>
-                <div class="list">
-                    <div class="meal-group" id="breakfast">
-                        <div class="meal-name">Breakfast</div>
-                        <ol class="items">
-                            <li class="item">
-                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <div class="item-info">
-                                    <p class="name">Apple</p>
-                                    <p class="values">1 serving</p>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <div class="item-info">
-                                    <p class="name">Apple</p>
-                                    <p class="values">1 serving</p>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                    <div class="meal-group" id="lunch">
-                        <div class="meal-name">Lunch</div>
-                        <ol class="items"></ol>
-                    </div>
-                    <div class="meal-group" id="dinner">
-                        <div class="meal-name">Dinner</div>
-                        <ol class="items"></ol>
-                    </div>
-                    <div class="meal-group" id="snacks">
-                        <div class="meal-name">Snacks</div>
-                        <ol class="items"></ol>
-                    </div>
-                </div>
+                </section>
+                <section></section>
             </main>
-            <aside>
-
-            </aside>
         </div>
     </body>
 </html>

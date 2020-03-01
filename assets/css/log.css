@@ -83,7 +83,7 @@
 }
 
 .meal-group > .items:empty {
-    height: 80px;
+    height: 800px;
 }
 
 .meal-group .item {
