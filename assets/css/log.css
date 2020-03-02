@@ -16,9 +16,9 @@
     border: 1px solid #ababab;
     border-radius: 5px;
     font-size: 18px;
-    -webkit-appearance: textfield;
     outline: 0;
     margin-bottom: 15px;
+    -webkit-appearance: textfield;
 }
 
 .list-add > input[type=search].food-search:focus {
@@ -83,7 +83,7 @@
 }
 
 .meal-group > .items:empty {
-    height: 800px;
+    height: 80px;
 }
 
 .meal-group .item {
@@ -118,4 +118,10 @@
     font-weight: 700;
     padding-bottom: 5px;
     margin-bottom: 10px;
+}
+
+.test-calendar {
+    height: 300px;
+    width: 300px;
+    background-color: #fb8721;
 }

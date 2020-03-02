@@ -14,14 +14,15 @@
 
     main {
         flex-grow: 1;
-        overflow-y: auto;
     }
 }
 
 main {
     display: flex;
+    flex-wrap: wrap;
+    
 }
 
 main > section {
-    flex-basis: 100%;
+    margin: 5px;
 }
