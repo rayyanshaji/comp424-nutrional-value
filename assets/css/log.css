@@ -80,7 +80,10 @@
 }
 
 .meal-group .item {
-    display: flex;
+    display: grid;
+    grid-template-areas:
+        "image item-info . expand-item";
+    grid-template-columns: 80px 20% 1fr 30px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -89,15 +92,15 @@
     border-bottom: 1px solid #ababab;
 }
 
-.meal-group .item > .item-info {
-    display: inline-block;
-    margin-left: 15px;
-}
-
 .meal-group .item > img {
+    grid-area: image;
     width: 64px;
     height: 100%;
     border: 1px solid #ababab;
+}
+
+.meal-group .item > .item-info {
+    grid-area: item-info;
 }
 
 .meal-group .item > .item-info > p {
@@ -111,6 +114,12 @@
     font-weight: 700;
     padding-bottom: 5px;
     margin-bottom: 10px;
+}
+
+.meal-group .item > .expand-item {
+    grid-area: expand-item;
+    font-size: 32px;
+    place-self: center;
 }
 
 .meals-summary {
