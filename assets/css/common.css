@@ -16,7 +16,7 @@ nav {
     position: -webkit-sticky;
     position: sticky;
     top: 0; 
-    background-color: #fb8721;
+    background-color: #f97c0f;;
 }
 
 nav a {
@@ -44,6 +44,7 @@ nav .nav-tabs {
     display: flex;
 }
 
+/*
 @media (max-width: 991px) {
     nav {
         padding-top: 2px;
@@ -75,11 +76,10 @@ nav .nav-tabs {
         margin-right: 5px;
     }
 
-}
+} */
 
-@media (min-width: 992px) {
+@media (min-width: 0px) {
     nav {
-        width: 210px;
         box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.35);
         height: 100vh;
     }
@@ -110,11 +110,5 @@ nav .nav-tabs {
 
     .nav-tab i {
         margin-right: 7px;
-    }
-}
-
-@media (min-width: 1200px) {
-    nav {
-        width: 225px;
     }
 }

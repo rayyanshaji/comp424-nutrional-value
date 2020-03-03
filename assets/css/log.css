@@ -22,7 +22,7 @@
 }
 
 .list-add > input[type=search].food-search:focus {
-    border: 1px solid #fb8721;
+    border: 1px solid #f97c0f;;
 }
 
 .list-add > .food-search::placeholder {
@@ -69,7 +69,7 @@
     font-size: 20px;
     font-weight: 700;
     color: #fff;
-    background-color: #fb8721;
+    background-color: #f97c0f;;
     border-bottom: 1px solid #000;
 }
 
@@ -123,5 +123,5 @@
 .test-calendar {
     height: 300px;
     width: 300px;
-    background-color: #fb8721;
+    background-color: #f97c0f;;
 }

@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+}
+
+main {
+    flex-grow: 1;
+}
+
+nav {
+    flex: 0 0 189px;
+    max-width: 189px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+main > section {
+    flex: 1 1 100vw;
+    margin: 5px;
+}
