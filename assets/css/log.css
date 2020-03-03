@@ -1,9 +1,9 @@
 .list-add {
     display: grid;
     grid-template-areas:
-        "search search"
-        "result serving-input";
-    grid-template-columns: 100px 1fr;
+        "search search search"
+        "result meal-select .";
+    grid-template-columns: 100px 400px 1fr;
     border: 1px solid #000;
     margin-bottom: 15px;
     padding: 10px 20px;
@@ -11,11 +11,10 @@
 
 .list-add > input[type=search].food-search {
     grid-area: search;
-    width: 100%;
-    padding: 7px;
-    border: 1px solid #ababab;
-    border-radius: 5px;
-    font-size: 18px;
+    padding: 8px 15px;
+    border: 1px solid #646464;
+    border-radius: 4px;
+    font-size: 20px;
     outline: 0;
     margin-bottom: 15px;
     -webkit-appearance: textfield;
@@ -25,8 +24,8 @@
     border: 1px solid #f97c0f;;
 }
 
-.list-add > .food-search::placeholder {
-    color: #6b6b6b;
+.list-add > input[type=search].food-search::placeholder {
+    color: #000;
 }
 
 .list-add > .search-result {
@@ -47,15 +46,10 @@
     margin: 0;
 }
 
-.list-add > .search-input {
-    grid-area: serving-input;
-    align-self: center;
-    text-align: center;
-    font-weight: 700;
-    font-size: 30px;
-    height: 55px;
-    width: 45px;
+.list-add > .meal-select {
+    grid-area: meal-select;
 }
+
 
 /* LIST */
 
@@ -64,8 +58,7 @@
 }
 
 .meal-group > .meal-name {
-    padding: 8px;
-    padding-left: 18px;
+    padding: 8px 20px;
     font-size: 20px;
     font-weight: 700;
     color: #fff;
@@ -78,7 +71,7 @@
 }
 
 .meal-group > .items {
-    padding: 0 15px;
+    padding: 0 20px;
     margin: 0;
 }
 
@@ -120,8 +113,26 @@
     margin-bottom: 10px;
 }
 
-.test-calendar {
-    height: 300px;
-    width: 300px;
+.meals-summary {
+    margin-top: 10px;
+    border: 1px solid #000;
+}
+
+.meals-summary > .name {
+    padding: 8px;
+    padding-left: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
     background-color: #f97c0f;;
+    border-bottom: 1px solid #000;
+}
+
+.test-calendar {
+    height: 400px;
+    width: 500px;
+    text-align: center;
+    background-color: #646464;
+    color: white;
+    border: 1px solid #000;
 }

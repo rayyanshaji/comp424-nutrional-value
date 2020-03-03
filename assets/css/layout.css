@@ -11,8 +11,8 @@ main {
 }
 
 nav {
-    flex: 0 0 189px;
-    max-width: 189px;
+    flex: 0 0 225px;
+    max-width: 225px;
 }
 
 main {
@@ -22,6 +22,10 @@ main {
 }
 
 main > section {
-    flex: 1 1 100vw;
+    /* flex: 1 1 100vw; */
     margin: 5px;
+}
+
+#list {
+    width: 674px;
 }
