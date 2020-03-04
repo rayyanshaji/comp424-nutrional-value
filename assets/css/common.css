@@ -13,9 +13,6 @@ main {
 /* NAV */
 
 nav {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0; 
     background-color: #f97c0f;;
 }
 
@@ -65,7 +62,7 @@ nav .nav-tabs {
     }
 
     .nav-tab {
-        margin: 4px;
+        margin: 3px;
         padding-bottom: 4px;
         padding-left: 4px;
         padding-right: 4px;
@@ -79,6 +76,9 @@ nav .nav-tabs {
 
 @media (min-width: 836px) {
     nav {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
         box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.35);
         height: 100vh;
     }

@@ -23,13 +23,22 @@ main {
     
 }
 
-main > section {
-    /* flex: 1 1 100vw; */
-    margin: 5px;
+@media (min-width: 836px) {
+    main > section {
+        margin: 5px;
+    }
 }
 
-#log {
-    width: 700px;
+@media (max-width: 835px) {
+    main > section {
+        flex: 1 1 100vw;
+    }
+}
+
+@media (min-width: 1460px) {
+    .main-section {
+        width: 700px;
+    }
 }
 
 /*

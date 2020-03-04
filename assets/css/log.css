@@ -3,11 +3,22 @@
     grid-template-areas:
         "search search search"
         "image name ."
-        "image servings .";
-    grid-template-columns: 100px 180px 1fr;
+        "image view-nutrition add-list";
     border: 1px solid #000;
     margin-bottom: 15px;
-    padding: 20px;
+    padding: 15px;
+}
+
+@media (max-width: 835px) {
+    .list-add {
+        grid-template-columns: 100px repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 836px) {
+    .list-add {
+        grid-template-columns: 100px 20% 1fr;
+    }
 }
 
 .list-add > input[type=search].food-search {
@@ -18,11 +29,13 @@
     font-size: 20px;
     outline: 0;
     margin-bottom: 15px;
-    -webkit-appearance: textfield;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .list-add > input[type=search].food-search:focus {
-    border: 1px solid #f97c0f;;
+    border: 1px solid #f97c0f;
 }
 
 .list-add > input[type=search].food-search::placeholder {
@@ -35,13 +48,23 @@
     border: 1px solid #ababab;
 }
 
-.list-add > .servings > input[type=number] {
-    width: 50px;
-    height: 30px;
-    font-size: 1.25em;
-    font-weight: 700;
+.list-add > button {
+    grid-area: nutrition;
+    justify-self: end;
+    height: 50px;
+    font-size: 1em;
+    background-color: #fff;
+    border: 1px solid #f97c0f;
+    border-radius: 5px;
 }
 
+.list-add > .view-nutrition {
+    grid-area: view-nutrition;
+}
+
+.list-add > .add-list {
+    grid-area: add-list;
+}
 
 /* LIST */
 
@@ -141,6 +164,7 @@
     border-bottom: 1px solid #000;
 }
 
+/*
 .test-calendar {
     height: 400px;
     width: 500px;
@@ -148,4 +172,4 @@
     background-color: #646464;
     color: white;
     border: 1px solid #000;
-}
+} */
