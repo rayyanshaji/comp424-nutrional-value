@@ -44,12 +44,20 @@
                 <section id="log">
                     <div class="list-add">
                         <input type="search" class="food-search" placeholder="What did you eat?"/>
-                        <div class="search-result">
-                            <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                            <h2 class="name">Apple</h2>
+                        <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                        <h2 class="name">Apple</h2>
+                        <div class="servings">
+                            <label>Servings:</label> 
+                            <input type="number">
                         </div>
                         <div class="meal-select">
-                            
+                            <label>Add to:</label>
+                            <select>
+                                <option>Breakfast</option>
+                                <option>Lunch</option>
+                                <option>Dinner</option>
+                                <option>Snacks</option>
+                            </select>
                         </div>
                     </div>
                     <div class="list">
@@ -58,18 +66,17 @@
                             <ol class="items">
                                 <li class="item">
                                     <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                    <div class="item-info">
-                                        <p class="name">Apple</p>
-                                        <p class="values">1 serving</p>
-                                    </div>
+                                    <h2 class="name" title="Apple">Apple</h2>
+                                    <span class="servings">Servings: <strong>1</strong></span>
+                                    <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
                                     <i class="fas fa-chevron-right expand-item"></i>
                                 </li>
                                 <li class="item">
                                     <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                    <div class="item-info">
-                                        <p class="name">Apple</p>
-                                        <p class="values">1 serving</p>
-                                    </div>
+                                    <h2 class="name" title="Apple">Apple</h2>
+                                    <span class="servings">Servings: <strong>1</strong></span>
+                                    <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
+                                    <i class="fas fa-chevron-right expand-item"></i>
                                 </li>
                             </ol>
                         </div>
@@ -86,8 +93,8 @@
                             <ol class="items"></ol>
                         </div>
                     </div>
-                    <div class="meals-summary">
-                        <div class="name">Summary</div>
+                    <div class="meals-total">
+                        <div class="name">Total</div>
                         <ol class="items"></ol>
                     </div>
                 </section>

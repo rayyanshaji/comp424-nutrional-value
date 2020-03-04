@@ -2,11 +2,12 @@
     display: grid;
     grid-template-areas:
         "search search search"
-        "result meal-select .";
-    grid-template-columns: 100px 400px 1fr;
+        "image name ."
+        "image servings .";
+    grid-template-columns: 100px 180px 1fr;
     border: 1px solid #000;
     margin-bottom: 15px;
-    padding: 10px 20px;
+    padding: 20px;
 }
 
 .list-add > input[type=search].food-search {
@@ -25,29 +26,20 @@
 }
 
 .list-add > input[type=search].food-search::placeholder {
-    color: #000;
+    color: #646464;
 }
 
-.list-add > .search-result {
-    grid-area: result;
-    justify-self: center;
-}
-
-.list-add img {
-    justify-self: center;
-    width: 86px;
+.list-add > img {
+    grid-area: image;
+    width: 84px;
     border: 1px solid #ababab;
 }
 
-.list-add .name {
-    text-align: center;
+.list-add > .servings > input[type=number] {
+    width: 50px;
+    height: 30px;
+    font-size: 1.25em;
     font-weight: 700;
-    padding-top: 5px;
-    margin: 0;
-}
-
-.list-add > .meal-select {
-    grid-area: meal-select;
 }
 
 
@@ -58,6 +50,8 @@
 }
 
 .meal-group > .meal-name {
+    position: sticky;
+    top: 0;
     padding: 8px 20px;
     font-size: 20px;
     font-weight: 700;
@@ -82,8 +76,10 @@
 .meal-group .item {
     display: grid;
     grid-template-areas:
-        "image item-info . expand-item";
-    grid-template-columns: 80px 20% 1fr 30px;
+        "image name . expand-item"
+        "image servings . expand-item";
+    grid-template-columns: 64px 35% 1fr 30px;
+    column-gap: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -95,25 +91,25 @@
 .meal-group .item > img {
     grid-area: image;
     width: 64px;
-    height: 100%;
     border: 1px solid #ababab;
 }
 
-.meal-group .item > .item-info {
-    grid-area: item-info;
-}
-
-.meal-group .item > .item-info > p {
+.list-add > .name,
+.meal-group .item > .name {
+    grid-area: name;
+    font-weight: 700;
     margin: 0;
 }
 
-.meal-group .item > .item-info > .name {
-    display: inline-block;
-    border-bottom: 1px solid #000;
-    font-size: 18px;
-    font-weight: 700;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+.list-add > .servings,
+.meal-group .item > .servings {
+    grid-area: servings;
+    align-self: center;
+    margin: 0;
+}
+
+.meal-group .item > .servings > strong {
+    font-size: 1.25em;
 }
 
 .meal-group .item > .expand-item {
@@ -122,12 +118,20 @@
     place-self: center;
 }
 
-.meals-summary {
-    margin-top: 10px;
+.meals-total {
+    height: 100px;
+
+    position: sticky;
+    z-index: 10;
+    bottom: 10px;
+    margin-top: 15px;
+    background-color: #fff;
     border: 1px solid #000;
+    /* TODO: REMOVE SHADOW WHEN NO LONGER FIXED */
+    box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.5);
 }
 
-.meals-summary > .name {
+.meals-total > .name {
     padding: 8px;
     padding-left: 18px;
     font-size: 20px;
