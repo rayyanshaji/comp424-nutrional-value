@@ -164,12 +164,11 @@
     border-bottom: 1px solid #000;
 }
 
-/*
 .test-calendar {
-    height: 400px;
-    width: 500px;
+    height: 300px;
+    width: 400px;
     text-align: center;
     background-color: #646464;
     color: white;
     border: 1px solid #000;
-} */
+}

@@ -41,7 +41,7 @@ nav .nav-tabs {
     display: flex;
 }
 
-@media (max-width: 835px) {
+@media (max-width: 914px) {
     nav {
         padding-top: 2px;
         border-bottom: 1px solid #7d7d7d;
@@ -74,7 +74,7 @@ nav .nav-tabs {
 
 }
 
-@media (min-width: 836px) {
+@media (min-width: 915px) {
     nav {
         position: -webkit-sticky;
         position: sticky;
