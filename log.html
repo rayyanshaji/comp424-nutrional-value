@@ -12,86 +12,84 @@
         <link href="/assets/css/log.css" rel="stylesheet">
     </head>
     <body>
-        <div class="wrapper">
-            <nav>
-                <a href="/">
-                    <div class="nav-title">Nutritional Calculator</div>
+        <nav>
+            <a href="/">
+                <div class="nav-title">Nutritional Calculator</div>
+            </a>
+            <div class="nav-tabs">
+                <a class="nav-link" href="/">
+                    <div class="nav-tab">
+                        <i class="fas fa-home"></i> Home
+                    </div>
                 </a>
-                <div class="nav-tabs">
-                    <a class="nav-link" href="/">
-                        <div class="nav-tab">
-                            <i class="fas fa-home"></i> Home
-                        </div>
-                    </a>
-                    <a class="nav-link active" href="/log">
-                        <div class="nav-tab">
-                            <i class="fas fa-book"></i> Log
-                        </div>
-                    </a>
-                    <a class="nav-link" href="/goals">
-                        <div class="nav-tab">
-                            <i class="fas fa-chart-bar"></i> Goals
-                        </div>
-                    </a>
-                    <a class="nav-link" href="/account">
-                        <div class="nav-tab">
-                            <i class="fas fa-user"></i> Account
-                        </div>
-                    </a>
+                <a class="nav-link active" href="/log">
+                    <div class="nav-tab">
+                        <i class="fas fa-book"></i> Log
+                    </div>
+                </a>
+                <a class="nav-link" href="/goals">
+                    <div class="nav-tab">
+                        <i class="fas fa-chart-bar"></i> Goals
+                    </div>
+                </a>
+                <a class="nav-link" href="/account">
+                    <div class="nav-tab">
+                        <i class="fas fa-user"></i> Account
+                    </div>
+                </a>
+            </div>
+        </nav>
+        <main>
+            <section class="main-section">
+                <div class="list-add">
+                    <input type="search" class="food-search" placeholder="What did you eat?"/>
+                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                    <h2 class="name">Apple</h2>
+                    <button class="view-nutrition">View Nutrition</button>
+                    <button class="add-list">Add to List</button>
                 </div>
-            </nav>
-            <main>
-                <section class="main-section">
-                    <div class="list-add">
-                        <input type="search" class="food-search" placeholder="What did you eat?"/>
-                        <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                        <h2 class="name">Apple</h2>
-                        <button class="view-nutrition">View Nutrition</button>
-                        <button class="add-list">Add to List</button>
+                <div class="list">
+                    <div class="meal-group" id="breakfast">
+                        <div class="meal-name">Breakfast</div>
+                        <ol class="items">
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                                <h2 class="name" title="Apple">Apple</h2>
+                                <span class="servings">Servings: <strong>1</strong></span>
+                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                                <h2 class="name" title="Apple">Apple</h2>
+                                <span class="servings">Servings: <strong>1</strong></span>
+                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                        </ol>
                     </div>
-                    <div class="list">
-                        <div class="meal-group" id="breakfast">
-                            <div class="meal-name">Breakfast</div>
-                            <ol class="items">
-                                <li class="item">
-                                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                    <h2 class="name" title="Apple">Apple</h2>
-                                    <span class="servings">Servings: <strong>1</strong></span>
-                                    <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
-                                    <i class="fas fa-chevron-right expand-item"></i>
-                                </li>
-                                <li class="item">
-                                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                    <h2 class="name" title="Apple">Apple</h2>
-                                    <span class="servings">Servings: <strong>1</strong></span>
-                                    <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
-                                    <i class="fas fa-chevron-right expand-item"></i>
-                                </li>
-                            </ol>
-                        </div>
-                        <div class="meal-group" id="lunch">
-                            <div class="meal-name">Lunch</div>
-                            <ol class="items"></ol>
-                        </div>
-                        <div class="meal-group" id="dinner">
-                            <div class="meal-name">Dinner</div>
-                            <ol class="items"></ol>
-                        </div>
-                        <div class="meal-group" id="snacks">
-                            <div class="meal-name">Snacks</div>
-                            <ol class="items"></ol>
-                        </div>
-                    </div>
-                    <div class="meals-total">
-                        <div class="name">Total</div>
+                    <div class="meal-group" id="lunch">
+                        <div class="meal-name">Lunch</div>
                         <ol class="items"></ol>
                     </div>
-                </section>
-                <!--
-                <section class="aside-section">
-                    <div class="test-calendar">Calendar</div>
-                </section>-->
-            </main>
-        </div>
+                    <div class="meal-group" id="dinner">
+                        <div class="meal-name">Dinner</div>
+                        <ol class="items"></ol>
+                    </div>
+                    <div class="meal-group" id="snacks">
+                        <div class="meal-name">Snacks</div>
+                        <ol class="items"></ol>
+                    </div>
+                </div>
+                <div class="meals-total">
+                    <div class="name">Total</div>
+                    <ol class="items"></ol>
+                </div>
+            </section>
+            <!--
+            <section class="aside-section">
+                <div class="test-calendar">Calendar</div>
+            </section>-->
+        </main>
     </body>
 </html>

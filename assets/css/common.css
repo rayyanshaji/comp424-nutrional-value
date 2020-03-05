@@ -4,21 +4,41 @@ body, html {
     height: 100%;
 }
 
-/* MAIN */
-
-main {
-    margin: 5px;
-}
-
 /* NAV */
 
 nav {
-    background-color: #f97c0f;;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f97c0f;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #7d7d7d;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,0.35);
 }
 
 nav a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
+}
+
+nav .nav-title {
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0;
+}
+
+.nav-tabs {
+    display: flex;
+}
+
+.nav-tab {
+    margin: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 nav .nav-link:hover .nav-tab,
@@ -31,83 +51,24 @@ nav .nav-link.active .nav-tab {
     font-weight: 700;
 }
 
-nav .nav-title {
-    color: #fff;
-    text-align: center;
-    font-weight: 700;
+.nav-link {
+    font-size: 18px;    
 }
 
-nav .nav-tabs {
-    display: flex;
+.nav-tab i {
+    margin-right: 3px;
 }
 
-@media (max-width: 914px) {
+@media (max-width: 721px) {
     nav {
-        padding-top: 2px;
-        border-bottom: 1px solid #7d7d7d;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.35);
-    }
-
-    .nav-title {
-        font-size: 20px;
-        margin: 0;
-    }
-
-    .nav-tabs {
         justify-content: center;
     }
 
-    .nav-link {
-        font-size: 15px;    
-    }
-
-    .nav-tab {
-        margin: 3px;
-        padding-bottom: 4px;
-        padding-left: 4px;
-        padding-right: 4px;
-    }
-
-    .nav-tab i {
-        margin-right: 5px;
-    }
-
-}
-
-@media (min-width: 915px) {
-    nav {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.35);
-        height: 100vh;
-    }
-
-    .nav-tabs {
-        flex-direction: column;
-    }
-
     .nav-title {
-        font-size: 32px;
-        margin: 0 15px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-bottom: 3px solid #fff;
+        display: none;
     }
 
     .nav-link {
-        font-size: 20px;
-        padding: 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-        text-transform: uppercase;
-    }
-
-    .nav-tab {
-        display: inline;
-        padding: 5px;
-    }
-
-    .nav-tab i {
-        margin-right: 7px;
+        font-size: 15px;
     }
 }
