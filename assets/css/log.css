@@ -1,60 +1,72 @@
 .list-add {
     display: grid;
     grid-template-areas:
-        "search search"
-        "result serving-input";
-    grid-template-columns: 100px 1fr;
+        "search search search"
+        "image name ."
+        "image servings add-item";
     border: 1px solid #000;
-    margin-bottom: 15px;
-    padding: 10px 20px;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+@media (max-width: 835px) {
+    .list-add {
+        grid-template-columns: 100px repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 836px) {
+    .list-add {
+        grid-template-columns: 100px 40% 1fr;
+    }
 }
 
 .list-add > input[type=search].food-search {
     grid-area: search;
-    width: 100%;
-    padding: 7px;
-    border: 1px solid #ababab;
-    border-radius: 5px;
-    font-size: 18px;
-    -webkit-appearance: textfield;
+    padding: 8px 15px;
+    border: 1px solid #646464;
+    border-radius: 4px;
+    font-size: 20px;
     outline: 0;
     margin-bottom: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .list-add > input[type=search].food-search:focus {
-    border: 1px solid #fb8721;
+    border: 1px solid #f97c0f;
 }
 
-.list-add > .food-search::placeholder {
-    color: #6b6b6b;
+.list-add > input[type=search].food-search::placeholder {
+    color: #646464;
 }
 
-.list-add > .search-result {
-    grid-area: result;
-    justify-self: center;
-}
-
-.list-add img {
-    justify-self: center;
-    width: 86px;
+.list-add > img {
+    grid-area: image;
+    width: 84px;
     border: 1px solid #ababab;
 }
 
-.list-add .name {
-    text-align: center;
-    font-weight: 700;
-    padding-top: 5px;
-    margin: 0;
+
+.list-add > .servings > input {
+    width: 45px;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
-.list-add > .search-input {
-    grid-area: serving-input;
-    align-self: center;
-    text-align: center;
-    font-weight: 700;
-    font-size: 30px;
-    height: 55px;
-    width: 45px;
+.list-add > button {
+    grid-area: nutrition;
+    justify-self: end;
+    height: 40px;
+    font-size: 1em;
+    background-color: #fff;
+    border: 1px solid #f97c0f;
+    border-radius: 5px;
+}
+
+.list-add > .add-item {
+    grid-area: add-item;
 }
 
 /* LIST */
@@ -64,12 +76,13 @@
 }
 
 .meal-group > .meal-name {
-    padding: 8px;
-    padding-left: 18px;
+    position: sticky;
+    top: 0;
+    padding: 8px 20px;
     font-size: 20px;
     font-weight: 700;
     color: #fff;
-    background-color: #fb8721;
+    background-color: #f97c0f;;
     border-bottom: 1px solid #000;
 }
 
@@ -78,7 +91,7 @@
 }
 
 .meal-group > .items {
-    padding: 0 15px;
+    padding: 0 20px;
     margin: 0;
 }
 
@@ -87,7 +100,12 @@
 }
 
 .meal-group .item {
-    display: flex;
+    display: grid;
+    grid-template-areas:
+        "image name . expand-item"
+        "image servings . expand-item";
+    grid-template-columns: 64px 35% 1fr 30px;
+    column-gap: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -96,26 +114,64 @@
     border-bottom: 1px solid #ababab;
 }
 
-.meal-group .item > .item-info {
-    display: inline-block;
-    margin-left: 15px;
-}
-
 .meal-group .item > img {
+    grid-area: image;
     width: 64px;
-    height: 100%;
     border: 1px solid #ababab;
 }
 
-.meal-group .item > .item-info > p {
+.list-add > .name,
+.meal-group .item > .name {
+    grid-area: name;
+    font-weight: 700;
     margin: 0;
 }
 
-.meal-group .item > .item-info > .name {
-    display: inline-block;
-    border-bottom: 1px solid #000;
-    font-size: 18px;
+.list-add > .servings,
+.meal-group .item > .servings {
+    grid-area: servings;
+    align-self: center;
+    margin: 0;
+}
+
+.meal-group .item > .servings > strong {
+    font-size: 1.25em;
+}
+
+.meal-group .item > .expand-item {
+    grid-area: expand-item;
+    font-size: 32px;
+    place-self: center;
+}
+
+.meals-total {
+    height: 100px;
+
+    position: sticky;
+    z-index: 10;
+    bottom: 10px;
+    margin-top: 15px;
+    background-color: #fff;
+    border: 1px solid #000;
+    /* TODO: REMOVE SHADOW WHEN NO LONGER FIXED */
+    box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.5);
+}
+
+.meals-total > .name {
+    padding: 8px;
+    padding-left: 18px;
+    font-size: 20px;
     font-weight: 700;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+    color: #fff;
+    background-color: #f97c0f;;
+    border-bottom: 1px solid #000;
+}
+
+.test-calendar {
+    height: 300px;
+    width: 400px;
+    text-align: center;
+    background-color: #646464;
+    color: white;
+    border: 1px solid #000;
 }

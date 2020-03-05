@@ -4,52 +4,48 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Nutritional Calculator</title>
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700&display=swap" rel="stylesheet">
+        <title>Log - Nutritional Calculator</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,700&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/css/grid.css">
-        <link rel="stylesheet" href="/assets/css/main.css">
-        <link rel="stylesheet" href="/assets/css/log.css">
+        <link href="/assets/css/main.css" rel="stylesheet">
+        <link href="/assets/css/log.css" rel="stylesheet">
     </head>
     <body>
-        <div class="wrapper">
-            <nav>
-                <a href="/">
-                    <h1 class="nav-title">Nutritional Calculator</h1>
+        <nav>
+            <a href="/">
+                <div class="nav-title">Nutritional Calculator</div>
+            </a>
+            <div class="nav-tabs">
+                <a class="nav-link" href="/">
+                    <div class="nav-tab">
+                        <i class="fas fa-home"></i> Home
+                    </div>
                 </a>
-                <div class="nav-tabs">
-                    <a class="nav-link" href="/">
-                        <div class="nav-tab">
-                            <i class="fas fa-home"></i> Home
-                        </div>
-                    </a>
-                    <a class="nav-link active" href="/log">
-                        <div class="nav-tab">
-                            <i class="fas fa-book"></i> Log
-                        </div>
-                    </a>
-                    <a class="nav-link" href="/goals">
-                        <div class="nav-tab">
-                            <i class="fas fa-chart-bar"></i> Goals
-                        </div>
-                    </a>
-                    <a class="nav-link" href="/account">
-                        <div class="nav-tab">
-                            <i class="fas fa-user"></i> Account
-                        </div>
-                    </a>
-                </div>
-            </nav>
-            <main>
+                <a class="nav-link active" href="/log">
+                    <div class="nav-tab">
+                        <i class="fas fa-book"></i> Log
+                    </div>
+                </a>
+                <a class="nav-link" href="/goals">
+                    <div class="nav-tab">
+                        <i class="fas fa-chart-bar"></i> Goals
+                    </div>
+                </a>
+                <a class="nav-link" href="/account">
+                    <div class="nav-tab">
+                        <i class="fas fa-user"></i> Account
+                    </div>
+                </a>
+            </div>
+        </nav>
+        <main>
+            <section class="main-section">
                 <div class="list-add">
                     <input type="search" class="food-search" placeholder="What did you eat?"/>
-                    <div class="search-result">
-                        <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                        <h2 class="name">Apple</h2>
-                    </div>
-                    <div class="list-add-input">
-                        <input type="text" value="1">
-                    </div>
+                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                    <h2 class="name">Apple</h2>
+                    <span class="servings">Servings: <input type="text" inputmode="numeric" pattern="[0-9]*"></span>
+                    <button class="add-item">Add to List</button>
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">
@@ -57,17 +53,17 @@
                         <ol class="items">
                             <li class="item">
                                 <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <div class="item-info">
-                                    <p class="name">Apple</p>
-                                    <p class="values">1 serving</p>
-                                </div>
+                                <h2 class="name" title="Apple">Apple</h2>
+                                <span class="servings">Servings: <strong>1</strong></span>
+                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
+                                <i class="fas fa-chevron-right expand-item"></i>
                             </li>
                             <li class="item">
                                 <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <div class="item-info">
-                                    <p class="name">Apple</p>
-                                    <p class="values">1 serving</p>
-                                </div>
+                                <h2 class="name" title="Apple">Apple</h2>
+                                <span class="servings">Servings: <strong>1</strong></span>
+                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
+                                <i class="fas fa-chevron-right expand-item"></i>
                             </li>
                         </ol>
                     </div>
@@ -84,10 +80,18 @@
                         <ol class="items"></ol>
                     </div>
                 </div>
-            </main>
-            <aside>
-
-            </aside>
-        </div>
+                <div class="meals-total">
+                    <div class="name">Total</div>
+                    <ol class="items"></ol>
+                </div>
+            </section>
+            <!--
+            <section class="aside-section">
+                <div class="test-calendar">Calendar</div>
+            </section>-->
+        </main>
+        <footer>
+            <div class="footer-name">Nutritional Calculator</div>
+        </footer>
     </body>
 </html>
