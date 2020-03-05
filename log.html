@@ -7,8 +7,7 @@
         <title>Log - Nutritional Calculator</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,700&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
-        <link href="/assets/css/layout.css" rel="stylesheet">
-        <link href="/assets/css/common.css" rel="stylesheet">
+        <link href="/assets/css/main.css" rel="stylesheet">
         <link href="/assets/css/log.css" rel="stylesheet">
     </head>
     <body>
@@ -45,8 +44,8 @@
                     <input type="search" class="food-search" placeholder="What did you eat?"/>
                     <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
                     <h2 class="name">Apple</h2>
-                    <button class="view-nutrition">View Nutrition</button>
-                    <button class="add-list">Add to List</button>
+                    <span class="servings">Servings: <input type="text" inputmode="numeric" pattern="[0-9]*"></span>
+                    <button class="add-item">Add to List</button>
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">
@@ -91,5 +90,8 @@
                 <div class="test-calendar">Calendar</div>
             </section>-->
         </main>
+        <footer>
+            <div class="footer-name">Nutritional Calculator</div>
+        </footer>
     </body>
 </html>

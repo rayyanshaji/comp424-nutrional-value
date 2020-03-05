@@ -4,6 +4,26 @@ body, html {
     height: 100%;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+main > .main-section {
+    flex: 1 1 100vw;
+}
+
+@media (min-width: 721px) {
+    main > .main-section {
+        flex: 0 0 700px;
+    }
+}
+
 /* NAV */
 
 nav {
@@ -71,4 +91,15 @@ nav .nav-link.active .nav-tab {
     .nav-link {
         font-size: 15px;
     }
+}
+
+/* FOOTER */
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: #eee;
+    margin: 20px 10%;
+    padding: 7px;
+    border-radius: 8px;
 }

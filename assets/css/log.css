@@ -3,7 +3,7 @@
     grid-template-areas:
         "search search search"
         "image name ."
-        "image view-nutrition add-list";
+        "image servings add-item";
     border: 1px solid #000;
     margin-bottom: 10px;
     padding: 15px;
@@ -17,7 +17,7 @@
 
 @media (min-width: 836px) {
     .list-add {
-        grid-template-columns: 100px 20% 1fr;
+        grid-template-columns: 100px 40% 1fr;
     }
 }
 
@@ -48,22 +48,25 @@
     border: 1px solid #ababab;
 }
 
+
+.list-add > .servings > input {
+    width: 45px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
 .list-add > button {
     grid-area: nutrition;
     justify-self: end;
-    height: 50px;
+    height: 40px;
     font-size: 1em;
     background-color: #fff;
     border: 1px solid #f97c0f;
     border-radius: 5px;
 }
 
-.list-add > .view-nutrition {
-    grid-area: view-nutrition;
-}
-
-.list-add > .add-list {
-    grid-area: add-list;
+.list-add > .add-item {
+    grid-area: add-item;
 }
 
 /* LIST */
