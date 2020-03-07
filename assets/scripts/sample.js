@@ -62,7 +62,8 @@ function autocomplete(inp, arr) {
                   /*create a DIV element for each matching element:*/
                   b = document.createElement("DIV");
                   /*make the matching letters bold:*/
-                  b.innerHTML = "<strong>" + happylist.common[i].food_name.substr(0, val.length) + "</strong>";
+                  b.innerHTML = "<img src = " +happylist.common[i].photo.thumb+ " > </>";
+                  b.innerHTML += "<strong>" + happylist.common[i].food_name.substr(0, val.length) + "</strong>";
                   b.innerHTML += happylist.common[i].food_name.substr(val.length);
                   /*insert a input field that will hold the current array item's value:*/
                   b.innerHTML += "<input type='hidden' value='" + happylist.common[i].food_name + "'>";
