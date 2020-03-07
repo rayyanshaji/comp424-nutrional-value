@@ -1,3 +1,31 @@
+/**SEARCH**/
+/*
+* {
+  box-sizing: border-box;
+}
+*/
+
+
+
+/*input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}*/
+
+
 .list-add {
     display: grid;
     grid-template-areas:
@@ -10,18 +38,77 @@
 }
 
 @media (max-width: 835px) {
-    .list-add {
+    .autocomplete {
         grid-template-columns: 100px repeat(2, 1fr);
     }
 }
 
 @media (min-width: 836px) {
-    .list-add {
+    .autocomplete {
         grid-template-columns: 100px 40% 1fr;
     }
 }
 
-.list-add > input[type=search].food-search {
+
+
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+
+/*
+.autocomplete {
+  position: relative;
+  display: block;
+    grid-template-areas:
+        "search search search"
+        "input"
+        "food-search"
+        "image name ."
+        "image servings add-item";
+    border: 1px solid red;
+}
+*/
+
+.autocomplete {
+    position: relative;
+    display: grid;
+    grid-template-areas:
+        "search search search"
+        "image name ."
+        "image servings add-item";
+    border: 1px solid #000;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.autocomplete > input[type=search].food-search {
     grid-area: search;
     padding: 8px 15px;
     border: 1px solid #646464;
@@ -34,28 +121,40 @@
     appearance: none;
 }
 
-.list-add > input[type=search].food-search:focus {
+.autocomplete > input[type=search].food-search:focus {
     border: 1px solid #f97c0f;
 }
 
-.list-add > input[type=search].food-search::placeholder {
+.autocomplete > input[type=search].food-search::placeholder {
     color: #646464;
 }
 
-.list-add > img {
+.autocomplete > img {
     grid-area: image;
     width: 84px;
     border: 1px solid #ababab;
 }
 
+.name {
+    grid-area: name;
+    bottom: 10px;
+    position: relative;
+}
 
-.list-add > .servings > input {
-    width: 45px;
-    font-size: 1.1em;
+.servings{
+    grid-area: servings;
+    bottom: 10px;
+    position: relative;
+}
+
+.autocomplete > .servings > input {
+    grid-area: servings;
+    width: 40px;
+    font-size: 1.1 em;
     font-weight: bold;
 }
 
-.list-add > button {
+.autocomplete > button {
     grid-area: nutrition;
     justify-self: end;
     height: 40px;
@@ -65,7 +164,7 @@
     border-radius: 5px;
 }
 
-.list-add > .add-item {
+.autocomplete > .add-item {
     grid-area: add-item;
 }
 
@@ -175,3 +274,4 @@
     color: white;
     border: 1px solid #000;
 }
+
