@@ -22,7 +22,6 @@
 }
 
 .autocomplete-items {
-    display: flex;
     flex-direction: column;
     position: absolute;
     border: 1px solid #d4d4d4;
