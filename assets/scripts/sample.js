@@ -59,13 +59,16 @@ function autocomplete(inp, arr) {
 
             var foodindex = happylist.common;
             //var selectedfood;
-            for (i = 0; i < foodindex.length; i++) {
+            for (i = 0; i < 10; i++) {
                 /*check if the item starts with the same letters as the text field value:*/
                 //console.log(happylist.common[i]);
                 if (happylist.common[i].food_name.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                     //console.log('Matched! '+happylist.common[i]);
                     /*create a DIV element for each matching element:*/
                     b = document.createElement("DIV");
+                    if (i == 0){
+                        b.setAttribute("style", "background-color:#f97c0f;");
+                    }
                     /*make the matching letters bold:*/
                     b.innerHTML = "<img src = " + happylist.common[i].photo.thumb + " > </>";
                     b.innerHTML += "<strong>" + happylist.common[i].food_name.substr(0, val.length) + "</strong>";
