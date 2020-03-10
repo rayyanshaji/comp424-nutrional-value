@@ -86,7 +86,7 @@
     font-size: 1.1 em;
     font-weight: bold;
 }
-
+/*
 .list-add > button {
     grid-area: nutrition;
     justify-self: end;
@@ -95,7 +95,7 @@
     background-color: #fff;
     border: 1px solid #f97c0f;
     border-radius: 5px;
-}
+} */
 
 .list-add > .add-item {
     grid-area: add-item;
@@ -127,7 +127,7 @@
     margin: 0;
 }
 
-.meal-group > .items:empty {
+.meal-group > .items.empty {
     height: 80px;
 }
 

@@ -44,28 +44,19 @@
                     <input type="search" class="food-search" id="myInput" placeholder="What did you eat?"/>
                     <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
                     <h2 class="name">Apple</h2>
-                    <span class="servings">Servings: <input type="text" inputmode="numeric" pattern="[0-9]*"></span>
+                    <span class="servings">Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1"></span>
+                    <select id="mealSelect">
+                        <option>Breakfast</option>
+                        <option>Lunch</option>
+                        <option>Dinner</option>
+                        <option>Snacks</option>
+                    </select>
                     <button class="add-item" id="addfoodsubmit" value="addfood">Add to List</button>
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">
                         <div class="meal-name">Breakfast</div>
-                        <ol class="items">
-                            <li class="item">
-                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <h2 class="name" title="Apple">Apple</h2>
-                                <span class="servings">Servings: <strong>1</strong></span>
-                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
-                                <i class="fas fa-chevron-right expand-item"></i>
-                            </li>
-                            <li class="item">
-                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <h2 class="name" title="Apple">Apple</h2>
-                                <span class="servings">Servings: <strong>1</strong></span>
-                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
-                                <i class="fas fa-chevron-right expand-item"></i>
-                            </li>
-                        </ol>
+                        <ol class="items"></ol>
                     </div>
                     <div class="meal-group" id="lunch">
                         <div class="meal-name">Lunch</div>
@@ -93,9 +84,8 @@
         <footer>
             <div class="footer-name">Nutritional Calculator</div>
         </footer>
-        <script type="/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script type="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="./assets/scripts/sample.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="./assets/scripts/search.js"></script>
+        <script src="./assets/scripts/log.js"></script>
     </body>
 </html>
