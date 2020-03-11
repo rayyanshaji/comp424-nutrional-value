@@ -40,18 +40,27 @@
         </nav>
         <main>
             <section class="main-section">
-                <div class="list-add">
-                    <input type="search" class="food-search" id="myInput" placeholder="What did you eat?"/>
-                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                    <h2 class="name">Apple</h2>
-                    <span class="servings">Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1"></span>
-                    <select id="mealSelect">
-                        <option>Breakfast</option>
-                        <option>Lunch</option>
-                        <option>Dinner</option>
-                        <option>Snacks</option>
-                    </select>
-                    <button class="add-item" id="addfoodsubmit" value="addfood">Add to List</button>
+                <div class="list-search">
+                    <input type="search" class="food-search" id="myInput" placeholder="What did you eat?">
+                        <div class="search-list" style="display: none;">
+                            <ul class="results">
+                            </ul>
+                        </div>
+                    </input>
+                    <div id="add-to-display" style="display: none; text-align: center;">Search for an item to add to your list</div>
+                    <div class="list-add">
+                        <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                        <h2 class="name">Apple</h2>
+                        <span class="servings">Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required></span>
+                        <select id="mealSelect">
+                            <option></option>
+                            <option>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Dinner</option>
+                            <option>Snacks</option>
+                        </select>
+                        <button class="add-item" id="addfoodsubmit" value="addfood">Add to List</button>
+                    </div>
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">

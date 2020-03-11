@@ -1,12 +1,14 @@
-.list-add {
-    display: grid;
-    grid-template-areas:
-        "search search search"
-        "image name ."
-        "image servings add-item";
+.list-search {
     border: 1px solid #000;
     margin-bottom: 10px;
     padding: 15px;
+}
+
+.list-add {
+    display: grid;
+    grid-template-areas:
+        "image name ."
+        "image servings add-item";
 }
 
 @media (max-width: 835px) {
@@ -53,8 +55,8 @@
     margin-right: 5px;
 }
 
-.list-add > input[type=search].food-search {
-    grid-area: search;
+.list-search > input[type=search].food-search {
+    width: 100%;
     padding: 8px 15px;
     border: 1px solid #646464;
     border-radius: 4px;
@@ -66,11 +68,11 @@
     appearance: none;
 }
 
-.list-add > input[type=search].food-search:focus {
+.list-search > input[type=search].food-search:focus {
     border: 1px solid #f97c0f;
 }
 
-.list-add > input[type=search].food-search::placeholder {
+.list-search > input[type=search].food-search::placeholder {
     color: #646464;
 }
 
@@ -99,6 +101,39 @@
 
 .list-add > .add-item {
     grid-area: add-item;
+}
+
+/* RESULTS */
+
+.search-list {
+    width: 668px;
+    position: absolute;
+    z-index: 100;
+    top: 112px;
+    border: 1px solid #000;
+    background-color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.search-list .results {
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    overflow: auto;
+    list-style: none;
+    padding: 0;
+}
+
+.search-list .results li {
+    line-height: 1.2em;
+    padding: 8px 30px;
+}
+
+.search-list .results li:hover {
+    cursor: pointer;
+    background-color: #f97c0f;
+    color: #fff;
 }
 
 /* LIST */
