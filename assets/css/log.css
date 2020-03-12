@@ -23,38 +23,6 @@
     }
 }
 
-.autocomplete-items {
-    flex-direction: column;
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    top: 112px;
-}
-
-.autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff; 
-    border-bottom: 1px solid #d4d4d4; 
-}
-
-.autocomplete-items div:hover {
-    background-color: #f97c0f; 
-}
-
-.autocomplete-items .active {
-    background-color: #f97c0f !important; 
-    color: #ffffff; 
-}
-
-.autocomplete-items .active img,
-.autocomplete-items img {
-    width: 32px;
-    margin-right: 5px;
-}
-
 .list-search > input[type=search].food-search {
     width: 100%;
     padding: 8px 15px;
@@ -112,28 +80,63 @@
     top: 112px;
     border: 1px solid #000;
     background-color: #fff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
 }
 
-.search-list .results {
+.search-list .search-tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 10px;
+    border-bottom: 1px solid #646464;
+}
+
+.search-list .search-tabs > .tab {
+    cursor: pointer;
+    padding: 7px 5px;
+    margin-right: 2px;
+    margin-bottom: -1px;
+}
+
+.search-list .search-tabs > .tab.active {
+    border-bottom: 3px solid #000;
+    font-weight: 700;
+}
+
+.search-list .search-tabs > .tab:not(.active):hover {
+    color: #646464;
+}
+
+.search-list .results > ul {
     display: flex;
     flex-direction: column;
-    max-height: 50vh;
+    max-height: 60vh;
     overflow: auto;
     list-style: none;
     padding: 0;
+    margin-top: 0;
 }
 
 .search-list .results li {
     line-height: 1.2em;
-    padding: 8px 30px;
+    padding: 8px 20px;
+    text-transform: capitalize;
+}
+
+.search-list .results li img {
+    width: 32px;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 .search-list .results li:hover {
     cursor: pointer;
     background-color: #f97c0f;
     color: #fff;
+}
+
+.search-list .tab-content:not(.active) {
+    display: none;
 }
 
 /* LIST */
@@ -189,6 +192,7 @@
 
 .list-add > .name,
 .meal-group .item > .name {
+    text-transform: capitalize;
     grid-area: name;
     font-weight: 700;
     margin: 0;

@@ -1,12 +1,27 @@
 var listAdd = $('.list-add');
-var searchInput = $('#myInput');
 
 $(function() {
     $('#addfoodsubmit').on('click', function() {
         addMeal();
         //clearListAdd();
     });
+
+    $('.results').on('click', 'li', function() {
+        var itemName = $(this).text();
+        var itemImage = $(this).find('img').attr('src');
+        var itemType = $(this).data('type');
+
+        searchInput.val($(this).text());
+        searchList.hide();
+        
+        updateAddList(itemName, itemImage);
+    });
 });
+
+function updateAddList(name, image) {
+    listAdd.find('.name').text(name);
+    listAdd.find('img').attr('src', image);
+}
 
 function addMeal() {
     var name = listAdd.find('.name').text();

@@ -1,43 +1,65 @@
-var searchList = $('.search-list');
-var searchInput = ('#search');
-
-// var common = [], branded = [];
+const searchInput = $('#searchInput');
+const searchList = $('.search-list');
+let timeout = null;
 
 $(function() {
-    $(searchInput).on('click', function() {
+    searchInput.on('click', function() {
         searchList.show();
     });
-    
-    $(searchInput).on('input', function() {
-        getResults(searchInput.val());
+
+    searchInput.on('keyup', function() {
+        $('.results li').remove();
+
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            getResults($(searchInput).val());
+        }, 200);
+    });
+
+    $('.tab').on('click', function() {
+        if (!$(this).hasClass('active')) {
+            $('#' + $('.tab.active').data('tab')).removeClass('active');
+            $('.tab.active').removeClass('active');
+            $(this).addClass('active');
+            $('#' + $(this).data('tab')).addClass('active');
+        }
+    })
+
+    $(document).mouseup(function(e) {
+        if (!searchList.is(e.target) && searchList.has(e.target).length === 0) {
+            searchList.hide();
+        }
     });
 });
 
 function getResults(input) {
-    var results = $( '.results');
-    $('.results > li').remove();
-
     $.ajaxSetup({
         method: 'GET',
         headers: {
-            'x-app-id': '36e650cf',
-            'x-app-key': '9ff34a709f1d44f63aa59fee827713d1',
+            // from secret.js, create your own
+            // assign constants/variables inside it
+            'x-app-id': xappid,
+            'x-app-key': xappkey,
         }
     });
 
+    // TODO: CONVERT TO TEMPLATE STRINGS
     $.getJSON('https://trackapi.nutritionix.com/v2/search/instant?query=' + input, function(json) {
-        for (let i = 0; i < json.common.length; i++) {
-            // common.push(json.common[i]);
-            results.append('<li>' + json.common[i].food_name + '</li>');
+        if (!json.common.length == 0) {
+            for (var i = 0; i < 10; i++) {
+                $('#common-results').append(
+                    '<li data-type="common"><img src="' + json.common[i].photo.thumb + '">' + json.common[i].food_name + '</li>'
+                );
+            }
+        } else {
+            $('#common-results').append('<li>No results</li>');
         }
-        /*
-        for (let i = 0; i < json.branded.length; i++) {
-            branded.push(json.branded[i]);
-        } */
+        if (!json.branded.length == 0) {
+            for (var i = 0; i < 10; i++) {
+                $('#branded-results').append('<li data-type="branded" data-nix_item_id="' +  json.branded[i].nix_item_id + '"><img src="' + json.branded[i].photo.thumb + '">' + json.branded[i].food_name + '</li>');
+            }
+        } else {
+            $('#branded-results').append('<li>No results</li>');
+        }
     });
-}
-
-function displayResults(input) {
-    var results = $( '.results');
-    getResults(input);
 }

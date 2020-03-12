@@ -41,10 +41,18 @@
         <main>
             <section class="main-section">
                 <div class="list-search">
-                    <input type="search" class="food-search" id="myInput" placeholder="What did you eat?">
+                    <input type="search" class="food-search" id="searchInput" placeholder="What did you eat?">
                         <div class="search-list" style="display: none;">
-                            <ul class="results">
+                            <ul class="search-tabs">
+                                <li class="tab active" data-tab="common-results">Common</li>
+                                <li class="tab" data-tab="branded-results">Branded</li>
                             </ul>
+                            <div class="results">
+                                <ul id="common-results" class="tab-content active">
+                                </ul>
+                                <ul id="branded-results" class="tab-content">
+                                </ul>
+                            </div>
                         </div>
                     </input>
                     <div id="add-to-display" style="display: none; text-align: center;">Search for an item to add to your list</div>
@@ -85,15 +93,12 @@
                     <ol class="items"></ol>
                 </div>
             </section>
-            <!--
-            <section class="aside-section">
-                <div class="test-calendar">Calendar</div>
-            </section>-->
         </main>
         <footer>
             <div class="footer-name">Nutritional Calculator</div>
         </footer>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="./assets/scripts/secret.js"></script>
         <script src="./assets/scripts/search.js"></script>
         <script src="./assets/scripts/log.js"></script>
     </body>
