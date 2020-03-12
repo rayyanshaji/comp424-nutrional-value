@@ -77,6 +77,8 @@
     width: 668px;
     position: absolute;
     z-index: 100;
+    /* fixes list being under other meal names (that are sticky) */
+    -webkit-transform: translate3d(0,0,0);
     top: 112px;
     border: 1px solid #000;
     background-color: #fff;
