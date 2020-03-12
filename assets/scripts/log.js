@@ -25,11 +25,14 @@ function updateAddList(name, image) {
 
 function addMeal() {
     var name = listAdd.find('.name').text();
+    var image = listAdd.find('img').attr('src');
     var servings = listAdd.find('#servings').val();
     var meal = listAdd.find('#mealSelect').val().toLowerCase();
 
+
+    // TODO: CONVERT TO TEMPLATE STRINGS
     var htmlElement = '<li class="item">' +
-        '<img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">' +
+        '<img src="' + image + '">' +
         '<h2 class="name" title="' + name + '">' + name + '</h2>' +
         '<span class="servings">Servings: <strong>' + servings + '</strong></span>' +
         '<i class="fas fa-chevron-right expand-item"></i>' +
