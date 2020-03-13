@@ -7,19 +7,27 @@ $(function() {
     });
 
     $('.results').on('click', 'li', function() {
-        var itemName = $(this).text();
+        var itemName = $(this).find("span#foodname-title").text();
+        
+        console.log("itemname" +itemName);
         var itemImage = $(this).find('img').attr('src');
         var itemType = $(this).data('type');
+        console.log("itemtype" +itemType);
+        
+        var itemServing = $(this).find("span#serving-unit-search").text();
+        //var itemServing = $(this).find('span').attr('id').text()”;
+        console.log('serving unit --->' +itemServing)
 
-        searchInput.val($(this).text());
+        searchInput.val($(this).find("span#foodname-title").text());
         searchList.hide();
         
-        updateAddList(itemName, itemImage);
+        updateAddList(itemName, itemServing, itemImage);
     });
 });
 
-function updateAddList(name, image) {
+function updateAddList(name, unit, image) {
     listAdd.find('.name').text(name);
+    listAdd.find('#servingsunit').append($("<option />").text(unit));
     listAdd.find('img').attr('src', image);
 }
 
@@ -27,6 +35,7 @@ function addMeal() {
     var name = listAdd.find('.name').text();
     var image = listAdd.find('img').attr('src');
     var servings = listAdd.find('#servings').val();
+    var servingsunit = listAdd.find('#servingsunit').val();
     var meal = listAdd.find('#mealSelect').val().toLowerCase();
 
 
@@ -34,7 +43,7 @@ function addMeal() {
     var htmlElement = '<li class="item">' +
         '<img src="' + image + '">' +
         '<h2 class="name" title="' + name + '">' + name + '</h2>' +
-        '<span class="servings">Servings: <strong>' + servings + '</strong></span>' +
+        '<span class="servings">Servings: <strong>' + servings + '</strong>' + '<span>' +servingsunit+ '</span>' + '</span>' +
         '<i class="fas fa-chevron-right expand-item"></i>' +
         '</li>';
 

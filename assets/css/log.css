@@ -6,9 +6,11 @@
 
 .list-add {
     display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
     grid-template-areas:
-        "image name ."
+        "image name  mealSelect"
         "image servings add-item";
+    
 }
 
 @media (max-width: 835px) {
@@ -50,11 +52,38 @@
     border: 1px solid #ababab;
 }
 
+.list-add > #servingsunit {
+    grid-area : servings;
+    vertical-align:baseline;
+    height: 40px;
+    margin-left: 120px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
 .list-add > .servings > input {
     grid-area: servings;
-    width: 40px;
-    font-size: 1.1 em;
+    height: 40px;
+    width: 30px;
+    font-size: 1.5 em;
     font-weight: bold;
+    text-align: center;
+    background-color: #fff;
+    border: 1 px solid #f97c0f;
+    border-radius: 5px;
+}
+
+#foodname-title{
+   vertical-align: top;
+}
+
+#serving-unit-search{
+    margin-left: 37px;
+transform: translateY(-50%);
+    font-size: 0.8em;
+    color: darkgrey;
+    display: block;
 }
 /*
 .list-add > button {
@@ -69,6 +98,17 @@
 
 .list-add > .add-item {
     grid-area: add-item;
+    justify-self: right;
+    background-color: #fff;
+    border: 1.5px solid #f97c0f;
+    border-radius: 5px;
+}
+
+#mealSelect {
+    grid-area:mealSelect;
+    width: 69%;
+    margin-bottom: 2px;
+    justify-self: right;
 }
 
 /* RESULTS */
