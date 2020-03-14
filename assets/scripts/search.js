@@ -45,7 +45,7 @@ function getResults(input) {
 
     // TODO: CONVERT TO TEMPLATE STRINGS
     //GETTING JSON DATA
-    $.getJSON('https://trackapi.nutritionix.com/v2/search/instant?query=' + input, function(json) {
+    $.getJSON('https://trackapi.nutritionix.com/v2/search/instant?query=' + input +'&detailed=true', function(json) {
         var json = json;
         console.log(json);
         //IF ARRAY LIST IS EMPTY
@@ -53,7 +53,12 @@ function getResults(input) {
             for (var i = 0; i < 3; i++) {
                 //append the div element with image of food item searched to the list.
                 $('#common-results').append(
-                    '<li data-type="common"><img src="' + json.common[i].photo.thumb + '">' + '<span id="foodname-title">'+json.common[i].food_name + '</>' + '<span id="serving-unit-search">'  +json.common[i].serving_unit + "</>"+ '</li>'
+                    '<li data-type="common"><img src="' + json.common[i].photo.thumb + '">' + 
+                    '<span id="foodname-title">'+json.common[i].food_name + '</span>' + 
+                    '<span id="serving-unit-search">1 ' +
+                    json.common[i].serving_unit + ",</>"+ 
+                    '<span>'+' '+Math.round(json.common[i].full_nutrients[4].value)+
+                    ' calories'+'</span>'+'</li>'
                 );
             }
         } else {
@@ -61,8 +66,13 @@ function getResults(input) {
         }
         if (!json.branded.length == 0) {
             for (var i = 0; i < 2; i++) {
-                $('#branded-results').append('<li data-type="branded" data-nix_item_id="' +  json.branded[i].nix_item_id + '"><img src="' + json.branded[i].photo.thumb + '">' + '<span id="foodname-title">' + json.branded[i].brand_name_item_name + '</span>'+ '<span id="serving-unit-search">' +
-                json.branded[i].serving_unit + '</span>'+ '</li>');
+                $('#branded-results').append('<li data-type="branded" data-nix_item_id="' + 
+                json.branded[i].nix_item_id + '"><img src="' + json.branded[i].photo.thumb +
+                '">' + '<span id="foodname-title">' + json.branded[i].brand_name_item_name + 
+                '</span>'+ '<span id="serving-unit-search">' +
+                json.branded[i].serving_unit + 
+                ',<span>'+' '+json.branded[i].nf_calories+
+                    ' calories'+'</span>'+'</li>');
             }
         } else {
             $('#branded-results').append('<li>No results</li>');

@@ -16,7 +16,7 @@ $(function() {
         
         var itemServing = $(this).find("span#serving-unit-search").text();
         //var itemServing = $(this).find('span').attr('id').text()”;
-        console.log('serving unit --->' +itemServing)
+        console.log('food name --->' +$(this).find("span#foodname-title"))
 
         searchInput.val($(this).find("span#foodname-title").text());
         searchList.hide();
@@ -27,7 +27,7 @@ $(function() {
 
 function updateAddList(name, unit, image) {
     listAdd.find('.name').text(name);
-    listAdd.find('#servingsunit').append($("<option />").text(unit));
+    listAdd.find('#servingsunit').text(unit);
     listAdd.find('img').attr('src', image);
 }
 

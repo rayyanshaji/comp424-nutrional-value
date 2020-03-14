@@ -53,12 +53,16 @@
 }
 
 .list-add > #servingsunit {
+    display: flex;
     grid-area : servings;
-    vertical-align:baseline;
+    vertical-align:bottom;
     height: 40px;
-    margin-left: 120px;
+    margin-left: 111px;
     text-align: center;
+
     background-color: #fff;
+    
+    align-items: center;
     border-radius: 5px;
 }
 
