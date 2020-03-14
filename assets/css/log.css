@@ -9,7 +9,8 @@
     grid-template-columns: 4fr 4fr 4fr;
     grid-template-areas:
         "image name  mealSelect"
-        "image servings add-item";
+        "image servings add-item"
+        "image caloriesdisplay add-item";
     
 }
 
@@ -68,7 +69,7 @@
 
 .list-add > .servings > input {
     grid-area: servings;
-    height: 40px;
+    height: 30px;
     width: 30px;
     font-size: 1.5 em;
     font-weight: bold;
@@ -82,12 +83,24 @@
    vertical-align: top;
 }
 
+#serving-unit-quantity {
+    margin-left: 43px;
+    transform: translateY(-50%);
+    font-size: 0.9em;
+    color: darkgrey;
+    display: block;
+}
+
 #serving-unit-search{
-    margin-left: 37px;
-transform: translateY(-50%);
+    margin-left: 55px;
+    transform: translateY(-135%);
     font-size: 0.8em;
     color: darkgrey;
     display: block;
+}
+
+#caloriesdisplay{
+    grid-area: caloriesdisplay;
 }
 /*
 .list-add > button {
@@ -110,6 +123,7 @@ transform: translateY(-50%);
 
 #mealSelect {
     grid-area:mealSelect;
+    max-height: 40px;
     width: 69%;
     margin-bottom: 2px;
     justify-self: right;
@@ -218,8 +232,8 @@ transform: translateY(-50%);
 .meal-group .item {
     display: grid;
     grid-template-areas:
-        "image name . expand-item"
-        "image servings . expand-item";
+        "image name foodcalories expand-item"
+        "image servings foodcaloriestext expand-item";
     grid-template-columns: 64px 35% 1fr 30px;
     column-gap: 15px;
     padding-top: 10px;
@@ -259,6 +273,17 @@ transform: translateY(-50%);
     grid-area: expand-item;
     font-size: 32px;
     place-self: center;
+}
+
+.meal-group .item > #foodcalories{
+    grid-area: foodcalories;
+    align-self: center;
+    text-align: end;
+}
+
+.meal-group .item > #foodcaloriestext{
+    grid-area: foodcaloriestext;
+    text-align: end;
 }
 
 .meals-total {

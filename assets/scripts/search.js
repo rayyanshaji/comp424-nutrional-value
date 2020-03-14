@@ -50,15 +50,18 @@ function getResults(input) {
         console.log(json);
         //IF ARRAY LIST IS EMPTY
         if (!json.common.length == 0) {
-            for (var i = 0; i < 3; i++) {
+            for (var i = 0; i < 2; i++) {
                 //append the div element with image of food item searched to the list.
                 $('#common-results').append(
                     '<li data-type="common"><img src="' + json.common[i].photo.thumb + '">' + 
                     '<span id="foodname-title">'+json.common[i].food_name + '</span>' + 
-                    '<span id="serving-unit-search">1 ' +
-                    json.common[i].serving_unit + ",</>"+ 
-                    '<span>'+' '+Math.round(json.common[i].full_nutrients[4].value)+
-                    ' calories'+'</span>'+'</li>'
+                    '<span id="serving-unit-quantity">' +
+                    json.common[i].serving_qty + "</span>"+
+                    
+                    '<span id="serving-unit-search">' +
+                    json.common[i].serving_unit + ", "+ 
+                    '<span id="calories">'+' '+Math.round(json.common[i].full_nutrients[4].value)+
+                    ' calories'+'</span>'+'</span>'+'</li>'
                 );
             }
         } else {
@@ -68,11 +71,13 @@ function getResults(input) {
             for (var i = 0; i < 2; i++) {
                 $('#branded-results').append('<li data-type="branded" data-nix_item_id="' + 
                 json.branded[i].nix_item_id + '"><img src="' + json.branded[i].photo.thumb +
-                '">' + '<span id="foodname-title">' + json.branded[i].brand_name_item_name + 
-                '</span>'+ '<span id="serving-unit-search">' +
+                '">' + '<span id="foodname-title">' + json.branded[i].brand_name_item_name + '</span>'+ 
+                '<span id="serving-unit-quantity">' +
+                    json.branded[i].serving_qty + "</span>"+                             ' '+
+                '<span id="serving-unit-search">' +
                 json.branded[i].serving_unit + 
-                ',<span>'+' '+json.branded[i].nf_calories+
-                    ' calories'+'</span>'+'</li>');
+                ',<span id="calories">'+' '+json.branded[i].nf_calories+
+                ' calories</span>'+'</li>');
             }
         } else {
             $('#branded-results').append('<li>No results</li>');
