@@ -9,14 +9,18 @@ $(function() {
     $('.results').on('click', 'li', function() {
         var itemName = $(this).find("span#foodname-title").text();
         
-        console.log("itemname" +itemName);
+        
+        var itemServingsQty = $(this).find("#serving-unit-quantity").text();
+        
+       
+        
         var itemImage = $(this).find('img').attr('src');
         var itemType = $(this).data('type');
-        console.log("itemtype" +itemType);
+     
         
-        var itemServing = $(this).find("span#serving-unit-search").text();
+        var itemServing = $(this).find("#serving-unit-search").text();
         //var itemServing = $(this).find('span').attr('id').text()”;
-        console.log('food name --->' +$(this).find("span#foodname-title"))
+       
         
         var itemCalories = $(this).find("span#calories").text();
 
@@ -24,28 +28,35 @@ $(function() {
         searchList.hide();
         
         
-        updateAddList(itemName, itemServing, itemCalories, itemImage);
+        updateAddList(itemName, itemServingsQty, itemServing, itemCalories, itemImage);
     });
 });
 
-function updateAddList(name, unit, calories, image) {
+function updateAddList(name, serving, unit, calories, image) {
     listAdd.find('.name').text(name);
     
+    listAdd.find('#servings').val(serving);
    
     listAdd.find('#servingsunit').text(unit);
     listAdd.find('#caloriesdisplay').text(calories);
+    var initial_serving = listAdd.find('#servings').val(serving);
   
-    var current_calories = listAdd.find('#caloriesdisplay').text();
+    var calories_per_serving_qty = parseInt(calories)/serving;
+    
+    console.log("cal per qty -->" +calories_per_serving_qty);
+    console.log($(this).find('#servingsunit').val());
+    
+    console.log('initial serving' +parseInt(initial_serving));
     listAdd.find('img').attr('src', image);
 
 
 $('#servings').on('keyup', function(){
     
-    console.log('current '+parseInt(current_calories));
+    console.log('current --> '+parseInt(calories_per_serving_qty));
     
-    var changed_calories = parseInt(current_calories)*$("#servings").val();
-    console.log('input ->'+$("#servings").val());
-    console.log(changed_calories);
+    var changed_calories = parseInt(calories_per_serving_qty)*$("#servings").val();
+    
+    console.log('changed --->' +changed_calories);
     listAdd.find('#caloriesdisplay').text(changed_calories).append(' calories');
     
 })
