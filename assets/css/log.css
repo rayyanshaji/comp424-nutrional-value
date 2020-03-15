@@ -1,12 +1,17 @@
-.list-add {
-    display: grid;
-    grid-template-areas:
-        "search search search"
-        "image name ."
-        "image servings add-item";
+.list-search {
     border: 1px solid #000;
     margin-bottom: 10px;
     padding: 15px;
+}
+
+.list-add {
+    display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
+    grid-template-areas:
+        "image name  mealSelect"
+        "image servings add-item"
+        "image caloriesdisplay add-item";
+    
 }
 
 @media (max-width: 835px) {
@@ -21,40 +26,8 @@
     }
 }
 
-.autocomplete-items {
-    flex-direction: column;
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    top: 112px;
-}
-
-.autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff; 
-    border-bottom: 1px solid #d4d4d4; 
-}
-
-.autocomplete-items div:hover {
-    background-color: #f97c0f; 
-}
-
-.autocomplete-items .active {
-    background-color: #f97c0f !important; 
-    color: #ffffff; 
-}
-
-.autocomplete-items .active img,
-.autocomplete-items img {
-    width: 32px;
-    margin-right: 5px;
-}
-
-.list-add > input[type=search].food-search {
-    grid-area: search;
+.list-search > input[type=search].food-search {
+    width: 100%;
     padding: 8px 15px;
     border: 1px solid #646464;
     border-radius: 4px;
@@ -66,11 +39,11 @@
     appearance: none;
 }
 
-.list-add > input[type=search].food-search:focus {
+.list-search > input[type=search].food-search:focus {
     border: 1px solid #f97c0f;
 }
 
-.list-add > input[type=search].food-search::placeholder {
+.list-search > input[type=search].food-search::placeholder {
     color: #646464;
 }
 
@@ -80,13 +53,56 @@
     border: 1px solid #ababab;
 }
 
-.list-add > .servings > input {
-    grid-area: servings;
-    width: 40px;
-    font-size: 1.1 em;
-    font-weight: bold;
+.list-add > #servingsunit {
+    display: flex;
+    grid-area : servings;
+    vertical-align:bottom;
+    height: 40px;
+    margin-left: 111px;
+    text-align: center;
+
+    background-color: #fff;
+    
+    align-items: center;
+    border-radius: 5px;
 }
 
+.list-add > .servings > input {
+    grid-area: servings;
+    height: 30px;
+    width: 30px;
+    font-size: 1.5 em;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fff;
+    border: 1 px solid #f97c0f;
+    border-radius: 5px;
+}
+
+#foodname-title{
+   vertical-align: top;
+}
+
+#serving-unit-quantity {
+    margin-left: 43px;
+    transform: translateY(-50%);
+    font-size: 0.9em;
+    color: darkgrey;
+    display: block;
+}
+
+#serving-unit-search{
+    margin-left: 55px;
+    transform: translateY(-135%);
+    font-size: 0.8em;
+    color: darkgrey;
+    display: block;
+}
+
+#caloriesdisplay{
+    grid-area: caloriesdisplay;
+}
+/*
 .list-add > button {
     grid-area: nutrition;
     justify-self: end;
@@ -95,10 +111,92 @@
     background-color: #fff;
     border: 1px solid #f97c0f;
     border-radius: 5px;
-}
+} */
 
 .list-add > .add-item {
     grid-area: add-item;
+    justify-self: right;
+    background-color: #fff;
+    border: 1.5px solid #f97c0f;
+    border-radius: 5px;
+}
+
+#mealSelect {
+    grid-area:mealSelect;
+    max-height: 40px;
+    width: 69%;
+    margin-bottom: 2px;
+    justify-self: right;
+}
+
+/* RESULTS */
+
+.search-list {
+    width: 668px;
+    position: absolute;
+    z-index: 100;
+    /* fixes list being under other meal names (that are sticky) */
+    -webkit-transform: translate3d(0,0,0);
+    top: 112px;
+    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.search-list .search-tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 10px;
+    border-bottom: 1px solid #646464;
+}
+
+.search-list .search-tabs > .tab {
+    cursor: pointer;
+    padding: 7px 5px;
+    margin-right: 2px;
+    margin-bottom: -1px;
+}
+
+.search-list .search-tabs > .tab.active {
+    border-bottom: 3px solid #000;
+    font-weight: 700;
+}
+
+.search-list .search-tabs > .tab:not(.active):hover {
+    color: #646464;
+}
+
+.search-list .results > ul {
+    display: flex;
+    flex-direction: column;
+    max-height: 60vh;
+    overflow: auto;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.search-list .results li {
+    line-height: 1.2em;
+    padding: 8px 20px;
+    text-transform: capitalize;
+}
+
+.search-list .results li img {
+    width: 32px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.search-list .results li:hover {
+    cursor: pointer;
+    background-color: #f97c0f;
+    color: #fff;
+}
+
+.search-list .tab-content:not(.active) {
+    display: none;
 }
 
 /* LIST */
@@ -127,15 +225,15 @@
     margin: 0;
 }
 
-.meal-group > .items:empty {
+.meal-group > .items.empty {
     height: 80px;
 }
 
 .meal-group .item {
     display: grid;
     grid-template-areas:
-        "image name . expand-item"
-        "image servings . expand-item";
+        "image name foodcalories expand-item"
+        "image servings foodcaloriestext expand-item";
     grid-template-columns: 64px 35% 1fr 30px;
     column-gap: 15px;
     padding-top: 10px;
@@ -154,6 +252,7 @@
 
 .list-add > .name,
 .meal-group .item > .name {
+    text-transform: capitalize;
     grid-area: name;
     font-weight: 700;
     margin: 0;
@@ -174,6 +273,17 @@
     grid-area: expand-item;
     font-size: 32px;
     place-self: center;
+}
+
+.meal-group .item > #foodcalories{
+    grid-area: foodcalories;
+    align-self: center;
+    text-align: end;
+}
+
+.meal-group .item > #foodcaloriestext{
+    grid-area: foodcaloriestext;
+    text-align: end;
 }
 
 .meals-total {

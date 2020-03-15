@@ -40,32 +40,43 @@
         </nav>
         <main>
             <section class="main-section">
-                <div class="list-add">
-                    <input type="search" class="food-search" id="myInput" placeholder="What did you eat?"/>
-                    <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                    <h2 class="name">Apple</h2>
-                    <span class="servings">Servings: <input type="text" inputmode="numeric" pattern="[0-9]*"></span>
-                    <button class="add-item" id="addfoodsubmit" value="addfood">Add to List</button>
+                <div class="list-search">
+                    <input type="search" class="food-search" id="searchInput" placeholder="What did you eat?">
+                        <div class="search-list" style="display: none;">
+                            <ul class="search-tabs">
+                                <li class="tab active" data-tab="common-results">Common</li>
+                                <li class="tab" data-tab="branded-results">Branded</li>
+                            </ul>
+                            <div class="results">
+                                <ul id="common-results" class="tab-content active">
+                                </ul>
+                                <ul id="branded-results" class="tab-content">
+                                </ul>
+                            </div>
+                        </div>
+                    </input>
+                    <div id="add-to-display" style="display: none; text-align: center;">Search for an item to add to your list</div>
+                    <div class="list-add">
+                        <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
+                        <h2 class="name">Apple</h2>
+                        <span class="servings">Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required></span>
+                        <span id="servingsunit"></span><span id="caloriesdisplay"></span>
+                        
+                        <select id="mealSelect">
+                            <option></option>
+                            <option>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Dinner</option>
+                            <option>Snacks</option>
+                        </select>
+                        <button class="add-item" id="addfoodsubmit" value="addfood">Add to List</button>
+                        </div>
+                    
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">
                         <div class="meal-name">Breakfast</div>
-                        <ol class="items">
-                            <li class="item">
-                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <h2 class="name" title="Apple">Apple</h2>
-                                <span class="servings">Servings: <strong>1</strong></span>
-                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
-                                <i class="fas fa-chevron-right expand-item"></i>
-                            </li>
-                            <li class="item">
-                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/384_thumb.jpg">
-                                <h2 class="name" title="Apple">Apple</h2>
-                                <span class="servings">Servings: <strong>1</strong></span>
-                                <!-- TODO: DISPLAY SOME NUTRITIONAL VALUES -->
-                                <i class="fas fa-chevron-right expand-item"></i>
-                            </li>
-                        </ol>
+                        <ol class="items"></ol>
                     </div>
                     <div class="meal-group" id="lunch">
                         <div class="meal-name">Lunch</div>
@@ -85,17 +96,13 @@
                     <ol class="items"></ol>
                 </div>
             </section>
-            <!--
-            <section class="aside-section">
-                <div class="test-calendar">Calendar</div>
-            </section>-->
         </main>
         <footer>
             <div class="footer-name">Nutritional Calculator</div>
         </footer>
-        <script type="/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script type="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="./assets/scripts/sample.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="./assets/scripts/secret.js"></script>
+        <script src="./assets/scripts/search.js"></script>
+        <script src="./assets/scripts/meal-log.js"></script>
     </body>
 </html>
