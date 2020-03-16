@@ -78,7 +78,7 @@ function addMeal() {
         '<img src="' + image + '">' +
         '<h2 class="name" title="' + name + '">' + name + '</h2>' +
         '<span class="servings">Servings: <strong>' + servings + '</strong>' + '<span>' +servingsunit+ '</span>' + '</span>' +
-        '<span id="foodcalories">' +foodcalories+'</span>' +
+        '<span id="foodcalories">' +parseInt(foodcalories)+'</span>' +
         '<span id="foodcaloriestext">Cal</span>' +
         '<i class="fas fa-chevron-right expand-item"></i>' +
         '</li>';
@@ -107,16 +107,10 @@ function totalCalories(){
         if($.isNumeric(cal)){
             total += cal;
         }
-            var htmlTotal = '<span id="foodcalories">' +total+'</span>' +
-            '<span id="foodcaloriestext">Cal</span>';
-            
-            $('#totalcal .items').html(htmlTotal);
-        total = cal;
-//            if(total.length>0){
-//            console.log('sum of element -->'+total);
-//            var finaltotal = total.reduce(function(a,b){ return a+b },0)
-//                console.log(finaltotal);
-//            }
+        var htmlTotal = '<span id="foodcalories">' +total+'</span>' +
+        '<span id="foodcaloriestext">Cal</span>';
+        $('#totalcal .items').html(htmlTotal);
+        total = cal; //assigning current calories val so that it doesn't accumulate the previous values with current sum
 });
 }
 
