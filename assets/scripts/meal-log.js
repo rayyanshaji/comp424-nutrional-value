@@ -1,8 +1,10 @@
 var listAdd = $('.list-add');
 
 $(function() {
+    var total = 0;
     $('#addfoodsubmit').on('click', function() {
         addMeal();
+        totalCalories();
         //clearListAdd();
     });
 
@@ -80,8 +82,12 @@ function addMeal() {
         '<span id="foodcaloriestext">Cal</span>' +
         '<i class="fas fa-chevron-right expand-item"></i>' +
         '</li>';
-
+    
+   
+   
+    
     $('#' + meal + ' .items').append(htmlElement);
+    
 }
 
 function clearListAdd() {
@@ -93,6 +99,27 @@ function clearListAdd() {
     listAdd.find('#servings').val("");
     listAdd.find('#mealSelect').val($("option:first").val()); */
 }
+
+function totalCalories(){
+    var total = 0;
+    $('span#foodcalories').each(function(){
+        var cal = parseInt($(this).text(),10);
+        if($.isNumeric(cal)){
+            total += cal;
+        }
+            var htmlTotal = '<span id="foodcalories">' +total+'</span>' +
+            '<span id="foodcaloriestext">Cal</span>';
+            
+            $('#totalcal .items').html(htmlTotal);
+        total = cal;
+//            if(total.length>0){
+//            console.log('sum of element -->'+total);
+//            var finaltotal = total.reduce(function(a,b){ return a+b },0)
+//                console.log(finaltotal);
+//            }
+});
+}
+
 
 /*
 function checkEmpty() {
