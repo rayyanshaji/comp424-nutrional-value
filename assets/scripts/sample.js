@@ -27,8 +27,8 @@ function autocomplete(inp, arr) {
         $.ajaxSetup({
             method: 'GET',
             headers: {
-                'x-app-id': '36e650cf',
-                'x-app-key': '9ff34a709f1d44f63aa59fee827713d1',
+                'x-app-id': '28f8131c',
+                'x-app-key': 'b6e0592a51f9ad14956338f282fb8c03',
             }
         });
 
