@@ -275,6 +275,22 @@
     place-self: center;
 }
 
+.meal-group .item > #deletemeal{
+   
+    cursor:pointer;
+}
+
+.meal-group .item > .fa-times{
+    grid-area: foodcalories;
+    opacity: 50%;
+    align-self: flex-end;
+    cursor : pointer;
+}
+
+.meal-group .item > .fa-chevron-right{
+    opacity: 70%;
+}
+
 .meal-group .item > #foodcalories{
     grid-area: foodcalories;
     align-self: center;

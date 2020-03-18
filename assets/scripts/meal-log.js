@@ -1,12 +1,17 @@
 var listAdd = $('.list-add');
 
 $(function() {
-    var total = 0;
+   
     $('#addfoodsubmit').on('click', function() {
         addMeal();
         totalCalories();
+        deletemeal();
+        
+    
         //clearListAdd();
     });
+    
+    
 
     $('.results').on('click', 'li', function() {
         var itemName = $(this).find("span#foodname-title").text();
@@ -32,6 +37,7 @@ $(function() {
         
         updateAddList(itemName, itemServingsQty, itemServing, itemCalories, itemImage);
     });
+    
 });
 
 function updateAddList(name, serving, unit, calories, image) {
@@ -78,15 +84,13 @@ function addMeal() {
         '<img src="' + image + '">' +
         '<h2 class="name" title="' + name + '">' + name + '</h2>' +
         '<span class="servings">Servings: <strong>' + servings + '</strong>' + '<span>' +servingsunit+ '</span>' + '</span>' +
+        '<button class="deletemeal"><i class="fas fa-times"></i></button>'+
         '<span id="foodcalories">' +parseInt(foodcalories)+'</span>' +
         '<span id="foodcaloriestext">Cal</span>' +
         '<i class="fas fa-chevron-right expand-item"></i>' +
         '</li>';
-    
-   
-   
-    
-    $('#' + meal + ' .items').append(htmlElement);
+         
+    $(htmlElement).hide().appendTo('#' + meal + ' .items').fadeIn("slow");
     
 }
 
@@ -99,9 +103,9 @@ function clearListAdd() {
     listAdd.find('#servings').val("");
     listAdd.find('#mealSelect').val($("option:first").val()); */
 }
-
+var total = 0;
 function totalCalories(){
-    var total = 0;
+    
     $('span#foodcalories').each(function(){
         var cal = parseInt($(this).text(),10);
         if($.isNumeric(cal)){
@@ -111,8 +115,56 @@ function totalCalories(){
         '<span id="foodcaloriestext">Cal</span>';
         $('#totalcal .items').html(htmlTotal);
         total = cal; //assigning current calories val so that it doesn't accumulate the previous values with current sum
+       
 });
 }
+
+function deletemeal(){
+    var flag = false;
+        
+        $( ".deletemeal" ).click(function(evt){
+        flag = true;    
+        if(flag === true){
+        var c_cal =  parseInt($(this).closest('li').find('span#foodcalories').text());
+        var c_total = parseInt($('#totalcal').find('span#foodcalories').text());   
+           
+        var sel = $(this);   
+       
+        console.log('CURRENT TOTAL NOW --->'+total);
+            
+        var v = c_total - c_cal;
+            
+        console.log("now the value is "+v);
+            
+        flag = false;    
+            
+        evt.stopImmediatePropagation();
+            
+        var htmlel = '<span id="foodcalories">' +v+ '</span>'; 
+            
+        $('#totalcal').find('span#foodcalories').replaceWith(htmlel);
+        
+        v = 0;
+        
+        sel.closest('li').toggleClass('strike').fadeOut(300, function(){$(this).detach().removeData(); 
+        
+        
+        
+        console.log('NEW TOTAL --->'+parseInt($('#totalcal').find('span#foodcalories').text()));                                                                
+        });
+        }
+
+        //$(this).closest('li').toggleClass('strike').fadeOut(350, function(){$(this).remove();});
+                     
+//console.log(parseInt($('#totalcal').find('span#foodcalories').text())); 
+    });
+   
+}
+
+
+
+
+
 
 
 /*
