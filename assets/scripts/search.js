@@ -41,8 +41,7 @@ $(document).ready(function() {
     $.ajaxSetup({
         method: 'GET',
         headers: {
-            // from secret.js, create your own
-            // assign constants/variables inside it
+            // To use, create a secret.js and inside it, assign const xappid and xappkey to your own
             'x-app-id': xappid,
             'x-app-key': xappkey,
         }
