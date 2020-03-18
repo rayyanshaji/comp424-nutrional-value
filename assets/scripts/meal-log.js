@@ -154,9 +154,6 @@ function deletemeal(){
         });
         }
 
-        //$(this).closest('li').toggleClass('strike').fadeOut(350, function(){$(this).remove();});
-                     
-//console.log(parseInt($('#totalcal').find('span#foodcalories').text())); 
     });
    
 }
