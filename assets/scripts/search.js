@@ -1,12 +1,14 @@
-const searchInput = $('#searchInput');
-const searchList = $('.search-list');
-let timeout = null;
+$(document).ready(function() {
+    const searchInput = $('#searchInput');
+    const searchList = $('.search-list');
+    let timeout = null;
 
-$(function() {
+    // Show the list when the input is clicked on
     searchInput.on('click', function() {
-        searchList.show();
+        if (searchInput.val().length > 0) searchList.show();
     });
 
+    // Update the list each time the input gets edited
     searchInput.on('keyup', function() {
         $('.results li').remove();
 
@@ -14,8 +16,18 @@ $(function() {
         timeout = setTimeout(function () {
             getResults($(searchInput).val());
         }, 200);
+        if (searchInput.val().length > 0) searchList.show();
+        if (searchInput.val().length <= 0) searchList.hide();
     });
 
+    // Hide the list when anywhere beside the input and the list is clicked on
+    $(document).mouseup(function(e) {
+        if (!searchList.is(e.target) && searchList.has(e.target).length === 0) {
+            searchList.hide();
+        }
+    });
+
+    // Tabs for list
     $('.tab').on('click', function() {
         if (!$(this).hasClass('active')) {
             $('#' + $('.tab.active').data('tab')).removeClass('active');
@@ -25,62 +37,56 @@ $(function() {
         }
     })
 
-    $(document).mouseup(function(e) {
-        if (!searchList.is(e.target) && searchList.has(e.target).length === 0) {
-            searchList.hide();
-        }
-    });
-});
-
-function getResults(input) {
+    // Set up AJAX with headers to use API
     $.ajaxSetup({
         method: 'GET',
         headers: {
             // from secret.js, create your own
             // assign constants/variables inside it
-            'x-app-id': '36e650cf',
-            'x-app-key': '9ff34a709f1d44f63aa59fee827713d1',
+            'x-app-id': xappid,
+            'x-app-key': xappkey,
         }
     });
+});
 
-    // TODO: CONVERT TO TEMPLATE STRINGS
-    //GETTING JSON DATA
+/**
+ * Template literal for individual search results in the list 
+ * @param {JSON object of an food item} item 
+ */
+function resultTemplate(item) {
+    return `
+        <li data-type="common">
+            <img src="${item.photo.thumb}">
+            <span class="name">${item.food_name}</span>
+            <div class="info">
+                <span data-info="serving-unit-quantity">${item.serving_qty}</span>
+                <span data-info="serving-unit-unit">
+                    ${item.serving_unit}, <span data-info="calories"> ${Math.round(item.full_nutrients[4].value)} calories</span>
+                </span>
+            </div>
+        </li>
+    `;
+}
+
+/**
+ * Get JSON from API and then display in the search list
+ * @param {Value of search input} input 
+ */
+function getResults(input) {
+    var item;
+
     $.getJSON('https://trackapi.nutritionix.com/v2/search/instant?query=' + input +'&detailed=true', function(json) {
-        var json = json;
-        console.log(json);
-        //IF ARRAY LIST IS EMPTY
-        if (!json.common.length == 0) {
-            for (var i = 0; i < 2; i++) {
-                //append the div element with image of food item searched to the list.
-                $('#common-results').append(
-                    '<li data-type="common"><img src="' + json.common[i].photo.thumb + '">' + 
-                    '<span id="foodname-title">'+json.common[i].food_name + '</span>' + 
-                    '<span id="serving-unit-quantity">' +
-                    json.common[i].serving_qty + "</span>"+
-                    
-                    '<span id="serving-unit-search">' +
-                    json.common[i].serving_unit + ", "+ 
-                    '<span id="calories">'+' '+Math.round(json.common[i].full_nutrients[4].value)+
-                    ' calories'+'</span>'+'</span>'+'</li>'
-                );
+        if (json.common.length > 0) {
+            for (var i = 0; i < 10; i++) {
+                item = json.common[i];
+                document.getElementById('common-results').innerHTML += resultTemplate(item);
             }
-        } else {
-            $('#common-results').append('<li>No results</li>');
         }
-        if (!json.branded.length == 0) {
-            for (var i = 0; i < 2; i++) {
-                $('#branded-results').append('<li data-type="branded" data-nix_item_id="' + 
-                json.branded[i].nix_item_id + '"><img src="' + json.branded[i].photo.thumb +
-                '">' + '<span id="foodname-title">' + json.branded[i].brand_name_item_name + '</span>'+ 
-                '<span id="serving-unit-quantity">' +
-                    json.branded[i].serving_qty + "</span>"+                             ' '+
-                '<span id="serving-unit-search">' +
-                json.branded[i].serving_unit + 
-                ',<span id="calories">'+' '+json.branded[i].nf_calories+
-                ' calories</span>'+'</li>');
+        if (json.branded.length > 0) {
+            for (var i = 0; i < 10; i++) {
+                item = json.branded[i];
+                document.getElementById('branded-results').innerHTML += resultTemplate(item);
             }
-        } else {
-            $('#branded-results').append('<li>No results</li>');
         }
     });
 }

@@ -10,24 +10,17 @@ $(function() {
 
     $('.results').on('click', 'li', function() {
         var itemName = $(this).find("span#foodname-title").text();
-        
-        
         var itemServingsQty = $(this).find("#serving-unit-quantity").text();
-        
-       
-        
         var itemImage = $(this).find('img').attr('src');
         var itemType = $(this).data('type');
-     
-        
         var itemServing = $(this).find("#serving-unit-search").text();
         //var itemServing = $(this).find('span').attr('id').text()”;
-       
-        
         var itemCalories = $(this).find("span#calories").text();
 
         searchInput.val($(this).find("span#foodname-title").text());
         searchList.hide();
+        $('#add-to-display').hide();
+        listAdd.show();
         
         
         updateAddList(itemName, itemServingsQty, itemServing, itemCalories, itemImage);
@@ -50,19 +43,16 @@ function updateAddList(name, serving, unit, calories, image) {
     
     console.log('initial serving' +parseInt(initial_serving));
     listAdd.find('img').attr('src', image);
-
+}
 
 $('#servings').on('keyup', function(){
-    
     console.log('current --> '+parseInt(calories_per_serving_qty));
     
     var changed_calories = parseInt(calories_per_serving_qty)*$("#servings").val();
     
     console.log('changed --->' +changed_calories);
     listAdd.find('#caloriesdisplay').text(changed_calories).append(' calories');
-    
-})
-}
+});
 
 function addMeal() {
     var name = listAdd.find('.name').text();
@@ -72,22 +62,20 @@ function addMeal() {
     var foodcalories = listAdd.find('#caloriesdisplay').text();
     var meal = listAdd.find('#mealSelect').val().toLowerCase();
 
-
     // TODO: CONVERT TO TEMPLATE STRINGS
     var htmlElement = '<li class="item">' +
         '<img src="' + image + '">' +
         '<h2 class="name" title="' + name + '">' + name + '</h2>' +
-        '<span class="servings">Servings: <strong>' + servings + '</strong>' + '<span>' +servingsunit+ '</span>' + '</span>' +
+        '<span class="servings">Servings: <strong>' + servings + '</strong> ' + '<span>' +servingsunit+ '</span>' + '</span>' +
         '<span id="foodcalories">' +parseInt(foodcalories)+'</span>' +
         '<span id="foodcaloriestext">Cal</span>' +
         '<i class="fas fa-chevron-right expand-item"></i>' +
         '</li>';
     
-   
-   
-    
     $('#' + meal + ' .items').append(htmlElement);
-    
+    $('#add-to-display').show();
+    listAdd.hide();
+    searchInput.val('');
 }
 
 function clearListAdd() {

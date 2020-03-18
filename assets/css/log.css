@@ -79,40 +79,6 @@
     border-radius: 5px;
 }
 
-#foodname-title{
-   vertical-align: top;
-}
-
-#serving-unit-quantity {
-    margin-left: 43px;
-    transform: translateY(-50%);
-    font-size: 0.9em;
-    color: darkgrey;
-    display: block;
-}
-
-#serving-unit-search{
-    margin-left: 55px;
-    transform: translateY(-135%);
-    font-size: 0.8em;
-    color: darkgrey;
-    display: block;
-}
-
-#caloriesdisplay{
-    grid-area: caloriesdisplay;
-}
-/*
-.list-add > button {
-    grid-area: nutrition;
-    justify-self: end;
-    height: 40px;
-    font-size: 1em;
-    background-color: #fff;
-    border: 1px solid #f97c0f;
-    border-radius: 5px;
-} */
-
 .list-add > .add-item {
     grid-area: add-item;
     justify-self: right;
@@ -138,7 +104,7 @@
     /* fixes list being under other meal names (that are sticky) */
     -webkit-transform: translate3d(0,0,0);
     top: 112px;
-    border: 1px solid #000;
+    border: 1px solid #f97c0f;
     background-color: #fff;
     border-radius: 5px;
 }
@@ -148,6 +114,7 @@
     list-style: none;
     padding: 0;
     margin: 10px;
+    margin-bottom: 2px;
     border-bottom: 1px solid #646464;
 }
 
@@ -175,21 +142,33 @@
     list-style: none;
     padding: 0;
     margin-top: 0;
+    margin-bottom: 5px;
 }
 
 .search-list .results li {
+    display: flex;
+    align-items: center;
     line-height: 1.2em;
     padding: 8px 20px;
     text-transform: capitalize;
+    border-bottom: 1px solid #efecec;
 }
 
 .search-list .results li img {
     width: 32px;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
-.search-list .results li:hover {
+.search-list .results li .info {
+    flex-grow: 1;
+    text-align: right;
+    color: #646464;
+    font-size: 0.9em;
+}
+
+.search-list .results li:hover,
+.search-list .results li:hover > .info {
     cursor: pointer;
     background-color: #f97c0f;
     color: #fff;
@@ -246,6 +225,7 @@
 
 .meal-group .item > img {
     grid-area: image;
+    place-self: center;
     width: 64px;
     border: 1px solid #ababab;
 }
