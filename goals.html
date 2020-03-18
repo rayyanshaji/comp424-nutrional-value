@@ -9,8 +9,10 @@
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
         <link href="./assets/css/main.css" rel="stylesheet">
         <link href="./assets/css/log.css" rel="stylesheet">
+        <script src="assets/scripts/chart.js"></script>
     </head>
     <body>
+
         <nav>
             <a href="/">
                 <div class="nav-title">Nutritional Calculator</div>
@@ -21,12 +23,12 @@
                         <i class="fas fa-home"></i> Home
                     </div>
                 </a>
-                <a class="nav-link active" href="/log">
+                <a class="nav-link" href="/log">
                     <div class="nav-tab">
                         <i class="fas fa-book"></i> Log
                     </div>
                 </a>
-                <a class="nav-link" href="/goals">
+                <a class="nav-link active" href="/goals">
                     <div class="nav-tab">
                         <i class="fas fa-chart-bar"></i> Goals
                     </div>
@@ -38,5 +40,8 @@
                 </a>
             </div>
         </nav>
+
+        <canvas id="goalsChart" width="400" height="400"></canvas>
+
     </body>
 </html>
