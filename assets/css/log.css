@@ -26,7 +26,7 @@
     }
 }
 
-.list-search > input[type=search].food-search {
+.list-search > input[type=text].food-search {
     width: 100%;
     padding: 8px 15px;
     border: 1px solid #646464;
@@ -39,11 +39,11 @@
     appearance: none;
 }
 
-.list-search > input[type=search].food-search:focus {
+.list-search > input[type=text].food-search:focus {
     border: 1px solid #f97c0f;
 }
 
-.list-search > input[type=search].food-search::placeholder {
+.list-search > input[type=text].food-search::placeholder {
     color: #646464;
 }
 
@@ -145,6 +145,12 @@
     margin-bottom: 5px;
 }
 
+.search-list .results > ul:empty:before {
+    content: "No Results";
+    text-align: center;
+    padding: 5px;
+}
+
 .search-list .results li {
     display: flex;
     align-items: center;
@@ -152,6 +158,7 @@
     padding: 8px 20px;
     text-transform: capitalize;
     border-bottom: 1px solid #efecec;
+    min-height: 49px;
 }
 
 .search-list .results li img {

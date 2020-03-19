@@ -2,10 +2,14 @@ $(document).ready(function() {
     const searchInput = $('#searchInput');
     const searchList = $('.search-list');
     let timeout = null;
+    let opened = false;
 
     // Show the list when the input is clicked on
     searchInput.on('click', function() {
-        if (searchInput.val().length > 0) searchList.show();
+        if (searchInput.val().length > 0 && !opened) {
+            searchList.show()
+            opened = true;
+        };
     });
 
     // Update the list each time the input gets edited
@@ -14,16 +18,23 @@ $(document).ready(function() {
 
         clearTimeout(timeout);
         timeout = setTimeout(function () {
-            getResults($(searchInput).val());
+            if (searchInput.val().length > 0) getResults($(searchInput).val());
         }, 200);
-        if (searchInput.val().length > 0) searchList.show();
-        if (searchInput.val().length <= 0) searchList.hide();
+        if (searchInput.val().length > 0 && !opened) {
+            searchList.show()
+            opened = true;
+        };
+        if (searchInput.val().length <= 0 && opened) { 
+            searchList.hide()
+            opened = false;
+        }
     });
 
     // Hide the list when anywhere beside the input and the list is clicked on
     $(document).mouseup(function(e) {
-        if (!searchList.is(e.target) && searchList.has(e.target).length === 0) {
-            searchList.hide();
+        if (!searchList.is(e.target) && searchList.has(e.target).length === 0 && opened) {
+            searchList.hide()
+            opened = false;
         }
     });
 
@@ -54,12 +65,12 @@ $(document).ready(function() {
  */
 function resultTemplate(item) {
     return `
-        <li data-type="common">
+        <li>
             <img src="${item.photo.thumb}">
             <span class="name">${item.food_name}</span>
             <div class="info">
-                <span data-info="serving-unit-quantity">${item.serving_qty}</span>
-                <span data-info="serving-unit-unit">
+                <span data-info="serving-quantity">${item.serving_qty}</span>
+                <span data-info="serving-unit">
                     ${item.serving_unit}, <span data-info="calories"> ${Math.round(item.full_nutrients[4].value)} calories</span>
                 </span>
             </div>
@@ -72,19 +83,15 @@ function resultTemplate(item) {
  * @param {Value of search input} input 
  */
 function getResults(input) {
-    var item;
-
     $.getJSON('https://trackapi.nutritionix.com/v2/search/instant?query=' + input +'&detailed=true', function(json) {
         if (json.common.length > 0) {
             for (var i = 0; i < 10; i++) {
-                item = json.common[i];
-                document.getElementById('common-results').innerHTML += resultTemplate(item);
+                document.getElementById('common-results').innerHTML += resultTemplate(json.common[i]);
             }
         }
         if (json.branded.length > 0) {
             for (var i = 0; i < 10; i++) {
-                item = json.branded[i];
-                document.getElementById('branded-results').innerHTML += resultTemplate(item);
+                document.getElementById('branded-results').innerHTML += resultTemplate(json.branded[i]);
             }
         }
     });
