@@ -34,12 +34,17 @@ $(document).ready(function() {
     // Add item to the list
     $('#add-item').on('click', function() {
         addItem(item);
-        totalCalories();
+        calculateTotalNutritions();
         clearListAdd();
     });
 
-    $( ".delete-meal" ).on('click', function(evt) {
-        deleteItem();
+    // Delete an item when clicked on
+    $('.list').on('click', '.delete-item', function() {
+        $(this).parent().remove();
+        var currentCal =  parseInt($(this).parent().find('#foodcalories').text());
+        var currentTotal = parseInt($('.meals-total #calories-total').text());      
+        var newTotalCal = currentTotal - currentCal; 
+        $('.meals-total #calories-total').text(newTotalCal);
     });
     
 });
@@ -77,7 +82,7 @@ function addItem(item) {
             <span class="servings">Servings: ${newServingQty}<strong></strong>
                 <span>${item.servingUnit}</span>
             </span>
-            <button class="delete-meal"><i class="fas fa-times"></i></button>
+            <button class="delete-item"><i class="fas fa-times"></i></button>
             <span id="foodcalories">${newCalories}</span>
             <span id="foodcaloriestext">Calories</span>
             <i class="fas fa-chevron-right expand-item"></i>
@@ -95,38 +100,13 @@ function clearListAdd() {
 }
 
 var total = 0;
-function totalCalories() {
-    
+function calculateTotalNutritions() {
     $('span#foodcalories').each(function(){
-        var cal = parseInt($(this).text(),10);
+        var cal = parseInt($(this).text(), 10);
         if($.isNumeric(cal)){
             total += cal;
         }
-        var htmlTotal = '<span id="foodcalories">' +total+'</span>' +
-        '<span id="foodcaloriestext">Cal</span>';
-        $('#totalcal .items').html(htmlTotal);
+        $('.meals-total #calories-total').text(total);
         total = cal; //assigning current calories val so that it doesn't accumulate the previous values with current sum
-       
     });
-}
-
-function deleteItem() {
-    var flag = true;    
-    if(flag === true){
-    var c_cal =  parseInt($(this).closest('li').find('span#foodcalories').text());
-    var c_total = parseInt($('#totalcal').find('span#foodcalories').text());   
-    var sel = $(this);   
-    console.log('CURRENT TOTAL NOW --->'+total);
-    var v = c_total - c_cal;
-    console.log("now the value is "+v);
-    flag = false;    
-    evt.stopImmediatePropagation();
-    var htmlel = '<span id="foodcalories">' +v+ '</span>'; 
-    $('#totalcal').find('span#foodcalories').replaceWith(htmlel);
-    v = 0;
-    sel.closest('li').toggleClass('strike').fadeOut(300, function(){$(this).detach().removeData(); 
-    console.log('NEW TOTAL --->'+parseInt($('#totalcal').find('span#foodcalories').text()));                                                                
-    });
-}
-   
 }
