@@ -69,10 +69,14 @@ function resultTemplate(item) {
             <img src="${item.photo.thumb}">
             <span class="name">${item.food_name}</span>
             <div class="info">
-                <span data-info="serving-quantity">${item.serving_qty}</span>
-                <span data-info="serving-unit">
-                    ${item.serving_unit}, <span data-info="calories"> ${Math.round(item.full_nutrients[4].value)} calories</span>
-                </span>
+                <div class="servings">
+                    <span data-info="serving-quantity">${item.serving_qty}</span>
+                    <span data-info="serving-unit">${item.serving_unit}</span>
+                </div>
+                <div class="calories"> 
+                    <span data-info="calories">${Math.round(item.full_nutrients[4].value)}</span>
+                    ${Math.round(item.full_nutrients[4].value) == 1 ? `calorie` : `calories` }
+                </div>
             </div>
         </li>
     `;

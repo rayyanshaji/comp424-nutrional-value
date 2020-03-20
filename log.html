@@ -57,9 +57,13 @@
                     <div class="list-add" style="display: none;">
                         <img src="">
                         <h2 class="name"></h2>
-                        <span class="servings">Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required></span>
-                        <span id="serving-unit"></span>
-                        <span id="calories"></span>
+                        <span class="servings">
+                            Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required>
+                            <span id="serving-unit"></span>
+                        </span>
+                        <div class="calories">
+                            <span id="calories-amount"></span> calories
+                        </div>
                         <select id="mealSelect">
                             <option></option>
                             <option>Breakfast</option>
@@ -67,7 +71,10 @@
                             <option>Dinner</option>
                             <option>Snacks</option>
                         </select>
-                        <button class="add-item" id="addfoodsubmit" value="addfood">Add to List</button>
+                        <div class="action-buttons">
+                            <button class="custom-button green" id="add-item">Add to List</button>
+                            <button class="custom-button red" id="clear-item">Clear</button>
+                        </div>
                     </div>
                 </div>
                 <div class="list">
