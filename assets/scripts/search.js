@@ -53,8 +53,8 @@ $(document).ready(function() {
         method: 'GET',
         headers: {
             // To use, create a secret.js and inside it, assign const xappid and xappkey to your own
-            'x-app-id': xappid,
-            'x-app-key': xappkey,
+            'x-app-id': '28f8131c',
+            'x-app-key': 'b6e0592a51f9ad14956338f282fb8c03',
         }
     });
 });
