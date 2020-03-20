@@ -6,7 +6,7 @@
 
 .list-add {
     display: grid;
-    grid-template-columns: 100px 1fr 165px;
+    grid-template-columns: 100px 1fr 168px;
     grid-template-areas:
         "image name name"
         "image servings servings"
@@ -205,19 +205,40 @@
     border: 1px solid #000;
 }
 
-.meal-group > .meal-name {
+.meal-group > .meal-header {
     position: sticky;
+    display: flex;
+    align-content: center;
     top: 0;
-    padding: 8px 20px;
-    font-size: 20px;
-    font-weight: 700;
     color: #fff;
+    padding: 6px 20px;
     background-color: #f97c0f;;
     border-bottom: 1px solid #000;
 }
 
-.meal-group:not(:first-child) > .meal-name {
+.meal-group:not(:first-child) > .meal-header {
     border-top: 1px solid #000;
+}
+
+.meal-group > .meal-header > .meal-name {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.meal-group > .meal-header > .meal-name > span.total,
+.meals-total span.total {
+    font-size: 0.85em;
+    margin-left: 3px;
+}
+
+.meal-group > .meal-header > .meal-nutritions {
+    flex-grow: 1;
+}
+
+.meal-group > .meal-header > .meal-collapse  {
+    width: 16px;
+    font-size: 22px;
+    cursor: pointer;
 }
 
 .meal-group > .items {

@@ -35,6 +35,7 @@ $(document).ready(function() {
     $('#add-item').on('click', function() {
         addItem(item);
         calculateTotalNutritions();
+        calculateNumberOfMeals();
         clearListAdd();
     });
 
@@ -45,7 +46,23 @@ $(document).ready(function() {
         var currentTotal = parseInt($('.meals-total #calories-total').text());      
         var newTotalCal = currentTotal - currentCal; 
         $('.meals-total #calories-total').text(newTotalCal);
+        calculateNumberOfMeals();
     });
+
+    $('.meal-collapse').on('click', function() {
+        expanded = $(this).data('expanded');
+        if (expanded) {
+            $(this).data('expanded', false);
+            $(this).find('.fas').removeClass('fa-angle-down').addClass('fa-angle-right');
+            $(this).closest('.meal-group').find('.items').slideUp(200);
+        } else {
+            $(this).data('expanded', true);
+            $(this).find('.fas').removeClass('fa-angle-right').addClass('fa-angle-down');
+            $(this).closest('.meal-group').find('.items').slideDown(200);
+        }
+    })
+
+    calculateNumberOfMeals();
     
 });
 
@@ -109,4 +126,14 @@ function calculateTotalNutritions() {
         $('.meals-total #calories-total').text(total);
         total = cal; //assigning current calories val so that it doesn't accumulate the previous values with current sum
     });
+}
+
+function calculateNumberOfMeals() {
+    var total = 0;
+    $('.meal-group').each(function() {
+        var amount = $(this).find('.items').children().length;
+        total += amount;
+        $(this).find('.total').text(amount);
+    });
+    $('.meals-total .total').text(total);
 }
