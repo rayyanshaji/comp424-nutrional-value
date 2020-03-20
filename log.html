@@ -57,9 +57,13 @@
                     <div class="list-add" style="display: none;">
                         <img src="">
                         <h2 class="name"></h2>
-                        <span class="servings">Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required></span>
-                        <span id="serving-unit"></span>
-                        <span id="calories"></span>
+                        <span class="servings">
+                            Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required>
+                            <span id="serving-unit"></span>
+                        </span>
+                        <div class="calories">
+                            <span id="calories-amount"></span> calories
+                        </div>
                         <select id="mealSelect">
                             <option></option>
                             <option>Breakfast</option>
@@ -67,30 +71,140 @@
                             <option>Dinner</option>
                             <option>Snacks</option>
                         </select>
-                        <button class="add-item" id="addfoodsubmit" value="addfood">Add to List</button>
+                        <div class="action-buttons">
+                            <button class="custom-button green" id="add-item">Add to List</button>
+                            <button class="custom-button red" id="clear-item">Clear</button>
+                        </div>
                     </div>
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">
-                        <div class="meal-name">Breakfast</div>
-                        <ol class="items"></ol>
+                        <div class="meal-header">
+                            <div class="meal-name">Breakfast
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions"></div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <ol class="items">
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/632_thumb.jpg">
+                                <h2 class="name" title="hotdog">hotdog</h2>
+                                <span class="servings">Servings: 1<strong></strong>
+                                    <span>frankfurter</span>
+                                </span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                                <span id="foodcalories">155</span>
+                                <span id="foodcaloriestext">Calories</span>
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/632_thumb.jpg">
+                                <h2 class="name" title="hotdog">hotdog</h2>
+                                <span class="servings">Servings: 1<strong></strong>
+                                    <span>frankfurter</span>
+                                </span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                                <span id="foodcalories">155</span>
+                                <span id="foodcaloriestext">Calories</span>
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                        </ol>
                     </div>
                     <div class="meal-group" id="lunch">
-                        <div class="meal-name">Lunch</div>
-                        <ol class="items"></ol>
+                        <div class="meal-header">
+                            <div class="meal-name">Lunch
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions"></div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <ol class="items">
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/632_thumb.jpg">
+                                <h2 class="name" title="hotdog">hotdog</h2>
+                                <span class="servings">Servings: 1<strong></strong>
+                                    <span>frankfurter</span>
+                                </span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                                <span id="foodcalories">155</span>
+                                <span id="foodcaloriestext">Calories</span>
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                        </ol>
                     </div>
                     <div class="meal-group" id="dinner">
-                        <div class="meal-name">Dinner</div>
-                        <ol class="items"></ol>
+                        <div class="meal-header">
+                            <div class="meal-name">Dinner
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions"></div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <ol class="items">
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/632_thumb.jpg">
+                                <h2 class="name" title="hotdog">hotdog</h2>
+                                <span class="servings">Servings: 1<strong></strong>
+                                    <span>frankfurter</span>
+                                </span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                                <span id="foodcalories">155</span>
+                                <span id="foodcaloriestext">Calories</span>
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/632_thumb.jpg">
+                                <h2 class="name" title="hotdog">hotdog</h2>
+                                <span class="servings">Servings: 1<strong></strong>
+                                    <span>frankfurter</span>
+                                </span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                                <span id="foodcalories">155</span>
+                                <span id="foodcaloriestext">Calories</span>
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                            <li class="item">
+                                <img src="https://d2xdmhkmkbyw75.cloudfront.net/632_thumb.jpg">
+                                <h2 class="name" title="hotdog">hotdog</h2>
+                                <span class="servings">Servings: 1<strong></strong>
+                                    <span>frankfurter</span>
+                                </span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                                <span id="foodcalories">155</span>
+                                <span id="foodcaloriestext">Calories</span>
+                                <i class="fas fa-chevron-right expand-item"></i>
+                            </li>
+                        </ol>
                     </div>
                     <div class="meal-group" id="snacks">
-                        <div class="meal-name">Snacks</div>
+                        <div class="meal-header">
+                            <div class="meal-name">Snacks
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions"></div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
                         <ol class="items"></ol>
                     </div>
                 </div>
-                <div class="meals-total" id="totalcal">
-                    <div class="name">Total</div>
-                    <ol class="items"></ol>
+                <div class="meals-total">
+                    <div class="name">Total
+                        <span class="total">0</span>
+                    </div>
+                    <ol class="items">
+                        <div class="calories">
+                            <span id="calories-total">0</span> Calories
+                        </div>
+                    </ol>
                 </div>
             </section>
         </main>
