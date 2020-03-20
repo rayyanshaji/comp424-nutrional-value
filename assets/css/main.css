@@ -136,3 +136,7 @@ button.custom-button.red:hover {
     color: #fff;
 }
 
+.meal-nutritions {
+    text-align: right;
+    margin-right: 30px;
+}

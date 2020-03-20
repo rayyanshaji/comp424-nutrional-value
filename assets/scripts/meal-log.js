@@ -36,6 +36,7 @@ $(document).ready(function() {
         addItem(item);
         calculateTotalNutritions();
         calculateNumberOfMeals();
+        calculateMealCalories();
         clearListAdd();
     });
 
@@ -47,6 +48,7 @@ $(document).ready(function() {
         var newTotalCal = currentTotal - currentCal; 
         $('.meals-total #calories-total').text(newTotalCal);
         calculateNumberOfMeals();
+        calculateMealCalories();
     });
 
     $('.meal-collapse').on('click', function() {
@@ -63,6 +65,7 @@ $(document).ready(function() {
     })
 
     calculateNumberOfMeals();
+    calculateMealCalories();
     
 });
 
@@ -136,4 +139,19 @@ function calculateNumberOfMeals() {
         $(this).find('.total').text(amount);
     });
     $('.meals-total .total').text(total);
+}
+
+function calculateMealCalories() {
+    var dayCals = 0;
+    $('.meal-group').each(function() {
+        var cals = 0;
+        var foods = $(this).find('.items').children();
+        foods.each(function () {
+            var amount = $(foods.children()[4]).text();
+            cals += parseInt(amount);
+        });
+        $(this).find('.meal-nutritions').text(cals + " Cal");
+        dayCals += cals;
+    });
+    $('.meals-total .items .calories').text(dayCals + " Cal");
 }
