@@ -65,7 +65,6 @@ $(document).ready(function() {
     })
 
     calculateNumberOfMeals();
-    calculateMealCalories();
     
 });
 
@@ -144,14 +143,15 @@ function calculateNumberOfMeals() {
 function calculateMealCalories() {
     var dayCals = 0;
     $('.meal-group').each(function() {
-        var cals = 0;
+        var mealCals = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            var amount = $(foods.children()[4]).text();
-            cals += parseInt(amount);
+            var amount = $(this).find('#foodcalories').text();
+            console.log(amount)
+            mealCals += parseInt(amount);
         });
-        $(this).find('.meal-nutritions').text(cals + " Cal");
-        dayCals += cals;
+        $(this).find('.meal-nutritions').text(mealCals + " Cal");
+        dayCals += mealCals;
     });
     $('.meals-total .items .calories').text(dayCals + " Cal");
 }
