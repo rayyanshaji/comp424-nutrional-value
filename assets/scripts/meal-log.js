@@ -135,9 +135,9 @@ function calculateNumberOfMeals() {
     $('.meal-group').each(function() {
         var amount = $(this).find('.items').children().length;
         total += amount;
-        $(this).find('.total').text(amount);
+        $(this).find('.total').text('(' + amount + ')');
     });
-    $('.meals-total .total').text(total);
+    $('.meals-total .total').text('(' + total + ')');
 }
 
 function calculateMealCalories() {

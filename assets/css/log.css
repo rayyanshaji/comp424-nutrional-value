@@ -208,7 +208,7 @@
 .meal-group > .meal-header {
     position: sticky;
     display: flex;
-    align-content: center;
+    align-items: center;
     top: 0;
     color: #fff;
     padding: 6px 20px;
