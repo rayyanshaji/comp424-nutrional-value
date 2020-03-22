@@ -62,7 +62,17 @@ $(document).ready(function() {
             $(this).find('.fas').removeClass('fa-angle-right').addClass('fa-angle-down');
             $(this).closest('.meal-group').find('.items').slideDown(200);
         }
-    })
+    });
+
+    $(document).ready(function() {
+        $('.list').on('click', '.close-modal', function() {
+            $(this).closest('.modal').css('display', 'none');
+        });
+    });
+
+    $('.list').on('click', '.expand-item', function() {
+        $(this).parent().find('.modal').css('display', 'block');
+    });
 
     calculateNumberOfMeals();
     
@@ -92,8 +102,9 @@ function updateAddList(item) {
 
 // Adds the item from list add section at the top of the list depending on which meal was chosen
 function addItem(item) {
-    newServingQty = $('.list-add #servings').val();
-    newCalories = $('.list-add #calories-amount').text();
+    var newServingQty = $('.list-add #servings').val();
+    var newCalories = $('.list-add #calories-amount').text(); 
+    var modalUUID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     const itemTemplate = `
         <li class="item">
             <img src="${item.image}">
@@ -105,10 +116,19 @@ function addItem(item) {
             <span id="foodcalories">${newCalories}</span>
             <span id="foodcaloriestext">Calories</span>
             <i class="fas fa-chevron-right expand-item"></i>
+            <div class="modal">
+                <div class="modal-content">
+                    <div class="close-modal">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div id="${modalUUID}"></div>
+                </div>
+            </div>
         </li>
     `;
     var meal = $('#mealSelect').val().toLowerCase();
     document.querySelector('#' + meal + ' .items').innerHTML += itemTemplate;
+    getFullNutritions(modalUUID);
 }
 
 // Clears the list add section
@@ -125,7 +145,7 @@ function calculateTotalNutritions() {
         if($.isNumeric(cal)){
             total += cal;
         }
-        $('.meals-total #calories-total').text(total);
+        $('.meals-total #calories-total').text(total + ' Cal');
         total = cal; //assigning current calories val so that it doesn't accumulate the previous values with current sum
     });
 }
@@ -147,11 +167,50 @@ function calculateMealCalories() {
         var foods = $(this).find('.items').children();
         foods.each(function () {
             var amount = $(this).find('#foodcalories').text();
-            console.log(amount)
             mealCals += parseInt(amount);
         });
         $(this).find('.meal-nutritions').text(mealCals + " Cal");
         dayCals += mealCals;
     });
     $('.meals-total .items .calories').text(dayCals + " Cal");
+}
+
+function getFullNutritions(modalUUID) {
+    $('#' + modalUUID).nutritionLabel({
+        showServingUnitQuantityTextbox : false,
+        hideTextboxArrows : true,
+        showItemName : false,
+        showServingsPerContainer : true,
+        ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+    
+        showPolyFat : false,
+        showMonoFat : false,
+        showTransFat : false,
+        showFibers : false,
+        showVitaminD : false,
+        showPotassium_2018 : false,
+        showCalcium : false,
+        showIron : false,
+        showCaffeine : false,
+    
+        valueServingPerContainer : 5,
+        valueServingUnitQuantity : 2,
+        valueServingSizeUnit : 'Cookies',
+    
+        valueCalories : 400,
+        valueFatCalories : 220,
+        valueTotalFat : 24,
+        valueSatFat : 15,
+        valueCholesterol : 25,
+        valueSodium : 430,
+        valueTotalCarb : 44,
+        valueSugars : 24,
+        valueProteins : 4,
+        valueVitaminD : 12.22,
+        valuePotassium_2018 : 4.22,
+        valueCalcium : 7.22,
+        valueIron : 11.22,
+        valueAddedSugars : 17,
+        showLegacyVersion : false
+    });
 }

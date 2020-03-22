@@ -1,6 +1,6 @@
 .list-search {
     border: 1px solid #000;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 12px 15px 8px;
 }
 
@@ -199,6 +199,22 @@
     display: none;
 }
 
+/* RESET */
+
+.reset-list {
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.reset-list span#reset {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.reset-list span#reset:hover {
+    text-decoration: underline;
+}
+
 /* LIST */
 
 .list {
@@ -295,6 +311,7 @@
     grid-area: expand-item;
     font-size: 32px;
     place-self: center;
+    cursor: pointer;
 }
 
 .meal-group .item > #deletemeal{
@@ -347,12 +364,10 @@
     border-bottom: 1px solid #000;
 }
 
-.test-calendar {
-    height: 300px;
-    width: 400px;
-    text-align: center;
-    background-color: #646464;
-    color: white;
-    border: 1px solid #000;
+.meals-total > .items {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 18px;
+    margin: 0 15px;
+    font-size: 18px;
 }
-
