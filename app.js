@@ -7,7 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var goalsRouter = require('./routes/goals');
 var logRouter = require('./routes/log');
-var accontRouter = require('./routes/account');
+var accountRouter = require('./routes/account');
 
 var app = express();
 
