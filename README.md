@@ -7,5 +7,8 @@ Dustin Nguyen, Rayyan Shajin, Trey Roche
 
 Created for COMP 324/424
 
+### Tools Used:
+HTML5, CSS, ES6 JavaScript, Node.js, Express
+
 ### Nutrionix-API Documentation
 https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit#heading=h.67fe77ikk6il
