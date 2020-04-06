@@ -1,3 +1,6 @@
+import { Mongoose } from "mongoose";
+require("schema");
+
 const express = require('express');
 const users = require('./routes/users');
 const path = require('path');
@@ -23,6 +26,11 @@ app.get('/goals', (req, res) => {
 app.use((req, res, next) => {
     res.status(404).sendFile(path.join(__dirname, '/views/404.html'));
 });
+
+mongoose.connect('mongodb://localhost:3000/app');
+
+const Weight = mongoose.model("Weight", schema.weightSchema);
+const Account = mongoose.model("Account", schema.accountSchema);
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`Server started on port ${port}`));
