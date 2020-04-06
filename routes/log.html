@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Log - Nutritional Calculator</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,700&display=swap" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
+        <link href="../public/stylesheets/main.css" rel="stylesheet">
+        <link href="../public/stylesheets/log.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <a href="/">
+                <div class="nav-title">Nutritional Calculator</div>
+            </a>
+            <div class="nav-tabs">
+                <a class="nav-link" href="/">
+                    <div class="nav-tab">
+                        <i class="fas fa-home"></i> Home
+                    </div>
+                </a>
+                <a class="nav-link active" href="/log">
+                    <div class="nav-tab">
+                        <i class="fas fa-book"></i> Log
+                    </div>
+                </a>
+                <a class="nav-link" href="/goals">
+                    <div class="nav-tab">
+                        <i class="fas fa-chart-bar"></i> Goals
+                    </div>
+                </a>
+                <a class="nav-link" href="/account">
+                    <div class="nav-tab">
+                        <i class="fas fa-user"></i> Account
+                    </div>
+                </a>
+            </div>
+        </nav>
+        <main>
+            <section class="main-section">
+                <div class="list-search">
+                    <input type="text" class="food-search" id="searchInput" placeholder="What did you eat?" autocomplete="off">
+                        <div class="search-list" style="display: none;">
+                            <ul class="search-tabs">
+                                <li class="tab active" data-tab="common-results">Common</li>
+                                <li class="tab" data-tab="branded-results">Branded</li>
+                            </ul>
+                            <div class="results">
+                                <ul id="common-results" class="tab-content active"></ul>
+                                <ul id="branded-results" class="tab-content"></ul>
+                            </div>
+                        </div>
+                    </input>
+                    <div id="add-to-display" style="text-align: center;">Search for an item to add to your list</div>
+                    <div class="list-add" style="display: none;">
+                        <img src="">
+                        <h2 class="name"></h2>
+                        <span class="servings">
+                            Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required>
+                            <span id="serving-unit"></span>
+                        </span>
+                        <div class="calories">
+                            <span id="calories-amount"></span> calories
+                        </div>
+                        <select id="mealSelect">
+                            <option></option>
+                            <option>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Dinner</option>
+                            <option>Snacks</option>
+                        </select>
+                        <div class="action-buttons">
+                            <button class="custom-button green" id="add-item">Add to List</button>
+                            <button class="custom-button red" id="clear-item">Clear</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="meal-group" id="breakfast">
+                        <div class="meal-header">
+                            <div class="meal-name">Breakfast
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions">0 Cal</div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <ol class="items">
+                        </ol>
+                    </div>
+                    <div class="meal-group" id="lunch">
+                        <div class="meal-header">
+                            <div class="meal-name">Lunch
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions">0 Cal</div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <ol class="items">
+                        </ol>
+                    </div>
+                    <div class="meal-group" id="dinner">
+                        <div class="meal-header">
+                            <div class="meal-name">Dinner
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions">0 Cal</div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <ol class="items">
+                        </ol>
+                    </div>
+                    <div class="meal-group" id="snacks">
+                        <div class="meal-header">
+                            <div class="meal-name">Snacks
+                                <span class="total">0</span>
+                            </div>
+                            <div class="meal-nutritions">0 Cal</div>
+                            <div class="meal-collapse" data-expanded="true">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                        <ol class="items"></ol>
+                    </div>
+                </div>
+                <div class="meals-total">
+                    <div class="name">Total
+                        <span class="total">0</span>
+                    </div>
+                    <ol class="items">
+                        <div class="calories">
+                            <span id="calories-total">0</span> Calories
+                        </div>
+                    </ol>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="footer-name">Nutritional Calculator</div>
+        </footer>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="javascripts/secret.js"></script>
+        <script src="javascripts/search.js"></script>
+        <script src="javascripts/.js"></script>
+    </body>
+</html>

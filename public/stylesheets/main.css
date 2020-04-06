@@ -1,0 +1,142 @@
+body, html {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+main > .main-section {
+    flex: 1 1 100vw;
+}
+
+@media (min-width: 721px) {
+    main > .main-section {
+        flex: 0 0 700px;
+    }
+}
+
+/* NAV */
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f97c0f;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #7d7d7d;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,0.35);
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+nav .nav-title {
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0;
+}
+
+.nav-tabs {
+    display: flex;
+}
+
+.nav-tab {
+    margin: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+nav .nav-link:hover .nav-tab,
+nav .nav-link.active .nav-tab {
+    border-bottom: 2px solid #fff;
+    color: #fff;
+}
+
+nav .nav-link.active .nav-tab {
+    font-weight: 700;
+}
+
+.nav-link {
+    font-size: 18px;    
+}
+
+.nav-tab i {
+    margin-right: 3px;
+}
+
+@media (max-width: 721px) {
+    nav {
+        justify-content: center;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
+    .nav-link {
+        font-size: 15px;
+    }
+}
+
+/* FOOTER */
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: #eee;
+    margin: 40px 7% 20px;
+    padding: 7px;
+    border-radius: 8px;
+}
+
+button.custom-button {
+    background-color: #fff;
+    border-radius: 0.5em;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    margin: 2px;
+    transition: color 0.1s;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    outline: 0;
+}
+
+button.custom-button.green {
+    border-color: #28a745;
+}
+
+button.custom-button.green:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+button.custom-button.red {
+    border-color: #dc3545;
+}
+
+button.custom-button.red:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.meal-nutritions {
+    text-align: right;
+    margin-right: 30px;
+}
