@@ -1,3 +1,5 @@
+require("secret");
+
 $(document).ready(function() {
     const searchInput = $('#searchInput');
     const searchList = $('.search-list');
@@ -55,8 +57,8 @@ $(document).ready(function() {
             // READ THIS FIRST
             // TO USE, CREATE A SECRET.JS AND INSIDE IT:
             // ASSIGN CONST XAPPID AND XAPPKEY TO YOUR OWN
-            'x-app-id': xappid,
-            'x-app-key': xappkey
+            'x-app-id': secret.xappid,
+            'x-app-key': secret.appkey
         }
     });
 });
