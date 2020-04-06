@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const router = require('express').Router();
+const path = require('path');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/login.html'));
+});
+
+router.get('/register', (req, res) => {
+    res.send('Register');
+});
+
+router.get('/logout', (req, res) => {
+    res.send('Log out');
 });
 
 module.exports = router;

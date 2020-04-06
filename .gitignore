@@ -1,5 +1,4 @@
+node_modules/
+
 secret.js
-package-lock.json
-/node_modules
-*.log
-*.gz
+keys.js
