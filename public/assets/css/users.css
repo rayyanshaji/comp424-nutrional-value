@@ -1,0 +1,10 @@
+.google-button {
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+    padding: 8px;
+}
+
+.google-button > img {
+    vertical-align: middle;
+}

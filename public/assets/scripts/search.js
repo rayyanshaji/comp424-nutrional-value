@@ -55,8 +55,9 @@ $(document).ready(function() {
             // READ THIS FIRST
             // TO USE, CREATE A SECRET.JS AND INSIDE IT:
             // ASSIGN CONST XAPPID AND XAPPKEY TO YOUR OWN
-            'x-app-id': '36e650cf',
-            'x-app-key': '9ff34a709f1d44f63aa59fee827713d1'
+            
+            'x-app-id': xappid,
+            'x-app-key': xappkey
         }
     });
 });

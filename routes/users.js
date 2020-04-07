@@ -2,7 +2,7 @@ const router = require('express').Router();
 const path = require('path');
 
 router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/login.html'));
+    res.sendFile(path.join(__dirname, '../views/users_login.html'));
 });
 
 router.get('/register', (req, res) => {

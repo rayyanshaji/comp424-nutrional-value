@@ -1,36 +1,42 @@
-import { Mongoose } from "mongoose";
-require("schema");
-
 const express = require('express');
-const users = require('./routes/users');
 const path = require('path');
-const db = require('mongoose');
+const mongoose = require('mongoose');
+const passport = require('passport');
+
+const usersRoute = require('./routes/users');
+const authRoute = require('./routes/auth');
+const logRoute = require('./routes/log');
+const goalsRoute = require('./routes/goals');
 
 const app = express();
-
-app.use('/users', users);
 
 // static content
 app.use(express.static(__dirname + '/public'));
 
-// Routes (temp)
-app.get('/log', (req, res) => {
-    // req.user ? res.sendFile(path.join(__dirname, '/views/log.html')) : res.redirect('/users/login');
-    res.sendFile(path.join(__dirname, '/views/log.html'))
-});
-app.get('/goals', (req, res) => {
-    req.user ? res.send('Goals') : res.redirect('/users/login');
-});
+// Routes
+app.use('/users', usersRoute);
+app.use('/auth', authRoute);
+app.use('/log', logRoute);
+app.use('/goals', goalsRoute);
 
 // 404
 app.use((req, res, next) => {
     res.status(404).sendFile(path.join(__dirname, '/views/404.html'));
 });
 
-mongoose.connect('mongodb://localhost:3000/app');
+// mongodb connect
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/app', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, () => {
+    console.log('Connected to MongoDB');
+});
 
-const Weight = mongoose.model("Weight", schema.weightSchema);
-const Account = mongoose.model("Account", schema.accountSchema);
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport').passport
 
-const port = process.env.PORT || 3000
+// server
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
