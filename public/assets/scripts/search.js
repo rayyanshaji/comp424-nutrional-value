@@ -52,12 +52,8 @@ $(document).ready(function() {
     $.ajaxSetup({
         method: 'GET',
         headers: {
-            // READ THIS FIRST
-            // TO USE, CREATE A SECRET.JS AND INSIDE IT:
-            // ASSIGN CONST XAPPID AND XAPPKEY TO YOUR OWN
-            
-            'x-app-id': xappid,
-            'x-app-key': xappkey
+            'x-app-id': process.env.XAPPID,
+            'x-app-key': process.env.XAPPKEY
         }
     });
 });

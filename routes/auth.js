@@ -5,7 +5,7 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile'] 
 }));
 
-router.get('/google/redirect', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
     /**
      * @todo: Go back to page redirected from
      */

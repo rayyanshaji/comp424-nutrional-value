@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cookieSession = require('cookie-session');
 
 const usersRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
@@ -9,6 +10,16 @@ const logRoute = require('./routes/log');
 const goalsRoute = require('./routes/goals');
 
 const app = express();
+
+// cookie session
+app.use(cookieSession({
+    keys: ['test']
+}));
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport').passport;
 
 // static content
 app.use(express.static(__dirname + '/public'));
@@ -20,7 +31,7 @@ app.use('/log', logRoute);
 app.use('/goals', goalsRoute);
 
 // 404
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, '/views/404.html'));
 });
 
@@ -31,11 +42,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/app', {
 }, () => {
     console.log('Connected to MongoDB');
 });
-
-// passport
-app.use(passport.initialize());
-app.use(passport.session());
-require('./config/passport').passport
 
 // server
 const port = process.env.PORT || 3000;
