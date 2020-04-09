@@ -62,7 +62,7 @@ $(document).ready(function() {
  * Template literal for individual search results in the list 
  * @param {JSON object of an food item} item 
  */
-function resultTemplate(item) {
+function resultTemplateCommon(item) {
     return `
         <li>
             <img src="${item.photo.thumb}">
@@ -81,6 +81,25 @@ function resultTemplate(item) {
     `;
 }
 
+function resultTemplateBranded(item) {
+    return `
+        <li>
+            <img src="${item.photo.thumb}">
+            <span class="name">${item.food_name}</span>
+            <div class="info">
+                <div class="servings">
+                    <span data-info="serving-quantity">${item.serving_qty}</span>
+                    <span data-info="serving-unit">${item.serving_unit}</span>
+                </div>
+                <div class="calories"> 
+                    <span data-info="calories">${Math.round(item.full_nutrients[3].value)}</span>
+                    ${Math.round(item.full_nutrients[3].value) == 1 ? `calorie` : `calories` }
+                </div>
+            </div>
+        </li>
+    `;
+}
+
 /**
  * Get JSON from API and then display in the search list
  * @param {Value of search input} input 
@@ -88,13 +107,15 @@ function resultTemplate(item) {
 function getResults(input) {
     $.getJSON('https://trackapi.nutritionix.com/v2/search/instant?query=' + input +'&detailed=true', function(json) {
         if (json.common.length > 0) {
-            for (var i = 0; i < 10; i++) {
-                document.getElementById('common-results').innerHTML += resultTemplate(json.common[i]);
+            for (var i = 0; i < 5; i++) {
+                console.log(json.common[i]);
+                document.getElementById('common-results').innerHTML += resultTemplateCommon(json.common[i]);
             }
         }
         if (json.branded.length > 0) {
-            for (var i = 0; i < 10; i++) {
-                document.getElementById('branded-results').innerHTML += resultTemplate(json.branded[i]);
+            for (var i = 0; i < 5; i++) {
+                console.log(json.branded[i]);
+                document.getElementById('branded-results').innerHTML += resultTemplateBranded(json.branded[i]);
             }
         }
     });
