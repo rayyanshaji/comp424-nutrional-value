@@ -52,8 +52,8 @@ $(document).ready(function() {
     $.ajaxSetup({
         method: 'GET',
         headers: {
-            'x-app-id': process.env.XAPPID,
-            'x-app-key': process.env.XAPPKEY
+            'x-app-id': '36e650cf',
+            'x-app-key': '9ff34a709f1d44f63aa59fee827713d1'
         }
     });
 });
