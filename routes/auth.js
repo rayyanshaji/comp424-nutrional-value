@@ -6,15 +6,7 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-    /**
-     * @todo: Go back to page redirected from
-     */
-    res.redirect('/');
-});
-
-router.get('/logout', (req, res) => {
-    req.logOut();
-    res.redirect('/users/login');
+    !req.user.name ? res.redirect('/user/setup') : res.redirect('/');
 });
 
 module.exports = router;

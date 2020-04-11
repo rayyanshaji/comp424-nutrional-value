@@ -18,14 +18,16 @@ passport.use(new GoogleStrategy({
         callbackURL: '/auth/google/callback',
         scope: 'profile'
     }, (accessToken, refreshToken, profile, done) => {
-        User.findOne({'googleID': profile.id }, function(err, user) {
+        User.findOne({ providerID: profile.id }, function(err, user) {
             if (err) {
                 return done(err);
             }
             if (!user) {
                 new User({
-                    googleId: profile.id,
-                    username: profile.displayName
+                    dateCreated: new Date(),
+                    provider: profile.provider,
+                    providerID: profile.id,
+                    name: profile.displayName
                 }).save().then((newUser) => {
                     console.log('created new user: ', newUser);
                     done(null, newUser);

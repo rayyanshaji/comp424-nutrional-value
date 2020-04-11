@@ -4,16 +4,17 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
-const usersRoute = require('./routes/users');
+const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
 const logRoute = require('./routes/log');
 const goalsRoute = require('./routes/goals');
+const accountRoute = require('./routes/account');
 
 const app = express();
 
 // cookie session
 app.use(cookieSession({
-    keys: ['test']
+    keys: [process.env.SESSION_KEY]
 }));
 
 // passport
@@ -25,10 +26,11 @@ require('./config/passport').passport;
 app.use(express.static(__dirname + '/public'));
 
 // Routes
-app.use('/users', usersRoute);
+app.use('/user', userRoute);
 app.use('/auth', authRoute);
 app.use('/log', logRoute);
 app.use('/goals', goalsRoute);
+app.use('/account', accountRoute);
 
 // 404
 app.use((req, res) => {
@@ -36,11 +38,12 @@ app.use((req, res) => {
 });
 
 // mongodb connect
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/app', {
+const mongodbServer = process.env.MONGODB_URI || 'mongodb://localhost/app'
+mongoose.connect(mongodbServer, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, () => {
-    console.log('Connected to MongoDB');
+    console.log(`Connected to MongoDB at ${mongodbServer}`);
 });
 
 // server

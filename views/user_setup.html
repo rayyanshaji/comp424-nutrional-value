@@ -4,11 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>404 - Nutritional Calculator</title>
+        <title>Account Setup - Nutritional Calculator</title>
         <link rel="shortcut icon" type="image/jpg" href="/assets/favicon.ico"/>
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,700&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
         <link href="/assets/css/main.css" rel="stylesheet">
+        <link href="/assets/css/user.css" rel="stylesheet">
     </head>
     <body>
         <nav>
@@ -40,7 +41,12 @@
         </nav>
         <main>
             <section>
-                <h1>404</h1>
+                <h1>Setup</h1>
+                <form action="/" method="POST">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                    <input type="submit" value="Submit">
+                </form>
             </section>
         </main>
         <footer>

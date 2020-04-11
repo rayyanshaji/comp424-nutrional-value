@@ -2,8 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    "googleID": String,
-    "username": String,
+    "dateCreated": Date,
+    "isSetup": { type: Boolean, default: false },
+    "provider": String,
+    "providerID": String,
+    // "username": String,
     "name": String
 });
 
