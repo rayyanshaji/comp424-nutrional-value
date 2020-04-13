@@ -6,7 +6,21 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-    !req.user.name ? res.redirect('/user/setup') : res.redirect('/');
+    /**
+     * @todo: Redirect to previous page
+     */
+    res.redirect('/');
+});
+
+router.get('/github', passport.authenticate('github', { 
+    scope: ['profile'] 
+}));
+
+router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+    /**
+     * @todo: Redirect to previous page
+     */
+    res.redirect('/');
 });
 
 module.exports = router;

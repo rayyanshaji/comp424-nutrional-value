@@ -8,7 +8,7 @@ const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
 const logRoute = require('./routes/log');
 const goalsRoute = require('./routes/goals');
-const accountRoute = require('./routes/account');
+const dbRoute = require('./routes/db');
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use('/user', userRoute);
 app.use('/auth', authRoute);
 app.use('/log', logRoute);
 app.use('/goals', goalsRoute);
-app.use('/account', accountRoute);
+app.use('/db', dbRoute);
 
 // 404
 app.use((req, res) => {
@@ -42,8 +42,8 @@ const mongodbServer = process.env.MONGODB_URI || 'mongodb://localhost/app'
 mongoose.connect(mongodbServer, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}, () => {
-    console.log(`Connected to MongoDB at ${mongodbServer}`);
+}, (err) => {
+    (!err) ? console.log(`Connected to MongoDB at ${mongodbServer}`) : console.log('Connection to MongoDB failed');
 });
 
 // server

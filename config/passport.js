@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const User = require('../models/userSchema');
+const GitHubStrategy = require('passport-github').Strategy;
+const User = require('../models/user');
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -18,18 +19,17 @@ passport.use(new GoogleStrategy({
         callbackURL: '/auth/google/callback',
         scope: 'profile'
     }, (accessToken, refreshToken, profile, done) => {
-        User.findOne({ providerID: profile.id }, function(err, user) {
+        User.findOne({ provider: profile.provider, providerID: profile.id }, function(err, user) {
             if (err) {
                 return done(err);
             }
             if (!user) {
                 new User({
-                    dateCreated: new Date(),
                     provider: profile.provider,
                     providerID: profile.id,
                     name: profile.displayName
                 }).save().then((newUser) => {
-                    console.log('created new user: ', newUser);
+                    console.log('New user: ', newUser);
                     done(null, newUser);
                 });
             } else {
@@ -37,4 +37,30 @@ passport.use(new GoogleStrategy({
             }
         });
     }
+));
+
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENTID,
+    clientSecret: process.env.GITHUB_CLIENTSECRET,
+    callbackURL: '/auth/github/callback',
+    scope: 'profile'
+}, (accessToken, refreshToken, profile, done) => {
+    User.findOne({ provider: profile.provider, providerID: profile.id }, function(err, user) {
+        if (err) {
+            return done(err);
+        }
+        if (!user) {
+            new User({
+                provider: profile.provider,
+                providerID: profile.id,
+                name: profile.displayName
+            }).save().then((newUser) => {
+                console.log('New user: ', newUser);
+                done(null, newUser);
+            });
+        } else {
+            return done(err, user);
+        }
+    });
+}
 ));
