@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const User = require('../models/user');
-const Item = require('../models/item');
+const Log = require('../models/log');
 
 router.get('/user', (req, res) => {
     if (req.user) {
-        User.find({ _id: req.user._id }, (err, results) => {
+        User.findOne({ _id: req.user._id }, (err, results) => {
             if (!err) {
-                res.json(results[0]);
+                res.json(results);
             } else {
                 res.status(401).send('401');
             }
@@ -16,11 +16,11 @@ router.get('/user', (req, res) => {
     }
 })
 
-router.get('/food_log', (req, res) => {
+router.get('/log/:date', (req, res) => {
     if (req.user) {
-        User.find({ _id: req.user._id }, 'food_log', (err, results) => {
+        Log.findOne({ user_id: req.user._id, 'days.date': req.params.date}, (err, results) => {
             if (!err) {
-                res.json(results[0].food_log)
+                res.json(results)
             } else {
                 res.status(401).send('401');
             }
@@ -30,22 +30,45 @@ router.get('/food_log', (req, res) => {
     }
 })
 
-router.post('/food_log', (req, res) => {
-    var newItem = new Item({
-        meal: 'breakfast',
-        dateAdded: new Date(),
-        name: 'pizza',
-        type: 'common'
+router.post('/log/:date', (req, res) => {
+    addDate(req, res);
+})
+
+router.post('/log/:date/add', (req, res) => {
+    addItem(req, res);
+})
+
+function addDate(req, res) {
+    Log.findOneAndUpdate({ user_id: '5e94b89e6bfbaf05d24058ca' }, {$push: {
+        days: [
+            {
+              date: req.params.date
+            }
+          ]
+    }}, function (err, result) { 
+        if (err) res.status(400).json('400');
+        else res.json(result);
     })
-    newItem.save((err, result) => {
-        if (err) {
-            console.log('err')
+}
+
+function addItem(req, res) {
+    Log.findOne({ user_id: '5e94b89e6bfbaf05d24058ca', 'days.date': req.params.date}, (err, results) => {
+        if (err) res.status(400).json('400');
+        if (!results) {
+            addDate(req, res);
+            addItem(req, res);
         } else {
-            Item.find({}, function (error, result) { 
-                res.json(result);
+            Log.findOneAndUpdate({ user_id: '5e94b89e6bfbaf05d24058ca', 'days.date': req.params.date }, {$push: {
+                'days.$.items': {
+                    'meal': 'breakfast',
+                    'name': 'pizza'
+                }
+            }}, function (err, result) { 
+                if (err) res.status(400).json('400');
+                else res.json(result);
             })
         }
     })
-})
+}
 
 module.exports = router;

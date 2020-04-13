@@ -155,3 +155,13 @@ function calculateMealCalories() {
     });
     $('.meals-total .items .calories').text(dayCals + " Cal");
 }
+
+function getDayLog() {
+    $.getJSON('/db/log', (response) => {
+        console.log(JSON.parse(response));
+    })
+}
+
+function getUrlDate() {
+    return window.location.pathname.split('/')[2];
+}

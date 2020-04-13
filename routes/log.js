@@ -2,8 +2,17 @@ const router = require('express').Router();
 const path = require('path');
 
 router.get('/', (req, res) => {
-    // req.user ? res.sendFile(path.join(__dirname, '/views/log.html')) : res.redirect('/users/login');
-    res.sendFile(path.join(__dirname, '../views/log.html'))
+    var date = new Date();
+    res.redirect('/log/' + date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate());
+});
+
+router.get('/:date', (req, res) => {
+    if (req.user) {
+        res.sendFile(path.join(__dirname, '../views/log.html'));
+    } else {
+        res.redirect('/users/login');
+    }
+
 });
 
 module.exports = router;
