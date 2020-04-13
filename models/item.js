@@ -10,4 +10,6 @@ const ItemSchema = mongoose.Schema({
     serving_unit: String
 });
 
-module.exports = mongoose.model('Item', ItemSchema);;
+var Item = mongoose.model('Item', ItemSchema);
+
+module.exports = Item;

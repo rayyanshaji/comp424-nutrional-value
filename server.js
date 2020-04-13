@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const bodyParser = require("body-parser");
 
 const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
@@ -16,6 +17,8 @@ const app = express();
 app.use(cookieSession({
     keys: [process.env.SESSION_KEY]
 }));
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // passport
 app.use(passport.initialize());
