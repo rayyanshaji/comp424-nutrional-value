@@ -107,13 +107,13 @@ function resultTemplateBranded(item) {
 function getResults(input) {
     $.getJSON('https://trackapi.nutritionix.com/v2/search/instant?query=' + input +'&detailed=true', function(json) {
         if (json.common.length > 0) {
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 7; i++) {
                 console.log(json.common[i]);
                 document.getElementById('common-results').innerHTML += resultTemplateCommon(json.common[i]);
             }
         }
         if (json.branded.length > 0) {
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 7; i++) {
                 console.log(json.branded[i]);
                 document.getElementById('branded-results').innerHTML += resultTemplateBranded(json.branded[i]);
             }

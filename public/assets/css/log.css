@@ -85,6 +85,7 @@
     grid-area: mealselect;
     place-self: center;
     width: 100%;
+    cursor: pointer;
     padding: 9.5px;
     outline: 0;
     font-size: 16px;
@@ -107,7 +108,7 @@
     z-index: 100;
     /* fixes list being under other meal names (that are sticky) */
     -webkit-transform: translate3d(0,0,0);
-    top: 112px;
+    top: 160px;
     border: 1px solid #f97c0f;
     background-color: #fff;
     border-radius: 5px;
@@ -298,8 +299,7 @@
 }
 
 .meal-group .item > #deletemeal{
-   
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .meal-group .item > .fa-times{
@@ -346,13 +346,3 @@
     background-color: #f97c0f;;
     border-bottom: 1px solid #000;
 }
-
-.test-calendar {
-    height: 300px;
-    width: 400px;
-    text-align: center;
-    background-color: #646464;
-    color: white;
-    border: 1px solid #000;
-}
-

@@ -10,7 +10,7 @@ router.get('/:date', (req, res) => {
     if (req.user) {
         res.sendFile(path.join(__dirname, '../views/log.html'));
     } else {
-        res.redirect('/users/login');
+        res.redirect('/user/login');
     }
 
 });

@@ -10,6 +10,7 @@
         <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet">
         <link href="/assets/css/main.css" rel="stylesheet">
         <link href="/assets/css/log.css" rel="stylesheet">
+        <link href="/assets/css/calendar.css" rel="stylesheet">
     </head>
     <body>
         <nav>
@@ -41,6 +42,7 @@
         </nav>
         <main>
             <section class="main-section">
+                <h1 class="date-header" id="date-header"></h1>
                 <div class="list-search">
                     <input type="text" class="food-search" id="searchInput" placeholder="What did you eat?" autocomplete="off">
                         <div class="search-list" style="display: none;">
@@ -142,6 +144,55 @@
                     </ol>
                 </div>
             </section>
+            <section>
+                <div class="calendar">
+                    <h3 class="calendar-header" id="monthAndYear"></h3>
+                    <div class="calendar-controls">
+                        <label for="month">Jump To: </label>
+                        <select name="month" id="month" onchange="jump()">
+                            <option value=0>Jan</option>
+                            <option value=1>Feb</option>
+                            <option value=2>Mar</option>
+                            <option value=3>Apr</option>
+                            <option value=4>May</option>
+                            <option value=5>Jun</option>
+                            <option value=6>Jul</option>
+                            <option value=7>Aug</option>
+                            <option value=8>Sep</option>
+                            <option value=9>Oct</option>
+                            <option value=10>Nov</option>
+                            <option value=11>Dec</option>
+                        </select>
+                        <select name="year" id="year" onchange="jump()">
+                            <option value=2018>2018</option>
+                            <option value=2019>2019</option>
+                            <option value=2020>2020</option>
+                            <option value=2021>2021</option>
+                            <option value=2021>2022</option>
+                        </select>
+                        <button id="previous" onclick="previous()">Previous</button>
+                        <button id="next" onclick="next()">Next</button>
+                    </div>
+                    <table id="calendar">
+                        <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendar-body"></tbody>
+                    </table>
+                    <div class="key">
+                        <span><strong>Today</strong></span>
+                        <span style="background-color: #f97c0f; color: #fff; padding: 2px; margin-left: 10px;">Current</span>
+                    </div>
+                </div>
+            </section>
         </main>
         <footer>
             <div class="footer-name">Nutritional Calculator</div>
@@ -149,5 +200,6 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/assets/scripts/search.js"></script>
         <script src="/assets/scripts/meal-log.js"></script>
+        <script src="/assets/scripts/calendar.js"></script>
     </body>
 </html>
