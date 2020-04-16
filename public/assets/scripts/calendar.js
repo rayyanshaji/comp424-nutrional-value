@@ -25,6 +25,7 @@ let months = ["January", "February", "March", "April", "May", "June", "July", "A
 
 let monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
+
 setDateHeader();
 
 function getUrlDate() {
@@ -35,6 +36,13 @@ function setDateHeader() {
     let dateHeader = document.getElementById('date-header');
     let dateValues = getUrlDate().split('-');
     dateHeader.innerHTML = months[dateValues[1]-1] + ' ' + dateValues[2] + ', ' + dateValues[0];
+}
+
+function showLogDates() {
+    for (let i in logJSON) {
+        //document.getElementById(logJSON[i].date).classList.add('has-log');
+        $('#' + logJSON[i].date).addClass('has-log');
+    }
 }
 
 function next() {
@@ -93,6 +101,7 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode(date);
                 let cellAnchor = document.createElement("a");
                 cellAnchor.href = '/log/' + currentYear + '-' + (currentMonth + 1) + '-' + date;
+                cellAnchor.id = currentYear + '-' + (currentMonth + 1) + '-' + date;
                 // color today's date
                 if (date === today.getDate() && year == today.getFullYear() && month === today.getMonth()) cellAnchor.classList.add("current");
                 // current page's date
@@ -104,8 +113,8 @@ function showCalendar(month, year) {
             }
 
         }
-
         tbl.appendChild(row); // appending each row into calendar body.
     }
 
+    showLogDates();
 }

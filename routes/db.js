@@ -16,11 +16,11 @@ router.get('/user', (req, res) => {
     }
 })
 
-router.get('/log/:date', (req, res) => {
+router.get('/log', (req, res) => {
     if (req.user) {
-        Log.findOne({ user_id: req.user._id, 'days.date': req.params.date}, (err, results) => {
+        Log.findOne({ user_id: req.user._id }, (err, results) => {
             if (!err) {
-                res.json(results)
+                res.json(results.days)
             } else {
                 res.status(401).send('401');
             }
@@ -29,6 +29,7 @@ router.get('/log/:date', (req, res) => {
         res.status(401).send('401');
     }
 })
+
 
 router.post('/log/:date', (req, res) => {
     addDate(req, res);
@@ -57,12 +58,8 @@ function addItem(req, res) {
             addDate(req, res);
             addItem(req, res);
         } else {
-            Log.findOneAndUpdate({ user_id: req.user._id, 'days.date': req.params.date }, {$push: {
-                'days.$.items': {
-                    meal: req.body.meal,
-                    name: req.body.name,
-                    serving_qty: req.body.serving_qty
-                }
+            Log.updateOne({ user_id: req.user._id, 'days.date': req.params.date }, {$push: {
+                'days.$.items': req.body
             }}, function (err) { 
                 if (err) res.status(400).json('400');
             })

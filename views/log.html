@@ -57,10 +57,9 @@
                         </div>
                     </input>
                     <div id="add-to-display" style="text-align: center;">Search for an item to add to your list</div>
-                    <form action="" method="POST" class="list-add" style="display: none;">
+                    <div class="list-add" style="display: none;">
                         <img src="">
                         <h2 class="name"></h2>
-                        <input type="text" id="name" name="name" value="" readonly style="display: none;">
                         <span class="servings">
                             Servings: <input id="servings" type="text" name="serving_qty" inputmode="numeric" pattern="[0-9]*" value="1" required>
                             <span id="serving-unit"></span>
@@ -79,7 +78,7 @@
                             <button class="custom-button green" id="add-item" type="submit">Add to List</button>
                             <button class="custom-button red" id="clear-item">Clear</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">
@@ -151,25 +150,25 @@
                     <div class="calendar-controls">
                         <label for="month">Jump To: </label>
                         <select name="month" id="month" onchange="jump()">
-                            <option value=0>Jan</option>
-                            <option value=1>Feb</option>
-                            <option value=2>Mar</option>
-                            <option value=3>Apr</option>
-                            <option value=4>May</option>
-                            <option value=5>Jun</option>
-                            <option value=6>Jul</option>
-                            <option value=7>Aug</option>
-                            <option value=8>Sep</option>
-                            <option value=9>Oct</option>
-                            <option value=10>Nov</option>
-                            <option value=11>Dec</option>
+                            <option value="0">Jan</option>
+                            <option value="1">Feb</option>
+                            <option value="2">Mar</option>
+                            <option value="3">Apr</option>
+                            <option value="4">May</option>
+                            <option value="5">Jun</option>
+                            <option value="6">Jul</option>
+                            <option value="7">Aug</option>
+                            <option value="8">Sep</option>
+                            <option value="9">Oct</option>
+                            <option value="10">Nov</option>
+                            <option value="11">Dec</option>
                         </select>
                         <select name="year" id="year" onchange="jump()">
-                            <option value=2018>2018</option>
-                            <option value=2019>2019</option>
-                            <option value=2020>2020</option>
-                            <option value=2021>2021</option>
-                            <option value=2021>2022</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2021">2022</option>
                         </select>
                         <button id="previous" onclick="previous()">Previous</button>
                         <button id="next" onclick="next()">Next</button>
@@ -191,6 +190,7 @@
                     <div class="key">
                         <span><strong>Today</strong></span>
                         <span style="background-color: #f97c0f; color: #fff; padding: 2px; margin-left: 10px;">Current Page</span>
+                        <span style="border-bottom: 2px solid #000; padding-bottom: 3px; margin-left: 10px;">Has Log</span>
                     </div>
                 </div>
             </section>

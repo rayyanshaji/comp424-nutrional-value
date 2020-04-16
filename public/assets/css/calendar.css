@@ -32,6 +32,11 @@
     font-weight: bold;
 }
 
+.calendar a.has-log {
+    border-bottom: 2px solid #000;
+    padding-bottom: 3px;
+}
+
 .calendar th {
     padding: 0 4px;
     min-width: 45px;

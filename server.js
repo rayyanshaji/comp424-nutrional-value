@@ -17,6 +17,7 @@ app.use(cookieSession({
     keys: [process.env.SESSION_KEY]
 }));
 
+app.use(bodyParser.json({ type: 'application/json'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // passport

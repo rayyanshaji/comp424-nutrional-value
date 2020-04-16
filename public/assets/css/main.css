@@ -112,7 +112,7 @@ footer {
     border-radius: 8px;
 }
 
-button.custom-button {
+.custom-button {
     background-color: #fff;
     border-radius: 0.5em;
     border-style: solid;
@@ -126,20 +126,20 @@ button.custom-button {
     outline: 0;
 }
 
-button.custom-button.green {
+.custom-button.green {
     border-color: #28a745;
 }
 
-button.custom-button.green:hover {
+.custom-button.green:hover {
     background-color: #28a745;
     color: #fff;
 }
 
-button.custom-button.red {
+.custom-button.red {
     border-color: #dc3545;
 }
 
-button.custom-button.red:hover {
+.custom-button.red:hover {
     background-color: #dc3545;
     color: #fff;
 }

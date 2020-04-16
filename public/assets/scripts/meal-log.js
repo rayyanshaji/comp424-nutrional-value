@@ -1,3 +1,5 @@
+var logJSON;
+
 $(document).ready(function() {
     const searchInput = $('#searchInput');
     const searchList = $('.search-list');
@@ -65,9 +67,10 @@ $(document).ready(function() {
     })
 
     calculateNumberOfMeals();
-    setDateHeader();
 
     $('.list-add').attr('action', '/db/log/' + getUrlDate() + '/add');
+    getLogJSON();
+    showLogDates();
     
 });
 
@@ -79,7 +82,6 @@ function updateAddList(item) {
     const listAdd = $('.list-add');
 
     listAdd.find('.name').text(item.name);
-    listAdd.find('#name').attr('value', item.name);
     listAdd.find('img').attr('src', item.image);
     listAdd.find('#servings').val(item.servingQty);
     listAdd.find('#serving-unit').text(item.servingUnit);
@@ -113,6 +115,22 @@ function addItem(item) {
     `;
     var meal = $('#mealSelect').val().toLowerCase();
     document.querySelector('#' + meal + ' .items').innerHTML += itemTemplate;
+    postAddItem(item, meal);
+}
+
+function postAddItem(item, meal) {
+    $.ajax({
+        url: '/db/log/' + getUrlDate() + '/add',
+        type: "POST",
+        dataType: "json",
+        data: { 
+            meal: meal,
+            name: item.name,
+            image_url: item.image,
+            serving_qty: newServingQty,
+            serving_unit: item.servingUnit
+        }
+    });
 }
 
 // Clears the list add section
@@ -151,11 +169,20 @@ function calculateMealCalories() {
         var foods = $(this).find('.items').children();
         foods.each(function () {
             var amount = $(this).find('#foodcalories').text();
-            console.log(amount)
             mealCals += parseInt(amount);
         });
         $(this).find('.meal-nutritions').text(mealCals + " Cal");
         dayCals += mealCals;
     });
     $('.meals-total .items .calories').text(dayCals + " Cal");
+}
+
+function getLogJSON() {
+    $.getJSON("/db/log", function (data) {
+        logJSON = data;
+        for (let i in logJSON) {
+            //document.getElementById(logJSON[i].date).classList.add('has-log');
+            $('#' + logJSON[i].date).addClass('has-log');
+        }
+    });
 }
