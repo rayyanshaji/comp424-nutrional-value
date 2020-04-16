@@ -181,8 +181,28 @@ function getLogJSON() {
     $.getJSON("/db/log", function (data) {
         logJSON = data;
         for (let i in logJSON) {
-            //document.getElementById(logJSON[i].date).classList.add('has-log');
             $('#' + logJSON[i].date).addClass('has-log');
+            if (logJSON[i].date == getUrlDate()) {
+                var item = logJSON[i].items
+                for (let i in item) {
+                    console.log(item[i])
+                    console.log(item[i].image_url)
+                    const itemTemplate = `
+                        <li class="item">
+                            <img src="${item[i].image_url}">
+                            <h2 class="name" title="${item[i].name}">${item[i].name}</h2>
+                            <span class="servings">Servings: ${item[i].serving_qty}<strong></strong>
+                                <span>${item[i].serving_unit}</span>
+                            </span>
+                            <button class="delete-item"><i class="fas fa-times"></i></button>
+                            <span id="foodcalories">10</span>
+                            <span id="foodcaloriestext">Calories</span>
+                            <i class="fas fa-chevron-right expand-item"></i>
+                        </li>
+                    `;
+                    document.querySelector('#' + item[i].meal + ' .items').innerHTML += itemTemplate;
+                }
+            }
         }
     });
 }
