@@ -30,7 +30,7 @@ router.get('/twitter/callback', passport.authenticate('twitter', { failureRedire
 });
 
 function logCollection(req) {
-    Log.countDocuments({ _id: req.user._id }, (err, count) => {
+    Log.countDocuments({ user_id: req.user._id }, (err, count) => {
         if (err) return err;
         if (count == 0) {
             new Log({
