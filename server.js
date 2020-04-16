@@ -6,7 +6,6 @@ const cookieSession = require('cookie-session');
 const bodyParser = require("body-parser");
 
 const userRoute = require('./routes/user');
-const authRoute = require('./routes/auth');
 const logRoute = require('./routes/log');
 const goalsRoute = require('./routes/goals');
 const dbRoute = require('./routes/db');
@@ -30,7 +29,6 @@ app.use(express.static(__dirname + '/public'));
 
 // Routes
 app.use('/user', userRoute);
-app.use('/auth', authRoute);
 app.use('/log', logRoute);
 app.use('/goals', goalsRoute);
 app.use('/db', dbRoute);

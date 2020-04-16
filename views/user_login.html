@@ -41,14 +41,24 @@
         </nav>
         <main>
             <section>
-                <h1>Log in</h1>
-                <p>Log in to view your food log and goals.</p>
-                <a href="/auth/google">
-                    <button class="google-button">
-                        <img src="/assets/images/btn_google_light_normal_ios.svg"> 
+                <div class="button-header">
+                    <h1>Log in</h1>
+                    <p>Log in to view your food log and goals.</p>
+                </div>
+                <div class="button-row">
+                    <a href="/user/auth/google" class="signin-button">
+                        <img src="/assets/images/google.svg"> 
                         <span>Sign in with Google</span>
-                    </button>
-                </a>
+                    </a>
+                    <a href="/user/auth/twitter" class="signin-button">
+                        <img src="/assets/images/twitter.svg"> 
+                        <span>Sign in with Twitter</span>
+                    </a>
+                    <a href="/user/auth/github" class="signin-button">
+                        <img src="/assets/images/github.svg"> 
+                        <span>Sign in with GitHub</span>
+                    </a>
+                </div>
             </section>
         </main>
         <footer>

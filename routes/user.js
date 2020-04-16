@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const path = require('path');
+const authRoute = require('./auth');
+
+router.use('/auth', authRoute);
 
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/user_login.html'));

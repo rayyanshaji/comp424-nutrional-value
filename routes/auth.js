@@ -6,7 +6,7 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile'] 
 }));
 
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/user/login' }), (req, res) => {
     res.redirect('/');
     logCollection(req);
 });
@@ -15,7 +15,16 @@ router.get('/github', passport.authenticate('github', {
     scope: ['profile'] 
 }));
 
-router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/user/login' }), (req, res) => {
+    res.redirect('/');
+    logCollection(req);
+});
+
+router.get('/twitter', passport.authenticate('twitter', { 
+    scope: ['profile'] 
+}));
+
+router.get('/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/user/login' }), (req, res) => {
     res.redirect('/');
     logCollection(req);
 });
