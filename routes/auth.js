@@ -36,7 +36,7 @@ function logCollection(req) {
             new Log({
                 user_id: req.user._id
             }).save().then((newLog) => {
-                console.log('New user: ', newLog);
+                console.log('New log: ', newLog);
             });
         }
     })

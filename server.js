@@ -42,7 +42,8 @@ app.use((req, res) => {
 const mongodbServer = process.env.MONGODB_URI || 'mongodb://localhost/app'
 mongoose.connect(mongodbServer, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }, (err) => {
     (!err) ? console.log(`Connected to MongoDB at ${mongodbServer}`) : console.log('Connection to MongoDB failed');
 });

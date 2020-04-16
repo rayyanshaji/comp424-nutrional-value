@@ -66,6 +66,8 @@ $(document).ready(function() {
 
     calculateNumberOfMeals();
     setDateHeader();
+
+    $('.list-add').attr('action', '/db/log/' + getUrlDate() + '/add');
     
 });
 
@@ -77,6 +79,7 @@ function updateAddList(item) {
     const listAdd = $('.list-add');
 
     listAdd.find('.name').text(item.name);
+    listAdd.find('#name').attr('value', item.name);
     listAdd.find('img').attr('src', item.image);
     listAdd.find('#servings').val(item.servingQty);
     listAdd.find('#serving-unit').text(item.servingUnit);

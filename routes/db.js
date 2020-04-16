@@ -39,33 +39,32 @@ router.post('/log/:date/add', (req, res) => {
 })
 
 function addDate(req, res) {
-    Log.findOneAndUpdate({ user_id: '5e94b89e6bfbaf05d24058ca' }, {$push: {
+    Log.findOneAndUpdate({ user_id: req.user._id }, {$push: {
         days: [
             {
               date: req.params.date
             }
           ]
-    }}, function (err, result) { 
+    }}, function (err) { 
         if (err) res.status(400).json('400');
-        else res.json(result);
     })
 }
 
 function addItem(req, res) {
-    Log.findOne({ user_id: '5e94b89e6bfbaf05d24058ca', 'days.date': req.params.date}, (err, results) => {
+    Log.findOne({ user_id: req.user._id, 'days.date': req.params.date}, (err, results) => {
         if (err) res.status(400).json('400');
         if (!results) {
             addDate(req, res);
             addItem(req, res);
         } else {
-            Log.findOneAndUpdate({ user_id: '5e94b89e6bfbaf05d24058ca', 'days.date': req.params.date }, {$push: {
+            Log.findOneAndUpdate({ user_id: req.user._id, 'days.date': req.params.date }, {$push: {
                 'days.$.items': {
-                    'meal': 'breakfast',
-                    'name': 'pizza'
+                    meal: req.body.meal,
+                    name: req.body.name,
+                    serving_qty: req.body.serving_qty
                 }
-            }}, function (err, result) { 
+            }}, function (err) { 
                 if (err) res.status(400).json('400');
-                else res.json(result);
             })
         }
     })

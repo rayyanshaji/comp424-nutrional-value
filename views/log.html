@@ -57,17 +57,18 @@
                         </div>
                     </input>
                     <div id="add-to-display" style="text-align: center;">Search for an item to add to your list</div>
-                    <div class="list-add" style="display: none;">
+                    <form action="" method="POST" class="list-add" style="display: none;">
                         <img src="">
                         <h2 class="name"></h2>
+                        <input type="text" id="name" name="name" value="" readonly style="display: none;">
                         <span class="servings">
-                            Servings: <input id="servings" type="text" inputmode="numeric" pattern="[0-9]*" value="1" required>
+                            Servings: <input id="servings" type="text" name="serving_qty" inputmode="numeric" pattern="[0-9]*" value="1" required>
                             <span id="serving-unit"></span>
                         </span>
                         <div class="calories">
                             <span id="calories-amount"></span> calories
                         </div>
-                        <select id="mealSelect">
+                        <select id="mealSelect" name="meal">
                             <option></option>
                             <option>Breakfast</option>
                             <option>Lunch</option>
@@ -75,10 +76,10 @@
                             <option>Snacks</option>
                         </select>
                         <div class="action-buttons">
-                            <button class="custom-button green" id="add-item">Add to List</button>
+                            <button class="custom-button green" id="add-item" type="submit">Add to List</button>
                             <button class="custom-button red" id="clear-item">Clear</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="list">
                     <div class="meal-group" id="breakfast">
@@ -189,7 +190,7 @@
                     </table>
                     <div class="key">
                         <span><strong>Today</strong></span>
-                        <span style="background-color: #f97c0f; color: #fff; padding: 2px; margin-left: 10px;">Current</span>
+                        <span style="background-color: #f97c0f; color: #fff; padding: 2px; margin-left: 10px;">Current Page</span>
                     </div>
                 </div>
             </section>
