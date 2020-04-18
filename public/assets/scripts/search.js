@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    const searchInput = $('#searchInput');
+    const searchInput = $('#search-input');
     const searchList = $('.search-list');
     let timeout = null;
     let opened = false;

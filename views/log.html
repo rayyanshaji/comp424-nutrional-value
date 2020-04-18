@@ -44,8 +44,8 @@
             <section class="main-section">
                 <h1 class="date-header" id="date-header"></h1>
                 <div class="list-search">
-                    <input type="text" class="food-search" id="searchInput" placeholder="What did you eat?" autocomplete="off">
-                        <div class="search-list" style="display: none;">
+                    <input type="text" class="food-search" id="search-input" placeholder="What did you eat?" autocomplete="off">
+                        <div class="search-list" id="search-list" style="display: none;">
                             <ul class="search-tabs">
                                 <li class="tab active" data-tab="common-results">Common</li>
                                 <li class="tab" data-tab="branded-results">Branded</li>
@@ -57,9 +57,9 @@
                         </div>
                     </input>
                     <div id="add-to-display" style="text-align: center;">Search for an item to add to your list</div>
-                    <div class="list-add" style="display: none;">
-                        <img src="">
-                        <h2 class="name"></h2>
+                    <div class="list-add" id="list-add" style="display: none;">
+                        <img src="" id="image">
+                        <h2 class="name" id="name"></h2>
                         <span class="servings">
                             Servings: <input id="servings" type="text" name="serving_qty" inputmode="numeric" pattern="[0-9]*" value="1" required>
                             <span id="serving-unit"></span>
@@ -67,7 +67,7 @@
                         <div class="calories">
                             <span id="calories-amount"></span> calories
                         </div>
-                        <select id="mealSelect" name="meal">
+                        <select class="meal-select" id="meal-select" name="meal">
                             <option></option>
                             <option>Breakfast</option>
                             <option>Lunch</option>
@@ -87,9 +87,6 @@
                                 <span class="total">0</span>
                             </div>
                             <div class="meal-nutritions">0 Cal</div>
-                            <div class="meal-collapse" data-expanded="true">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
                         </div>
                         <ol class="items">
                         </ol>
@@ -100,9 +97,6 @@
                                 <span class="total">0</span>
                             </div>
                             <div class="meal-nutritions">0 Cal</div>
-                            <div class="meal-collapse" data-expanded="true">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
                         </div>
                         <ol class="items">
                         </ol>
@@ -113,9 +107,6 @@
                                 <span class="total">0</span>
                             </div>
                             <div class="meal-nutritions">0 Cal</div>
-                            <div class="meal-collapse" data-expanded="true">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
                         </div>
                         <ol class="items">
                         </ol>
@@ -126,9 +117,6 @@
                                 <span class="total">0</span>
                             </div>
                             <div class="meal-nutritions">0 Cal</div>
-                            <div class="meal-collapse" data-expanded="true">
-                                <i class="fas fa-angle-down"></i>
-                            </div>
                         </div>
                         <ol class="items"></ol>
                     </div>
@@ -168,7 +156,7 @@
                             <option value="2019">2019</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
-                            <option value="2021">2022</option>
+                            <option value="2022">2022</option>
                         </select>
                         <button id="previous" onclick="previous()">Previous</button>
                         <button id="next" onclick="next()">Next</button>
