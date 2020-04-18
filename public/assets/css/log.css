@@ -34,24 +34,20 @@
     color: #646464;
 }
 
+.list-add > .name {
+    grid-area: name;
+}
+
+.list-add > .servings {
+    grid-area: servings;
+}
+
 .list-add > img {
     grid-area: image;
     align-self: center;
     width: 84px;
     border: 1px solid #ababab;
     margin-bottom: 8px;
-}
-
-.list-add > #servingsunit {
-    display: flex;
-    grid-area : servings;
-    vertical-align:bottom;
-    height: 40px;
-    margin-left: 111px;
-    text-align: center;
-    background-color: #fff;
-    align-items: center;
-    border-radius: 5px;
 }
 
 .list-add > .servings > input {
@@ -245,12 +241,7 @@
 }
 
 .meal-group .item {
-    display: grid;
-    grid-template-areas:
-        "image name foodcalories expand-item"
-        "image servings foodcaloriestext expand-item";
-    grid-template-columns: 64px 35% 1fr 30px;
-    column-gap: 15px;
+    display: flex;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -259,15 +250,19 @@
     border-bottom: 1px solid #ababab;
 }
 
-.meal-group .item > img {
-    grid-area: image;
+.meal-group .item img {
     place-self: center;
     width: 64px;
     border: 1px solid #ababab;
+    margin-right: 10px;
+}
+
+.meal-group .item .info {
+    margin-right: 15px;
 }
 
 .list-add > .name,
-.meal-group .item > .name {
+.meal-group .item .name {
     text-transform: capitalize;
     grid-area: name;
     font-weight: 700;
@@ -275,51 +270,27 @@
 }
 
 .list-add > .servings,
-.meal-group .item > .servings {
-    grid-area: servings;
+.meal-group .item .servings {
     align-self: center;
     margin: 0;
 }
 
-.meal-group .item > .servings > strong {
+.meal-group .item .servings > strong {
     font-size: 1.25em;
 }
 
-.meal-group .item > .expand-item {
-    grid-area: expand-item;
+.meal-group .item .nutritions {
+    flex-grow: 1;
+}
+
+.meal-group .item .expand-item {
+    justify-self: flex-end;
     font-size: 32px;
     place-self: center;
 }
 
-.meal-group .item > #deletemeal{
-    cursor: pointer;
-}
-
-.meal-group .item > .fa-times{
-    grid-area: foodcalories;
-    opacity: 50%;
-    align-self: flex-end;
-    cursor : pointer;
-}
-
-.meal-group .item > .fa-chevron-right{
-    opacity: 70%;
-}
-
-.meal-group .item > #foodcalories{
-    grid-area: foodcalories;
-    align-self: center;
-    text-align: end;
-}
-
-.meal-group .item > #foodcaloriestext{
-    grid-area: foodcaloriestext;
-    text-align: end;
-}
-
 .meals-total {
     height: 100px;
-
     position: sticky;
     z-index: 10;
     bottom: 10px;

@@ -86,6 +86,7 @@ function resultTemplateBranded(item) {
         <li>
             <img src="${item.photo.thumb}">
             <span class="name">${item.food_name}</span>
+            <span class="nix_item_id" style="display: none;">${item.nix_item_id}</span>
             <div class="info">
                 <div class="servings">
                     <span data-info="serving-quantity">${item.serving_qty}</span>

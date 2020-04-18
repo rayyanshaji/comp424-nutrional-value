@@ -9,7 +9,12 @@ const ItemSchema = new Schema({
     type: String,
     serving_qty: { type: Number, min: 0},
     serving_unit: String,
-    calories: { type: Number, min: 0}
+    nutritions: {
+        calories: { type: Number, min: 0},
+        total_fat: { type: Number, min: 0},
+        cholesterol: { type: Number, min: 0},
+        sodium: { type: Number, min: 0}
+    }
 });
 
 const LogSchema = new Schema({
