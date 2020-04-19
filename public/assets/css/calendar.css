@@ -4,9 +4,20 @@
 }
 
 .calendar {
-    margin-top: 35px;
-    margin-left: 20px;
     font-weight: 100;
+}
+
+@media (min-width: 721px) {
+    .calendar {
+        margin-top: 35px;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 720px) {
+    .calendar {
+        margin-bottom: 20px;
+    }
 }
 
 .calendar table {

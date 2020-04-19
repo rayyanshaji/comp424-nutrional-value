@@ -12,9 +12,14 @@ main {
     display: flex;
     justify-content: center;
     margin: 10px;
-    margin-top: 20px;
     min-height: 70vh;
     flex-wrap: wrap;
+}
+
+@media (min-width: 1055px) {
+    main {
+        margin-top: 20px;
+    }
 }
 
 /* NAV */

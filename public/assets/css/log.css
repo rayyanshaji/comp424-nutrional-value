@@ -115,13 +115,32 @@ main > .main-section {
 /* RESULTS */
 
 .search-list {
-    width: 668px;
+    width: 84vw;
     position: absolute;
     z-index: 100;
-    top: 157px;
+    top: 531px;
     border: 1px solid #f97c0f;
     background-color: #fff;
     border-radius: 5px;
+}   
+
+@media (max-width: 720px) {
+    .search-list .info {
+        display: none;
+    }
+}
+
+@media (min-width: 721px) {
+    .search-list {
+        top: 549px;
+        width: 668px;
+    }
+}
+
+@media (min-width: 1055px) {
+    .search-list {
+        top: 160px;
+    }
 }
 
 .search-list .search-tabs {
