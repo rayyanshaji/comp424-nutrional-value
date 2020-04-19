@@ -14,6 +14,7 @@ $(document).ready(function() {
     })
 
     document.getElementById('clear-item').addEventListener('click', clearListAdd);
+    deleteItem();
 });
 
 /**
@@ -71,6 +72,7 @@ function updateAddList(type, nix_item_id, name, imageURL, servingUnit, calories)
 function addItemToList(item) {
     const itemTemplate = `
         <li class="item">
+            <button class="delete-item"><i class="fas fa-times"></i></button>
             <img src="${item.imageURL}">
             <div class="info">
                 <h2 class="name" title="${item.name}">${item.name}</h2>
@@ -195,6 +197,24 @@ function getLogJSON() {
             $('#' + logJSON[i].date).addClass('has-log');
         }
         addItem('db');
+    });
+}
+
+function deleteItem() {
+    $('.list').on('click', '.delete-item', function() {
+        if (confirm("Are you sure you want to remove this item?")) {
+            $.ajax({
+                url: '/db/log/' + getUrlDate() + '/remove',
+                type: "POST",
+                dataType: "json",
+                data: { 
+                    name: $(this).parent().find('.name').text(),
+                    meal: $(this).closest('.meal-group').attr('id'),
+                }
+            });
+            $(this).parent().remove();
+            calculateNumberOfMeals();
+        }
     });
 }
 

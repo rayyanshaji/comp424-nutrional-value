@@ -255,6 +255,11 @@
     border-bottom: 1px solid #ababab;
 }
 
+.meal-group .item .delete-item {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
 .meal-group .item img {
     place-self: center;
     width: 64px;

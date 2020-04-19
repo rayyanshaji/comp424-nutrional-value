@@ -67,4 +67,12 @@ function addItem(req, res) {
     })
 }
 
+router.post('/log/:date/remove', (req, res) => {
+    Log.updateOne({ user_id: req.user._id, 'days.date': req.params.date }, {$pull: {
+        'days.$.items': req.body
+    }}, function (err) { 
+        if (err) res.status(400).json('400');
+    })
+})
+
 module.exports = router;
