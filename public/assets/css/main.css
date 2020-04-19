@@ -13,24 +13,8 @@ main {
     justify-content: center;
     margin: 10px;
     margin-top: 20px;
-    min-height: 75vh;
+    min-height: 70vh;
     flex-wrap: wrap;
-}
-
-main > .main-section {
-    flex: 1 1 100vw;
-}
-
-@media (min-width: 721px) {
-    main > .main-section {
-        flex: 0 0 700px;
-    }
-}
-
-@media (max-width: 1055px) {
-    main > .main-section {
-        order: 2;
-    }
 }
 
 /* NAV */

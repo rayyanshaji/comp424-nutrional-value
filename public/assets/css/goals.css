@@ -1,0 +1,35 @@
+main > .main-section {
+    width: 50%;
+}
+
+
+main > .aside-section {
+    width: 50%;
+}
+
+.add-section {
+    width: 300px;
+    border: 1px solid #000;
+    margin-top: 20px;
+}
+
+.add {
+    width: 100%;
+    padding: 5px;
+}
+
+.add > h1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.add-section input[type=number] {
+    width: 100%;
+    padding: 8px 15px;
+    border: 1px solid #646464;
+    border-radius: 4px;
+    font-size: 20px;
+    outline: 0;
+    margin-bottom: 8px;
+    -webkit-appearance: none;
+}
