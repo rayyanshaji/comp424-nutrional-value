@@ -5,10 +5,12 @@ $(document).ready(function() {
     getLogJSON();
 
     document.getElementById('add-item').addEventListener('click', () => {
-        addItem('search');
-        calculateNumberOfMeals();
-        calculateMealNutritions();
-        clearListAdd();
+        if (validateAdd()) {
+            addItem('search');
+            calculateNumberOfMeals();
+            calculateMealNutritions();
+            clearListAdd();
+        }
     })
 
     document.getElementById('clear-item').addEventListener('click', clearListAdd);
@@ -88,7 +90,6 @@ function addItemToList(item) {
 }
 
 function addItem(method) {
-    // todo: add addition nutritions
     var item = {
         type: '',
         name: '',
@@ -226,4 +227,21 @@ function calculateNumberOfMeals() {
         $(this).find('.total').text('(' + amount + ')');
     });
     $('.meals-total .total').text('(' + total + ')');
+}
+
+function validateAdd() {
+    var meal = document.getElementById('meal-select').value.toLowerCase();
+    var name = document.getElementById('name').textContent;
+    var servingQty = document.getElementById('servings');
+    var canAdd = true;
+    var name = name.toLowerCase();
+    if (servingQty <= 0 || meal === '') canAdd = false;
+    if (meal !== '') {
+        var items = document.getElementById(meal).getElementsByClassName('item');
+        for (var i = 0; i < items.length; i++) {
+            var itemName = items[i].getElementsByClassName('name')[0].textContent.toLowerCase();
+            if (name === itemName) canAdd = false
+        }
+    }
+    return canAdd;
 }

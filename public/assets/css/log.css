@@ -53,7 +53,7 @@
 .list-add > .servings > input {
     grid-area: servings;
     height: 30px;
-    width: 35px;
+    width: 45px;
     font-size: 1.1em;
     font-weight: bold;
     text-align: center;
