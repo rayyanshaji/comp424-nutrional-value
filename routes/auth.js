@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 const Log = require('../models/log');
+const LogWeight = require('../models/goals');
 
 router.get('/google', passport.authenticate('google', { 
     scope: ['profile'] 
@@ -37,6 +38,19 @@ function logCollection(req) {
                 user_id: req.user._id
             }).save().then((newLog) => {
                 console.log('New log: ', newLog);
+            });
+        }
+    })
+}
+
+function logWeights(req){
+    LogWeight.countDocuments({ user_id: req.user._id }, (err, count) => {
+        if (err) return err;
+        if (count == 0) {
+            new LogWeight({
+                user_id: req.user._id
+            }).save().then((newLog) => {
+                console.log('New weight: ', newLog);
             });
         }
     })
