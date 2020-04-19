@@ -1,168 +1,209 @@
 var logJSON;
 
 $(document).ready(function() {
-    const searchInput = $('#searchInput');
-    const searchList = $('.search-list');
-    const item = {
-        image: '',
-        name: '',
-        servingQty: 1,
-        servingUnit: '',
-        calories: 1
-    }
-    
-    // Add result that is clicked on to section below search input
-    $('.results').on('click', 'li', function() {
-        item.image = $(this).find('img').attr('src');
-        item.name = $(this).find(".name").text();
-        item.servingQty = $(this).find("[data-info=serving-quantity]").text();
-        item.servingUnit = $(this).find("[data-info=serving-unit]").text();
-        item.calories = $(this).find("[data-info=calories]").text();
+    searchSelect();
+    getLogJSON();
 
-        searchInput.val(item.name);
-        searchList.hide();
-
-        $('#add-to-display').hide();
-        $('.list-add').show();
-
-        updateAddList(item);
-    });
-
-    // Clear item in list add section
-    $('#clear-item').on('click', function() {
-        clearListAdd();
-    });
-
-    // Add item to the list
-    $('#add-item').on('click', function() {
-        addItem(item);
-        calculateTotalNutritions();
+    document.getElementById('add-item').addEventListener('click', () => {
+        addItem('search');
         calculateNumberOfMeals();
-        calculateMealCalories();
+        calculateMealNutritions();
         clearListAdd();
-    });
-
-    // Delete an item when clicked on
-    $('.list').on('click', '.delete-item', function() {
-        $(this).parent().remove();
-        var currentCal =  parseInt($(this).parent().find('#foodcalories').text());
-        var currentTotal = parseInt($('.meals-total #calories-total').text());      
-        var newTotalCal = currentTotal - currentCal; 
-        $('.meals-total #calories-total').text(newTotalCal);
-        calculateNumberOfMeals();
-        calculateMealCalories();
-    });
-
-    $('.meal-collapse').on('click', function() {
-        expanded = $(this).data('expanded');
-        if (expanded) {
-            $(this).data('expanded', false);
-            $(this).find('.fas').removeClass('fa-angle-down').addClass('fa-angle-right');
-            $(this).closest('.meal-group').find('.items').slideUp(200);
-        } else {
-            $(this).data('expanded', true);
-            $(this).find('.fas').removeClass('fa-angle-right').addClass('fa-angle-down');
-            $(this).closest('.meal-group').find('.items').slideDown(200);
-        }
     })
 
-    calculateNumberOfMeals();
-
-    $('.list-add').attr('action', '/db/log/' + getUrlDate() + '/add');
-    getLogJSON();
-    showLogDates();
-    
+    document.getElementById('clear-item').addEventListener('click', clearListAdd);
 });
 
 /**
- * Add item chosen from search to add item section below
- * @param {Item} item 
+ * Handles when a search result is clicked on
  */
-function updateAddList(item) {
-    const listAdd = $('.list-add');
+function searchSelect() {
+    $('.results').on('click', 'li', function() {
+        var type, nix_item_id, name, imageURL, servingUnit, calories
+        var searchInput = document.getElementById('search-input');
+        var searchList = document.getElementById('search-list');
+        type = $(this).parent().attr('id').split('-')[0];
+        type === 'branded' ? nix_item_id = $(this).find(".nix_item_id").text() : nix_item_id = '';
+        name = $(this).find(".name").text();
+        imageURL = $(this).find('img').attr('src');
+        servingUnit = $(this).find("[data-info=serving-unit]").text();
+        calories = $(this).find("[data-info=calories]").text();
 
-    listAdd.find('.name').text(item.name);
-    listAdd.find('img').attr('src', item.image);
-    listAdd.find('#servings').val(item.servingQty);
-    listAdd.find('#serving-unit').text(item.servingUnit);
-    listAdd.find('#calories-amount').text(item.calories);
+        searchInput.value = name;
+        searchList.style.display = 'none';
+        document.getElementById('add-to-display').style.display = 'none'
+        document.getElementById('list-add').style.display = ''
 
-    var calories_per_serving_qty = parseInt(item.calories)/item.servingQty;
-
-    // Updates calories value when serving amount is changed
-    $('#servings').on('keyup', function() {
-        var changed_calories = parseInt(calories_per_serving_qty) * $("#servings").val();
-        listAdd.find('#calories-amount').text(changed_calories);
+        $('#add-to-display').hide();
+        $('.list-add').show();
+        updateAddList(type, nix_item_id, name, imageURL, servingUnit, calories);
     });
 }
 
-// Adds the item from list add section at the top of the list depending on which meal was chosen
-function addItem(item) {
-    newServingQty = $('.list-add #servings').val();
-    newCalories = $('.list-add #calories-amount').text();
+/**
+ * Updates the item-add section
+ * @param {string} name name of the item
+ * @param {string} imageURL url of the item's image
+ * @param {string} servingUnit serving unit of the item
+ * @param {number} calories number of calories for 1 serving of the item
+ */
+function updateAddList(type, nix_item_id, name, imageURL, servingUnit, calories) {
+    document.getElementById('type').textContent = type;
+    document.getElementById('nix_item_id').textContent = nix_item_id;
+    document.getElementById('name').textContent = name;
+    document.getElementById('image').setAttribute('src', imageURL);
+    var servings = document.getElementById('servings')
+    servings.value = 1;
+    var caloriesAmount = document.getElementById('calories-amount')
+    caloriesAmount.textContent = calories;
+    document.getElementById('serving-unit').textContent = servingUnit;
+    document.getElementById('meal-select').value = '';
+
+    var caloriesPerServingQty = parseInt(caloriesAmount.textContent)
+
+    servings.addEventListener('keyup', () => {
+        caloriesAmount.textContent = caloriesPerServingQty * servings.value;
+    })
+}
+
+function addItemToList(item) {
     const itemTemplate = `
         <li class="item">
-            <img src="${item.image}">
-            <h2 class="name" title="${item.name}">${item.name}</h2>
-            <span class="servings">Servings: ${newServingQty}<strong></strong>
-                <span>${item.servingUnit}</span>
-            </span>
-            <button class="delete-item"><i class="fas fa-times"></i></button>
-            <span id="foodcalories">${newCalories}</span>
-            <span id="foodcaloriestext">Calories</span>
+            <img src="${item.imageURL}">
+            <div class="info">
+                <h2 class="name" title="${item.name}">${item.name}</h2>
+                <span class="servings">Servings: ${item.servingQty}
+                    <span>${item.servingUnit}</span>
+                </span>
+            </div>
+            <div class="nutritions">
+                <span class="nutrition calories"><strong>${item.nutritions.calories}</strong> calories</span>
+                <span class="nutrition total_fat"><strong>${item.nutritions.total_fat}</strong> g total fat</span>
+                <span class="nutrition cholesterol"><strong>${item.nutritions.cholesterol}</strong> mg cholesterol</span>
+            </div>
             <i class="fas fa-chevron-right expand-item"></i>
         </li>
     `;
-    var meal = $('#mealSelect').val().toLowerCase();
-    document.querySelector('#' + meal + ' .items').innerHTML += itemTemplate;
-    postAddItem(item, meal);
+    document.querySelector('#' + item.meal + ' .items').innerHTML += itemTemplate;
 }
 
-function postAddItem(item, meal) {
+function addItem(method) {
+    // todo: add addition nutritions
+    var item = {
+        type: '',
+        name: '',
+        meal: '',
+        imageURL: '',
+        servingQty: 1,
+        servingUnit: '',
+        nutritions: {
+            calories: 1,
+            total_fat: 1,
+            cholesterol: 1,
+            sodium: 1
+        },
+    }
+
+    // todo: fetch from nutritionix api for the item's nutritions
+    if (method === 'search') {
+        item.type = document.getElementById('type').textContent;
+        item.name = document.getElementById('name').textContent;
+        item.meal = document.getElementById('meal-select').value.toLowerCase();
+        item.imageURL = document.getElementById('image').getAttribute('src');
+        item.servingQty = document.getElementById('servings').value;
+        item.servingUnit = document.getElementById('serving-unit').textContent;
+        item.nutritions.calories = document.getElementById('calories-amount').textContent;
+        if (item.type === 'common') {
+            $.ajax({
+                url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
+                type: "POST",
+                dataType: "json",
+                data: { 
+                    query: item.name
+                },
+                success: (result) => {
+                    var resultItem = result.foods[0];
+                    item.nutritions.total_fat = resultItem.nf_total_fat;
+                    item.nutritions.cholesterol = resultItem.nf_cholesterol;
+                    item.nutritions.sodium = resultItem.nf_sodium;
+                    addItemToList(item);
+                    postItem(item);
+                }
+            });
+        } else if (item.type === 'branded') {
+            var id = document.getElementById('nix_item_id').textContent;
+            $.ajax({
+                url: 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id=' + id,
+                type: "GET",
+                success: (result) => {
+                    var resultItem = result.foods[0];
+                    item.nutritions.total_fat = resultItem.nf_total_fat;
+                    item.nutritions.cholesterol = resultItem.nf_cholesterol;
+                    item.nutritions.sodium = resultItem.nf_sodium;
+                    addItemToList(item);
+                    postItem(item);
+                }
+            });
+        }
+    } else if (method === 'db') {
+        for (let i in logJSON) {
+            if (logJSON[i].date == getUrlDate()) {
+                var items = logJSON[i].items
+                for (let i in items) {
+                    item.name = items[i].name;
+                    item.meal = items[i].meal;
+                    item.imageURL = items[i].image_url;
+                    item.servingQty = items[i].serving_qty;
+                    item.servingUnit = items[i].serving_unit;
+                    item.nutritions.calories = items[i].nutritions.calories;
+                    item.nutritions.total_fat = items[i].nutritions.total_fat;
+                    item.nutritions.cholesterol = items[i].nutritions.cholesterol;
+                    item.nutritions.sodium = items[i].nutritions.sodium;
+                    addItemToList(item);
+                }
+            }
+        }
+        calculateNumberOfMeals();
+        calculateMealNutritions();
+    }
+}
+
+function postItem(item) {
     $.ajax({
         url: '/db/log/' + getUrlDate() + '/add',
         type: "POST",
         dataType: "json",
         data: { 
-            meal: meal,
             name: item.name,
-            image_url: item.image,
-            serving_qty: newServingQty,
-            serving_unit: item.servingUnit
+            meal: item.meal,
+            image_url: item.imageURL,
+            serving_qty: item.servingQty,
+            serving_unit: item.servingUnit,
+            'nutritions.calories': item.nutritions.calories,
+            'nutritions.total_fat': item.nutritions.total_fat,
+            'nutritions.cholesterol': item.nutritions.cholesterol,
+            'nutritions.sodium': item.nutritions.sodium
         }
     });
 }
 
-// Clears the list add section
+function getLogJSON() {
+    $.getJSON("/db/log", (data) => {
+        logJSON = data;
+        for (let i in logJSON) {
+            $('#' + logJSON[i].date).addClass('has-log');
+        }
+        addItem('db');
+    });
+}
+
 function clearListAdd() {
-    $('.list-add').hide();
-    $('#add-to-display').show();
-    $('#searchInput').val('');
+    document.getElementById('list-add').style.display = 'none';
+    document.getElementById('add-to-display').style.display = '';
+    document.getElementById('search-input').value = '';
 }
 
-var total = 0;
-function calculateTotalNutritions() {
-    $('span#foodcalories').each(function(){
-        var cal = parseInt($(this).text(), 10);
-        if($.isNumeric(cal)){
-            total += cal;
-        }
-        $('.meals-total #calories-total').text(total);
-        total = cal; //assigning current calories val so that it doesn't accumulate the previous values with current sum
-    });
-}
-
-function calculateNumberOfMeals() {
-    var total = 0;
-    $('.meal-group').each(function() {
-        var amount = $(this).find('.items').children().length;
-        total += amount;
-        $(this).find('.total').text('(' + amount + ')');
-    });
-    $('.meals-total .total').text('(' + total + ')');
-}
-
-function calculateMealCalories() {
+function calculateMealNutritions() {
     var dayCals = 0;
     $('.meal-group').each(function() {
         var mealCals = 0;
@@ -177,32 +218,12 @@ function calculateMealCalories() {
     $('.meals-total .items .calories').text(dayCals + " Cal");
 }
 
-function getLogJSON() {
-    $.getJSON("/db/log", function (data) {
-        logJSON = data;
-        for (let i in logJSON) {
-            $('#' + logJSON[i].date).addClass('has-log');
-            if (logJSON[i].date == getUrlDate()) {
-                var item = logJSON[i].items
-                for (let i in item) {
-                    console.log(item[i])
-                    console.log(item[i].image_url)
-                    const itemTemplate = `
-                        <li class="item">
-                            <img src="${item[i].image_url}">
-                            <h2 class="name" title="${item[i].name}">${item[i].name}</h2>
-                            <span class="servings">Servings: ${item[i].serving_qty}<strong></strong>
-                                <span>${item[i].serving_unit}</span>
-                            </span>
-                            <button class="delete-item"><i class="fas fa-times"></i></button>
-                            <span id="foodcalories">10</span>
-                            <span id="foodcaloriestext">Calories</span>
-                            <i class="fas fa-chevron-right expand-item"></i>
-                        </li>
-                    `;
-                    document.querySelector('#' + item[i].meal + ' .items').innerHTML += itemTemplate;
-                }
-            }
-        }
+function calculateNumberOfMeals() {
+    var total = 0;
+    $('.meal-group').each(function() {
+        var amount = $(this).find('.items').children().length;
+        total += amount;
+        $(this).find('.total').text('(' + amount + ')');
     });
+    $('.meals-total .total').text('(' + total + ')');
 }

@@ -34,24 +34,20 @@
     color: #646464;
 }
 
+.list-add > .name {
+    grid-area: name;
+}
+
+.list-add > .servings {
+    grid-area: servings;
+}
+
 .list-add > img {
     grid-area: image;
     align-self: center;
     width: 84px;
     border: 1px solid #ababab;
     margin-bottom: 8px;
-}
-
-.list-add > #servingsunit {
-    display: flex;
-    grid-area : servings;
-    vertical-align:bottom;
-    height: 40px;
-    margin-left: 111px;
-    text-align: center;
-    background-color: #fff;
-    align-items: center;
-    border-radius: 5px;
 }
 
 .list-add > .servings > input {
@@ -81,7 +77,7 @@
     justify-self: right;
 }
 
-#mealSelect {
+.list-add > .meal-select {
     grid-area: mealselect;
     place-self: center;
     width: 100%;
@@ -106,9 +102,7 @@
     width: 668px;
     position: absolute;
     z-index: 100;
-    /* fixes list being under other meal names (that are sticky) */
-    -webkit-transform: translate3d(0,0,0);
-    top: 160px;
+    top: 157px;
     border: 1px solid #f97c0f;
     background-color: #fff;
     border-radius: 5px;
@@ -209,6 +203,7 @@
 .meal-group > .meal-header {
     position: sticky;
     display: flex;
+    z-index: 1;
     align-items: center;
     top: 0;
     color: #fff;
@@ -234,12 +229,11 @@
 
 .meal-group > .meal-header > .meal-nutritions {
     flex-grow: 1;
+    text-align: right;
 }
 
-.meal-group > .meal-header > .meal-collapse  {
-    width: 16px;
-    font-size: 22px;
-    cursor: pointer;
+.meal-group > .meal-header > .meal-nutritions > *{
+    margin-right: 10px;
 }
 
 .meal-group > .items {
@@ -252,12 +246,7 @@
 }
 
 .meal-group .item {
-    display: grid;
-    grid-template-areas:
-        "image name foodcalories expand-item"
-        "image servings foodcaloriestext expand-item";
-    grid-template-columns: 64px 35% 1fr 30px;
-    column-gap: 15px;
+    display: flex;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -266,15 +255,37 @@
     border-bottom: 1px solid #ababab;
 }
 
-.meal-group .item > img {
-    grid-area: image;
+.meal-group .item img {
     place-self: center;
     width: 64px;
     border: 1px solid #ababab;
+    margin-right: 10px;
+}
+
+@media (max-width: 670px) {
+    .meal-group .item .info {
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 561px) {
+    .meal-group .item .info {
+        min-width: 275px;
+        width: 300px;
+        margin-right: 5px;
+    }
+}
+
+@media (min-width: 465px) and (max-width: 800px) {
+    .meal-group .item .info {
+        min-width: 300px;
+        width: 300px;
+        margin-right: 5px;
+    }
 }
 
 .list-add > .name,
-.meal-group .item > .name {
+.meal-group .item .name {
     text-transform: capitalize;
     grid-area: name;
     font-weight: 700;
@@ -282,51 +293,41 @@
 }
 
 .list-add > .servings,
-.meal-group .item > .servings {
-    grid-area: servings;
+.meal-group .item .servings {
     align-self: center;
     margin: 0;
 }
 
-.meal-group .item > .servings > strong {
-    font-size: 1.25em;
+@media (max-width: 670px) {
+    .meal-group .item .nutritions {
+        display: none;
+    }
 }
 
-.meal-group .item > .expand-item {
-    grid-area: expand-item;
+@media (min-width: 671px) {
+    .meal-group .item .nutritions {
+        display: flex;
+        flex-wrap: wrap;
+        place-content: space-evenly;
+        flex-grow: 1;
+        line-height: 2em;
+    }
+
+    .meal-group .item .nutritions > .nutrition {
+        white-space: pre;
+        margin-right: 5px;
+    }
+}
+
+.meal-group .item .expand-item {
+    justify-self: flex-end;
     font-size: 32px;
+    margin-left: 5px;
     place-self: center;
-}
-
-.meal-group .item > #deletemeal{
-    cursor: pointer;
-}
-
-.meal-group .item > .fa-times{
-    grid-area: foodcalories;
-    opacity: 50%;
-    align-self: flex-end;
-    cursor : pointer;
-}
-
-.meal-group .item > .fa-chevron-right{
-    opacity: 70%;
-}
-
-.meal-group .item > #foodcalories{
-    grid-area: foodcalories;
-    align-self: center;
-    text-align: end;
-}
-
-.meal-group .item > #foodcaloriestext{
-    grid-area: foodcaloriestext;
-    text-align: end;
 }
 
 .meals-total {
     height: 100px;
-
     position: sticky;
     z-index: 10;
     bottom: 10px;
