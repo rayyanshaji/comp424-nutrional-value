@@ -229,6 +229,11 @@
 
 .meal-group > .meal-header > .meal-nutritions {
     flex-grow: 1;
+    text-align: right;
+}
+
+.meal-group > .meal-header > .meal-nutritions > *{
+    margin-right: 10px;
 }
 
 .meal-group > .items {
@@ -257,8 +262,26 @@
     margin-right: 10px;
 }
 
-.meal-group .item .info {
-    margin-right: 15px;
+@media (max-width: 670px) {
+    .meal-group .item .info {
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 561px) {
+    .meal-group .item .info {
+        min-width: 275px;
+        width: 300px;
+        margin-right: 5px;
+    }
+}
+
+@media (min-width: 465px) and (max-width: 800px) {
+    .meal-group .item .info {
+        min-width: 300px;
+        width: 300px;
+        margin-right: 5px;
+    }
 }
 
 .list-add > .name,
@@ -275,17 +298,31 @@
     margin: 0;
 }
 
-.meal-group .item .servings > strong {
-    font-size: 1.25em;
+@media (max-width: 670px) {
+    .meal-group .item .nutritions {
+        display: none;
+    }
 }
 
-.meal-group .item .nutritions {
-    flex-grow: 1;
+@media (min-width: 671px) {
+    .meal-group .item .nutritions {
+        display: flex;
+        flex-wrap: wrap;
+        place-content: space-evenly;
+        flex-grow: 1;
+        line-height: 2em;
+    }
+
+    .meal-group .item .nutritions > .nutrition {
+        white-space: pre;
+        margin-right: 5px;
+    }
 }
 
 .meal-group .item .expand-item {
     justify-self: flex-end;
     font-size: 32px;
+    margin-left: 5px;
     place-self: center;
 }
 

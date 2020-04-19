@@ -27,7 +27,7 @@ main > .main-section {
     }
 }
 
-@media (max-width: 1056px) {
+@media (max-width: 1055px) {
     main > .main-section {
         order: 2;
     }
@@ -142,9 +142,4 @@ footer {
 .custom-button.red:hover {
     background-color: #dc3545;
     color: #fff;
-}
-
-.meal-nutritions {
-    text-align: right;
-    margin-right: 30px;
 }

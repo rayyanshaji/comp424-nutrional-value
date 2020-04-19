@@ -72,15 +72,14 @@ function addItemToList(item) {
             <img src="${item.imageURL}">
             <div class="info">
                 <h2 class="name" title="${item.name}">${item.name}</h2>
-                <span class="servings">Servings: ${item.servingQty}<strong></strong>
+                <span class="servings">Servings: ${item.servingQty}
                     <span>${item.servingUnit}</span>
                 </span>
             </div>
             <div class="nutritions">
-                <span class="calories">${item.nutritions.calories} calories</span>
-                <span class="total_fat">${item.nutritions.total_fat} total fat</span>
-                <span class="cholesterol">${item.nutritions.cholesterol} cholesterol</span>
-                <span class="sodium">${item.nutritions.sodium} sodium</span>
+                <span class="nutrition calories"><strong>${item.nutritions.calories}</strong> calories</span>
+                <span class="nutrition total_fat"><strong>${item.nutritions.total_fat}</strong> g total fat</span>
+                <span class="nutrition cholesterol"><strong>${item.nutritions.cholesterol}</strong> mg cholesterol</span>
             </div>
             <i class="fas fa-chevron-right expand-item"></i>
         </li>
@@ -204,9 +203,6 @@ function clearListAdd() {
     document.getElementById('search-input').value = '';
 }
 
-/**
- * @todo: Make not just calories
- */
 function calculateMealNutritions() {
     var dayCals = 0;
     $('.meal-group').each(function() {
