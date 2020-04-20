@@ -97,8 +97,9 @@ function chart() {
             scales: {
                 xAxes: [{
                     type: 'time',
+                    distribution: 'linear',
                     time: {
-                        unit: 'day',
+                        parser: 'MM/DD/YYYY'
                     },
                     scaleLabel: {
                         display:     true,
