@@ -41,14 +41,16 @@
         </nav>
         <main>
             <section class="main-section">
-                <canvas class="goals-chart" id="chart" width="350" height="300"></canvas>
+                <div class="goals-chart" style="height: 80vh; width:75vw">
+                    <canvas id="chart"></canvas>
+                </div>
             </section>
             <section class="aside-section">
                 <div class="add-section">
                     <h1>Add</h1>
                     <div class="add">
                         <label for="date">Date:</label>
-                        <input type="date" id="date" readonly><br>
+                        <input type="date" id="date"><br>
                         <label for="weight">Weight (lb):</label>
                         <input type="number" id="weight">
                         <button class="custom-button green" id="add">Add</button>

@@ -2,8 +2,10 @@ main > .main-section {
     flex: 0 0 50vw;
 }
 
-main > .aside-section {
-    margin-left: 50px;
+@media (min-width: 1200px) {
+    main > .aside-section {
+        margin-left: 50px;
+    }
 }
 
 .add-section {
@@ -41,10 +43,6 @@ h1 {
     outline: 0;
     margin-bottom: 8px;
     -webkit-appearance: none;
-}
-
-input:read-only {
-    color: gray;
 }
 
 .history-section {
