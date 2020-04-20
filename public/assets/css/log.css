@@ -243,7 +243,7 @@ main > .main-section {
     top: 0;
     color: #fff;
     padding: 6px 20px;
-    background-color: #f97c0f;;
+    background-color: #f97c0f;
     border-bottom: 1px solid #000;
 }
 
@@ -267,7 +267,32 @@ main > .main-section {
     text-align: right;
 }
 
-.meal-group > .meal-header > .meal-nutritions > *{
+.meal-group > .meal-header > .meal-nutritions button {
+    background-color:#f97c0f;
+    border: 1px solid white;
+    padding: 9px 18px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: right;
+    color: white;
+    font-family: inherit;
+    border-radius: 3px;
+}
+
+.meal-group > .meal-header > .meal-nutritions:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.meal-nutritions button:not(:first-child) {
+    border-right: none!important;
+} 
+
+.meal-group > .meal-header > .meal-nutritions button:hover {
+    background-color:#f0780f;
+}
+
+.meal-group > .meal-header > .meal-nutritions {
     margin-right: 10px;
 }
 
