@@ -15,6 +15,7 @@ $(document).ready(function() {
 
     document.getElementById('clear-item').addEventListener('click', clearListAdd);
     deleteItem();
+    itemModal();
 });
 
 /**
@@ -72,7 +73,7 @@ function updateAddList(type, nix_item_id, name, imageURL, servingUnit, calories)
 function addItemToList(item) {
     const itemTemplate = `
         <li class="item">
-            <button class="delete-item"><i class="fas fa-times"></i></button>
+            <button class="custom-button red delete-item"><i class="fas fa-times"></i></button>
             <img src="${item.imageURL}">
             <div class="info">
                 <h2 class="name" title="${item.name}">${item.name}</h2>
@@ -85,7 +86,15 @@ function addItemToList(item) {
                 <span class="nutrition total_fat"><strong>${item.nutritions.total_fat}</strong> g total fat</span>
                 <span class="nutrition cholesterol"><strong>${item.nutritions.cholesterol}</strong> mg cholesterol</span>
             </div>
-            <i class="fas fa-chevron-right expand-item"></i>
+            <i class="fas fa-chevron-right expand-item" href="#${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}"></i>
+            <div class="modal" id="${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}">
+                 <div class="modal-content">
+                     <div class="close-modal">
+                         <i class="fas fa-times"></i>
+                     </div>
+                     <div class="nutrition-label"></div>
+                 </div>
+             </div>
         </li>
     `;
     document.querySelector('#' + item.meal + ' .items').innerHTML += itemTemplate;
@@ -131,6 +140,7 @@ function addItem(method) {
                     item.nutritions.sodium = resultItem.nf_sodium;
                     addItemToList(item);
                     postItem(item);
+                    nutritionLabel(item);
                 }
             });
         } else if (item.type === 'branded') {
@@ -145,6 +155,7 @@ function addItem(method) {
                     item.nutritions.sodium = resultItem.nf_sodium;
                     addItemToList(item);
                     postItem(item);
+                    nutritionLabel(item);
                 }
             });
         }
@@ -163,6 +174,7 @@ function addItem(method) {
                     item.nutritions.cholesterol = items[i].nutritions.cholesterol;
                     item.nutritions.sodium = items[i].nutritions.sodium;
                     addItemToList(item);
+                    nutritionLabel(item);
                 }
             }
         }
@@ -264,4 +276,61 @@ function validateAdd() {
         }
     }
     return canAdd;
+}
+
+function itemModal() {
+    var modalID;
+    $('.list').on('click', '.expand-item', function() {
+        modalID = $(this).attr('href');
+        $(modalID).css('display', 'block');
+    });
+    $('.list').on('click', '.close-modal', function() {
+        $(modalID).css('display', 'none');
+    });
+    $(document).mouseup((e) => {
+        if (!$('.modal-content').is(e.target) && $('.modal-content').has(e.target).length === 0) {
+            $('.modal').css('display', 'none');
+        }
+    });
+}
+
+function nutritionLabel(item) {
+    var modalID = `#${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}`;
+    $(modalID + ' .nutrition-label').nutritionLabel({
+        showServingUnitQuantityTextbox : false,
+        hideTextboxArrows : true,
+        showIteName : false,
+        showServingsPerContainer : true,
+        ingredientList : 'Enriched Bleached Wheat Flour (Bleached Flour, Malted Barley Flour, Niacin, Iron, Thiamin Mononitrate, Riboflavin, Folic Acid), Sugar, Vegetable Oil (contains one or more of the following oils: Cottonseed Oil, Palm Oil, Soybean Oil), Water, Hydrogenated Vegetable Oil (Palm Kernel Oil, Palm Oil), High Fructose Corn Syrup, Cocoa Powder (Processed With Alkali), contains 2% or less of the following: Eggs, Nonfat Milk, Glycerin, Soy Flour, Corn Syrup Solids, Leavening (Sodium Acid Pyrophosphate, Baking Soda, Sodium Aluminum Phosphate), Preservatives (Potassium Sorbate, Sodium Propionate, Calcium Propionate), Salt, Distilled Monoglycerides, Dextrose, Food Starch-Modified (Corn and/or Wheat), Soy, Lecithin, Natural and Artificial Flavor, Mono- and Diglycerides, Spices, Tapioca Starch, Wheat Starch, Cellulose Gum, Guar Gum, Karaya Gum, colored with Extracts of Annatto and Turmeric, Artificial Color.',
+
+         showPolyFat : false,
+        showMonoFat : false,
+        showTransFat : false,
+        showFibers : false,
+        showVitaminD : false,
+        showPotassium_2018 : false,
+        showCalcium : false,
+        showIron : false,
+        showCaffeine : false,
+
+         valueServingPerContainer : 5,
+        valueServingUnitQuantity : 2,
+        valueServingSizeUnit : 'Cookies',
+
+        valueCalories : item.nutritions.calories,
+        valueFatCalories : 220,
+        valueTotalFat : item.nutritions.total_fat,
+        valueSatFat : 15,
+        valueCholesterol : item.nutritions.cholesterol,
+        valueSodium : item.nutritions.sodium,
+        valueTotalCarb : 44,
+        valueSugars : 24,
+        valueProteins : 4,
+        valueVitaminD : 12.22,
+        valuePotassium_2018 : 4.22,
+        valueCalcium : 7.22,
+        valueIron : 11.22,
+        valueAddedSugars : 17,
+        showLegacyVersion : false
+    });
 }
