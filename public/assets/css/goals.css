@@ -2,8 +2,10 @@ main > .main-section {
     flex: 0 0 50vw;
 }
 
-main > .aside-section {
-    margin-left: 50px;
+@media (min-width: 1200px) {
+    main > .aside-section {
+        margin-left: 50px;
+    }
 }
 
 .add-section {

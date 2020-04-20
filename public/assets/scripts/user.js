@@ -1,11 +1,8 @@
-/* function getInfo() {
-    $.getJSON("/db/user", function (response) {
-        console.log(response);
-    });
-} */
-
 function getInfo() {
-    $.post('/db/food_log');
+    $.getJSON("/db/user", function(response) {
+        document.getElementById('provider').textContent = response.provider;
+        document.getElementById('name').textContent = response.name;
+    });
 }
 
-$(document).ready(getInfo());
+getInfo();

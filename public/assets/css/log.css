@@ -293,6 +293,7 @@ main > .main-section {
 .meal-group .item .delete-item {
     margin-right: 5px;
     cursor: pointer;
+    padding: 5px;
 }
 
 .meal-group .item img {

@@ -15,6 +15,7 @@ $(document).ready(function() {
 
     document.getElementById('clear-item').addEventListener('click', clearListAdd);
     deleteItem();
+    itemModal();
 });
 
 /**
@@ -72,7 +73,7 @@ function updateAddList(type, nix_item_id, name, imageURL, servingUnit, calories)
 function addItemToList(item) {
     const itemTemplate = `
         <li class="item">
-            <button class="delete-item"><i class="fas fa-times"></i></button>
+            <button class="custom-button red delete-item"><i class="fas fa-times"></i></button>
             <img src="${item.imageURL}">
             <div class="info">
                 <h2 class="name" title="${item.name}">${item.name}</h2>
@@ -85,10 +86,20 @@ function addItemToList(item) {
                 <span class="nutrition total_fat"><strong>${item.nutritions.total_fat}</strong> g total fat</span>
                 <span class="nutrition cholesterol"><strong>${item.nutritions.cholesterol}</strong> mg cholesterol</span>
             </div>
-            <i class="fas fa-chevron-right expand-item"></i>
+            <i class="fas fa-chevron-right expand-item" href="#${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}"></i>
+            <div class="modal" id="${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}">
+                 <div class="modal-content">
+                     <div class="close-modal">
+                         <i class="fas fa-times"></i>
+                     </div>
+                     <div class="nutrition-label"></div>
+                 </div>
+             </div>
         </li>
     `;
     document.querySelector('#' + item.meal + ' .items').innerHTML += itemTemplate;
+    calculateNumberOfMeals();
+    calculateMealNutritions();
 }
 
 function addItem(method) {
@@ -131,6 +142,7 @@ function addItem(method) {
                     item.nutritions.sodium = resultItem.nf_sodium;
                     addItemToList(item);
                     postItem(item);
+                    nutritionLabel(item);
                 }
             });
         } else if (item.type === 'branded') {
@@ -145,6 +157,7 @@ function addItem(method) {
                     item.nutritions.sodium = resultItem.nf_sodium;
                     addItemToList(item);
                     postItem(item);
+                    nutritionLabel(item);
                 }
             });
         }
@@ -163,11 +176,10 @@ function addItem(method) {
                     item.nutritions.cholesterol = items[i].nutritions.cholesterol;
                     item.nutritions.sodium = items[i].nutritions.sodium;
                     addItemToList(item);
+                    nutritionLabel(item);
                 }
             }
         }
-        calculateNumberOfMeals();
-        calculateMealNutritions();
     }
 }
 
@@ -214,6 +226,7 @@ function deleteItem() {
             });
             $(this).parent().remove();
             calculateNumberOfMeals();
+            calculateMealNutritions();
         }
     });
 }
@@ -226,17 +239,28 @@ function clearListAdd() {
 
 function calculateMealNutritions() {
     var dayCals = 0;
+    var dayFat = 0;
+    var dayChol = 0;
     $('.meal-group').each(function() {
         var mealCals = 0;
+        var mealFat = 0;
+        var mealChol = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            var amount = $(this).find('#foodcalories').text();
-            mealCals += parseInt(amount);
+            mealCals += parseFloat($(this).find('.calories strong').text());
+            mealFat += parseFloat($(this).find('.total_fat strong').text());
+            mealChol += parseFloat($(this).find('.cholesterol strong').text());
         });
-        $(this).find('.meal-nutritions').text(mealCals + " Cal");
+        $(this).find('.meal-nutritions').find('.calories strong').text(mealCals)
+        $(this).find('.meal-nutritions').find('.total_fat strong').text(mealFat);
+        $(this).find('.meal-nutritions').find('.cholesterol strong').text(mealChol);
         dayCals += mealCals;
+        dayFat += mealFat;
+        dayChol += mealChol;
     });
-    $('.meals-total .items .calories').text(dayCals + " Cal");
+    $('.meals-total').find('.calories strong').text(dayCals)
+    $('.meals-total').find('.total_fat strong').text(dayFat);
+    $('.meals-total').find('.cholesterol strong').text(dayChol);
 }
 
 function calculateNumberOfMeals() {
@@ -264,4 +288,61 @@ function validateAdd() {
         }
     }
     return canAdd;
+}
+
+function itemModal() {
+    var modalID;
+    $('.list').on('click', '.expand-item', function() {
+        modalID = $(this).attr('href');
+        $(modalID).css('display', 'block');
+    });
+    $('.list').on('click', '.close-modal', function() {
+        $(modalID).css('display', 'none');
+    });
+    $(document).mouseup((e) => {
+        if (!$('.modal-content').is(e.target) && $('.modal-content').has(e.target).length === 0) {
+            $('.modal').css('display', 'none');
+        }
+    });
+}
+
+function nutritionLabel(item) {
+    var modalID = `#${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}`;
+    $(modalID + ' .nutrition-label').nutritionLabel({
+        showServingUnitQuantityTextbox : false,
+        hideTextboxArrows : true,
+        showIteName : false,
+        showServingsPerContainer : true,
+        ingredientList : '',
+
+        showPolyFat : false,
+        showMonoFat : false,
+        showTransFat : false,
+        showFibers : false,
+        showVitaminD : false,
+        showPotassium_2018 : false,
+        showCalcium : false,
+        showIron : false,
+        showCaffeine : false,
+
+        valueServingPerContainer : 5,
+        valueServingUnitQuantity : item.servingQty,
+        valueServingSizeUnit : item.servingUnit,
+
+        valueCalories : item.nutritions.calories,
+        valueFatCalories : 220,
+        valueTotalFat : item.nutritions.total_fat,
+        valueSatFat : 15,
+        valueCholesterol : item.nutritions.cholesterol,
+        valueSodium : item.nutritions.sodium,
+        valueTotalCarb : 44,
+        valueSugars : 24,
+        valueProteins : 4,
+        valueVitaminD : 12.22,
+        valuePotassium_2018 : 4.22,
+        valueCalcium : 7.22,
+        valueIron : 11.22,
+        valueAddedSugars : 17,
+        showLegacyVersion : false
+    });
 }
