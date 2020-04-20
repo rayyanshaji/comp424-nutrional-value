@@ -41,22 +41,31 @@
         </nav>
         <main>
             <section class="main-section">
-                <canvas class="goals-chart" id="chart" width="400" height="300"></canvas>
+                <canvas class="goals-chart" id="chart" width="350" height="300"></canvas>
             </section>
-            <section id="aside-section">
+            <section class="aside-section">
                 <div class="add-section">
+                    <h1>Add</h1>
                     <div class="add">
-                        <h1>Add your weight for Today</h1>
-                        
-                            <label for="userweight">Weight:</label>
-                            <input type="text" id="weight"><br><br>
-                            <button class="custom-button green" value="Add" id="saveweight">Add</button>
-                          
-                        
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" readonly><br>
+                        <label for="weight">Weight (lb):</label>
+                        <input type="number" id="weight">
+                        <button class="custom-button green" id="add">Add</button>
                     </div>
                 </div>
                 <div class="history-section">
-
+                    <h1>Recent Entries</h1>
+                    <table id="goals-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Weight (lb)</th>
+                            </tr>
+                        </thead>
+                        <tbody>   
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </main>
@@ -64,7 +73,7 @@
             <div class="footer-name">Nutritional Calculator</div>
         </footer>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/goals.js"></script>
     </body>
 </html>

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/user');
 const Log = require('../models/log');
+const Goals = require('../models/goals');
 
 router.get('/user', (req, res) => {
     if (req.user) {
@@ -72,6 +73,33 @@ router.post('/log/:date/remove', (req, res) => {
         'days.$.items': req.body
     }}, function (err) { 
         if (err) res.status(400).json('400');
+    })
+})
+
+router.get('/goals', (req, res) => {
+    if (req.user) {
+        Goals.findOne({ user_id: req.user._id }, (err, results) => {
+            if (!err) {
+                res.json(results.days)
+            } else {
+                res.status(401).send('401');
+            }
+        })
+    } else {
+        res.status(401).send('401');
+    }
+})
+
+router.post('/goals', (req, res) => {
+    Goals.findOne({ user_id: req.user._id, 'days.date': req.body.date }, (err, results) => {
+        if (err) res.status(400).json('400');
+        if (!results) {
+            Goals.updateOne({ user_id: req.user._id }, {$push: {
+                days: req.body
+            }}, function (err) { 
+                if (err) res.status(400).json('400');
+            })
+        }
     })
 })
 

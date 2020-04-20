@@ -364,6 +364,7 @@ main > .main-section {
     font-size: 32px;
     margin-left: 5px;
     place-self: center;
+    cursor: pointer;
 }
 
 .meals-total {
