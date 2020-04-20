@@ -12,8 +12,14 @@ const ItemSchema = new Schema({
     nutritions: {
         calories: { type: Number, min: 0},
         total_fat: { type: Number, min: 0},
+        saturated_fat: { type: Number, min: 0},
         cholesterol: { type: Number, min: 0},
-        sodium: { type: Number, min: 0}
+        sodium: { type: Number, min: 0},
+        total_carbohydrate: { type: Number, min: 0},
+        dietary_fiber: { type: Number, min: 0},
+        sugars: { type: Number, min: 0},
+        protein: { type: Number, min: 0},
+        potassium: { type: Number, min: 0},
     }
 });
 

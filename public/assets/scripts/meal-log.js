@@ -113,8 +113,14 @@ function addItem(method) {
         nutritions: {
             calories: 1,
             total_fat: 1,
+            saturated_fat: 1,
             cholesterol: 1,
-            sodium: 1
+            sodium: 1,
+            total_carbohydrate: 1,
+            dietary_fiber: 1,
+            sugars: 1,
+            protein: 1,
+            potassium: 1
         },
     }
 
@@ -138,8 +144,14 @@ function addItem(method) {
                 success: (result) => {
                     var resultItem = result.foods[0];
                     item.nutritions.total_fat = resultItem.nf_total_fat;
+                    item.nutritions.saturated_fat = resultItem.nf_saturated_fat;
                     item.nutritions.cholesterol = resultItem.nf_cholesterol;
                     item.nutritions.sodium = resultItem.nf_sodium;
+                    item.nutritions.total_carbohydrate = resultItem.nf_total_carbohydrate;
+                    item.nutritions.dietary_fiber = resultItem.nf_dietary_fiber;
+                    item.nutritions.sugars = resultItem.nf_sugars;
+                    item.nutritions.protein = resultItem.nf_protein;
+                    item.nutritions.potassium = resultItem.nf_potassium;
                     addItemToList(item);
                     postItem(item);
                     nutritionLabel(item);
@@ -153,8 +165,14 @@ function addItem(method) {
                 success: (result) => {
                     var resultItem = result.foods[0];
                     item.nutritions.total_fat = resultItem.nf_total_fat;
+                    item.nutritions.saturated_fat = resultItem.nf_saturated_fat;
                     item.nutritions.cholesterol = resultItem.nf_cholesterol;
                     item.nutritions.sodium = resultItem.nf_sodium;
+                    item.nutritions.total_carbohydrate = resultItem.nf_total_carbohydrate;
+                    item.nutritions.dietary_fiber = resultItem.nf_dietary_fiber;
+                    item.nutritions.sugars = resultItem.nf_sugars;
+                    item.nutritions.protein = resultItem.nf_protein;
+                    item.nutritions.potassium = resultItem.nf_potassium;
                     addItemToList(item);
                     postItem(item);
                     nutritionLabel(item);
@@ -173,8 +191,14 @@ function addItem(method) {
                     item.servingUnit = items[i].serving_unit;
                     item.nutritions.calories = items[i].nutritions.calories;
                     item.nutritions.total_fat = items[i].nutritions.total_fat;
+                    item.nutritions.saturated_fat = items[i].nutritions.saturated_fat;
                     item.nutritions.cholesterol = items[i].nutritions.cholesterol;
                     item.nutritions.sodium = items[i].nutritions.sodium;
+                    item.nutritions.total_carbohydrate = items[i].nutritions.total_carbohydrate;
+                    item.nutritions.dietary_fiber = items[i].nutritions.dietary_fiber;
+                    item.nutritions.sugars = items[i].nutritions.sugars;
+                    item.nutritions.protein = items[i].nutritions.protein;
+                    item.nutritions.potassium = items[i].nutritions.potassium;
                     addItemToList(item);
                     nutritionLabel(item);
                 }
@@ -196,8 +220,14 @@ function postItem(item) {
             serving_unit: item.servingUnit,
             'nutritions.calories': item.nutritions.calories,
             'nutritions.total_fat': item.nutritions.total_fat,
+            'nutritions.saturated_fat': item.nutritions.saturated_fat,
             'nutritions.cholesterol': item.nutritions.cholesterol,
-            'nutritions.sodium': item.nutritions.sodium
+            'nutritions.sodium': item.nutritions.sodium,
+            'nutritions.total_carbohydrate': item.nutritions.total_carbohydrate,
+            'nutritions.dietary_fiber': item.nutritions.dietary_fiber,
+            'nutritions.sugars': item.nutritions.sugars,
+            'nutritions.protein': item.nutritions.protein,
+            'nutritions.potassium': item.nutritions.potassium,
         }
     });
 }
@@ -310,10 +340,9 @@ function nutritionLabel(item) {
     var modalID = `#${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}`;
     $(modalID + ' .nutrition-label').nutritionLabel({
         showServingUnitQuantityTextbox : false,
-        hideTextboxArrows : true,
-        showIteName : false,
-        showServingsPerContainer : true,
-        ingredientList : '',
+        showIngredients : false,
+        showServingsPerContainer : false,
+        showItemName : false,
 
         showPolyFat : false,
         showMonoFat : false,
@@ -323,26 +352,19 @@ function nutritionLabel(item) {
         showPotassium_2018 : false,
         showCalcium : false,
         showIron : false,
-        showCaffeine : false,
 
-        valueServingPerContainer : 5,
         valueServingUnitQuantity : item.servingQty,
         valueServingSizeUnit : item.servingUnit,
 
         valueCalories : item.nutritions.calories,
-        valueFatCalories : 220,
         valueTotalFat : item.nutritions.total_fat,
-        valueSatFat : 15,
+        valueSatFat : item.nutritions.saturated_fat,
         valueCholesterol : item.nutritions.cholesterol,
         valueSodium : item.nutritions.sodium,
-        valueTotalCarb : 44,
-        valueSugars : 24,
-        valueProteins : 4,
-        valueVitaminD : 12.22,
-        valuePotassium_2018 : 4.22,
-        valueCalcium : 7.22,
-        valueIron : 11.22,
-        valueAddedSugars : 17,
+        valueTotalCarb : item.nutritions.nf_total_carbohydrate,
+        valueSugars : item.nutritions.sugars,
+        valueProteins : item.nutritions.protein,
+        valuePotassium_2018 : item.nutritions.potassium,
         showLegacyVersion : false
     });
 }
