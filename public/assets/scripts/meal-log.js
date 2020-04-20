@@ -82,9 +82,9 @@ function addItemToList(item) {
                 </span>
             </div>
             <div class="nutritions">
-                <span class="nutrition calories"><strong>${item.nutritions.calories}</strong> calories</span>
-                <span class="nutrition total_fat"><strong>${item.nutritions.total_fat}</strong> g total fat</span>
-                <span class="nutrition cholesterol"><strong>${item.nutritions.cholesterol}</strong> mg cholesterol</span>
+                <button><span class="nutrition calories"><strong>${item.nutritions.calories}</strong> calories</span></button>
+                <button><span class="nutrition total_fat"><strong>${item.nutritions.total_fat}</strong> g total fat</span></button>
+                <button><span class="nutrition cholesterol"><strong>${item.nutritions.cholesterol}</strong> mg cholesterol</span></button>
             </div>
             <i class="fas fa-chevron-right expand-item" href="#${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}"></i>
             <div class="modal" id="${item.meal}-${item.name.replace(/\s+/g, '-').toLowerCase()}">

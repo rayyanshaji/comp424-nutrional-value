@@ -297,6 +297,25 @@ main > .main-section {
     margin-right: 10px;
 }
 
+.nutritions button {
+    background-color: #f97c0f;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px 1px;
+    cursor: pointer;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.nutritions button:hover{
+    background-color: #f0780f;
+}
+
 .meal-group > .items {
     padding: 0 20px;
     margin: 0;
