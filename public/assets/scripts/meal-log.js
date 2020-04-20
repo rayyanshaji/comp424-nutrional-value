@@ -239,15 +239,24 @@ function clearListAdd() {
 
 function calculateMealNutritions() {
     var dayCals = 0;
+    var dayFat = 0;
+    var dayChol = 0;
     $('.meal-group').each(function() {
         var mealCals = 0;
+        var mealFat = 0;
+        var MealChol = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            var amount = $(this).find('nutritions').find('.nutrition calories').text();
-            mealCals += parseInt(amount);
+            mealCals += this.find('.nutritions').find('.nutrition calories').children()[0].text();
+            mealFat += this.find('.nutritions').find('.nutrition total_fat').children()[0].text();
+            mealChol += this.find('.nutritions').find('.nutrition cholesterol').children()[0].text();
         });
-        $(this).find('.meal-nutritions').text(mealCals + " Cal");
+        $(this).find('.meal-nutritions').find('.calories').children()[0].text(mealCals);
+        $(this).find('.meal-nutritions').find('.total_fat').children()[0].text(mealFat);
+        $(this).find('.meal-nutritions').find('.cholesterol').children()[0].text(mealChol);
         dayCals += mealCals;
+        dayFat += mealFat;
+        dayChol += mealChol;
     });
     $('.meals-total .items .calories').text(dayCals + " Cal");
 }
