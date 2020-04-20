@@ -369,7 +369,7 @@ main > .main-section {
 }
 
 .meals-total {
-    height: 100px;
+    height: auto;
     position: sticky;
     z-index: 10;
     bottom: 10px;
@@ -378,6 +378,11 @@ main > .main-section {
     border: 1px solid #000;
     /* TODO: REMOVE SHADOW WHEN NO LONGER FIXED */
     box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.5);
+}
+
+.meals-total .items {
+    display: flex;
+    flex-direction: row;
 }
 
 .meals-total > .name {
