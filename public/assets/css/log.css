@@ -381,7 +381,8 @@ main > .main-section {
 }
 
 .meals-total .items {
-    display: inline;
+    display: flex;
+    flex-direction: row;
 }
 
 .meals-total > .name {
