@@ -243,7 +243,7 @@ function calculateMealNutritions() {
         var mealCals = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            var amount = $(this).find('.nutrition calories').text();
+            var amount = $(this).find('nutritions').find('.nutrition calories').text();
             mealCals += parseInt(amount);
         });
         $(this).find('.meal-nutritions').text(mealCals + " Cal");
