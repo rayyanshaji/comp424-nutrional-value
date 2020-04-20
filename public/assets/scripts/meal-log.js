@@ -98,6 +98,8 @@ function addItemToList(item) {
         </li>
     `;
     document.querySelector('#' + item.meal + ' .items').innerHTML += itemTemplate;
+    calculateNumberOfMeals();
+    calculateMealNutritions();
 }
 
 function addItem(method) {
@@ -179,8 +181,6 @@ function addItem(method) {
             }
         }
     }
-    calculateNumberOfMeals();
-    calculateMealNutritions();
 }
 
 function postItem(item) {
