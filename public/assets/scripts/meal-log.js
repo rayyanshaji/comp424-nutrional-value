@@ -98,6 +98,8 @@ function addItemToList(item) {
         </li>
     `;
     document.querySelector('#' + item.meal + ' .items').innerHTML += itemTemplate;
+    calculateNumberOfMeals();
+    calculateMealNutritions();
 }
 
 function addItem(method) {
@@ -178,8 +180,6 @@ function addItem(method) {
                 }
             }
         }
-        calculateNumberOfMeals();
-        calculateMealNutritions();
     }
 }
 
@@ -226,6 +226,7 @@ function deleteItem() {
             });
             $(this).parent().remove();
             calculateNumberOfMeals();
+            calculateMealNutritions();
         }
     });
 }
@@ -242,7 +243,7 @@ function calculateMealNutritions() {
         var mealCals = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            var amount = $(this).find('#foodcalories').text();
+            var amount = $(this).find('nutritions').find('.nutrition calories').text();
             mealCals += parseInt(amount);
         });
         $(this).find('.meal-nutritions').text(mealCals + " Cal");
