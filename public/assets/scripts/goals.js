@@ -3,7 +3,6 @@ var goalsJSON;
 $(document).ready(function() {
     getDate();
     getGoalsJSON();
-    chart();
 
     document.getElementById('add').addEventListener('click', postEntry);
 });
@@ -12,6 +11,7 @@ function getGoalsJSON() {
     $.getJSON("/db/goals", (data) => {
         goalsJSON = data.reverse().splice(0,10);
         showRecent();
+        chart();
     });
 }
 
@@ -53,49 +53,60 @@ function postEntry() {
 }
 
 function chart() {
+    var updatedJSON = [];
+    var lastGoals = goalsJSON.reverse().splice(0, 10);
+    var length = lastGoals.length > 10 ? 10 : lastGoals.length;
+    for (var i = 0; i < length; i++) {
+        updatedJSON.push({
+            t: new Date(lastGoals[i].date),
+            y: lastGoals[i].weight
+        });
+    }
     new Chart(document.getElementById('chart'), {
         type: 'line',
         data: {
             datasets: [{
                 label: 'Weight',
-                data: goalsJSON,
-                backgroundColor: 'rgba(0, 119, 204, 0.3)'
-                /*
-                data: [
-                    {
-                        t: new Date('2019-04-27'),
-                        y: 165
-                    },
-                    {
-                        t: new Date('2019-04-26'),
-                        y: 165
-                    },
-                    {
-                        t: new Date('2019-01-26'),
-                        y: 165
-                    }
-                ] */
+                data: updatedJSON,
+                backgroundColor: 'rgba(249, 124, 15, 0.4)',
             }]
         },
         options: {
+            maintainAspectRatio: false,
             scales: {
                 xAxes: [{
                     type: 'time',
                     distribution: 'linear',
                     time: {
-                        parser: 'MM/DD/YYYY'
+                        tooltipFormat: 'MMMM D, YYYY',
                     },
                     scaleLabel: {
                         display:     true,
-                        labelString: 'Date'
+                        labelString: 'Date',
+                        fontSize: 14
                     }
                 }],
                 yAxes: [{
                     scaleLabel: {
                         display:     true,
-                        labelString: 'Weight (lb)'
+                        labelString: 'Weight (lb)',
+                        fontSize: 14
                     }
                 }]
+            },
+            legend: {
+                display: false,
+            },
+            title: {
+                display: true,
+                text: `Recent Entries`,
+                fontSize: 18
+            },
+            tooltips: {
+                titleFontSize: 14,
+                bodyFontSize: 16,
+                bodyFontStyle: 'bold',
+                displayColors: false
             }
         }
     });
