@@ -251,9 +251,9 @@ function calculateMealNutritions() {
             mealFat += $(this).find('.nutritions').find('.nutrition total_fat').children()[0].text();
             mealChol += $(this).find('.nutritions').find('.nutrition cholesterol').children()[0].text();
         });
-        $(this).find('.meal-nutritions').find('.calories').children()[0].text(mealCals.toString());
-        $(this).find('.meal-nutritions').find('.total_fat').children()[0].text(mealFat.toString());
-        $(this).find('.meal-nutritions').find('.cholesterol').children()[0].text(mealChol.toString());
+        $(this).find('.meal-nutritions').find('.calories').children()[0].innnerText(mealCals.toString());
+        $(this).find('.meal-nutritions').find('.total_fat').children()[0].innnerText(mealFat.toString());
+        $(this).find('.meal-nutritions').find('.cholesterol').children()[0].innnerText(mealChol.toString());
         dayCals += mealCals;
         dayFat += mealFat;
         dayChol += mealChol;
