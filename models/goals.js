@@ -1,19 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ItemSchema = new Schema({
-    dateAdded: { type: Date, default: Date.now },
-    weight: {type: Number, min:0}
-});
-
-const WeightLogSchema = new Schema({
+const GoalsSchema = new Schema({
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     days: [{
         date: String,
-        items: [ItemSchema]
+        weight: {type: Number, min: 0}
     }]
 })
 
-var LogWeight = mongoose.model('LogWeight', WeightLogSchema);
+var Goals = mongoose.model('Goals', GoalsSchema);
 
-module.exports = LogWeight;
+module.exports = Goals;
