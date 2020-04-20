@@ -3,24 +3,7 @@ var goalsJSON;
 $(document).ready(function() {
     getDate();
     getGoalsJSON();
-
-<<<<<<< HEAD
-var goalsChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        datasets: [{
-            "label": "My Weight Log",
-            "data": [65, 59, 80, 81, 56, 55, 40],
-            "fill": false,
-            "borderColor": "#f97c0f",
-            "lineTension": 0.1
-        }]
-    },
-    "options": {}
-=======
     document.getElementById('add').addEventListener('click', postEntry);
->>>>>>> e96eb9c0cfab48b1c15cff02c75f05a8cf539885
 });
 
 function getGoalsJSON() {

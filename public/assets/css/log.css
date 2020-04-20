@@ -347,7 +347,7 @@ main > .main-section {
 
 @media (min-width: 671px) {
     .meal-group .item .nutritions {
-        display: flex;
+        display: contents;
         flex-wrap: wrap;
         place-content: space-evenly;
         flex-grow: 1;
