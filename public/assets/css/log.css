@@ -383,6 +383,7 @@ main > .main-section {
 .meals-total .items {
     display: flex;
     flex-direction: row;
+    padding: 2%;
 }
 
 .meals-total > .name {
