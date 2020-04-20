@@ -247,9 +247,9 @@ function calculateMealNutritions() {
         var mealChol = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            mealCals += this.find('.nutritions').find('.nutrition calories').children()[0].text();
-            mealFat += this.find('.nutritions').find('.nutrition total_fat').children()[0].text();
-            mealChol += this.find('.nutritions').find('.nutrition cholesterol').children()[0].text();
+            mealCals += $(this).find('.nutritions').find('.nutrition calories').children()[0].text();
+            mealFat += $(this).find('.nutritions').find('.nutrition total_fat').children()[0].text();
+            mealChol += $(this).find('.nutritions').find('.nutrition cholesterol').children()[0].text();
         });
         $(this).find('.meal-nutritions').find('.calories').children()[0].text(mealCals.toString());
         $(this).find('.meal-nutritions').find('.total_fat').children()[0].text(mealFat.toString());
