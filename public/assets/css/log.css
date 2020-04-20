@@ -270,7 +270,7 @@ main > .main-section {
 .meal-group > .meal-header > .meal-nutritions button {
     background-color:#f97c0f;
     border: 1px solid white;
-    padding: 9px 18px; /* Some padding */
+    padding: 9px 12px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     float: right;
     color: white;
