@@ -316,6 +316,20 @@ main > .main-section {
     background-color: #f0780f;
 }
 
+.meals-total button{
+    background-color: #f97c0f;
+    padding: 14px 28px;
+    width: 100%;
+    border: none;
+    font-family: inherit;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.meals-total button:hover{
+    background-color: #f0780f;
+}
+
 .meal-group > .items {
     padding: 0 20px;
     margin: 0;
@@ -385,9 +399,34 @@ main > .main-section {
 }
 
 @media (max-width: 670px) {
-    .meal-group .item .nutritions {
+    /* .meal-group .item .nutritions {
         display: none;
+    } */
+    .meal-group > .meal-header > .meal-nutritions button {
+        padding: 6px 9px; /* Some padding */   
+        font-size: 0.8rem;
     }
+    .nutritions button {      
+        padding: 4px 6px;  
+    }
+
+    .meals-total button{
+        padding: 9px 15px;
+    }
+
+    .list-add > .name,
+    .meal-group .item .name {
+    font-size: 1.3rem;
+}
+.list-add > .servings,
+.meal-group .item .servings {
+    font-size: 0.8rem;
+}
+
+.meal-group > .meal-header > .meal-name {
+    font-size: 16px;
+}
+
 }
 
 @media (min-width: 671px) {
