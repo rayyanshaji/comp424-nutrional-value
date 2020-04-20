@@ -244,16 +244,16 @@ function calculateMealNutritions() {
     $('.meal-group').each(function() {
         var mealCals = 0;
         var mealFat = 0;
-        var MealChol = 0;
+        var mealChol = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
             mealCals += this.find('.nutritions').find('.nutrition calories').children()[0].text();
             mealFat += this.find('.nutritions').find('.nutrition total_fat').children()[0].text();
             mealChol += this.find('.nutritions').find('.nutrition cholesterol').children()[0].text();
         });
-        $(this).find('.meal-nutritions').find('.calories').children()[0].text(mealCals);
-        $(this).find('.meal-nutritions').find('.total_fat').children()[0].text(mealFat);
-        $(this).find('.meal-nutritions').find('.cholesterol').children()[0].text(mealChol);
+        $(this).find('.meal-nutritions').find('.calories').children()[0].text(mealCals.toString());
+        $(this).find('.meal-nutritions').find('.total_fat').children()[0].text(mealFat.toString());
+        $(this).find('.meal-nutritions').find('.cholesterol').children()[0].text(mealChol.toString());
         dayCals += mealCals;
         dayFat += mealFat;
         dayChol += mealChol;
