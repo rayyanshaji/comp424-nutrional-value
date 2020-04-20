@@ -271,7 +271,7 @@ main > .main-section {
     background-color:#f97c0f;
     border: 1px solid white;
     padding: 9px 12px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
+    cursor: default; /* Pointer/hand icon */
     float: right;
     color: white;
     font-family: inherit;
