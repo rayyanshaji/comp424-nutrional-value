@@ -247,18 +247,21 @@ function calculateMealNutritions() {
         var mealChol = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            mealCals += $(this).find('.nutritions').find('.nutrition calories').children()[0].text();
-            mealFat += $(this).find('.nutritions').find('.nutrition total_fat').children()[0].text();
-            mealChol += $(this).find('.nutritions').find('.nutrition cholesterol').children()[0].text();
+            mealCals += $(this).find('.calories strong').text();
+            mealFat += $(this).find('.total_fat strong').text();
+            mealChol += $(this).find('.cholesterol strong').text();
+            console.log(mealCals, mealFat, mealChol)
         });
-        $(this).find('.meal-nutritions').find('.calories').children()[0].innnerText(mealCals.toString());
-        $(this).find('.meal-nutritions').find('.total_fat').children()[0].innnerText(mealFat.toString());
-        $(this).find('.meal-nutritions').find('.cholesterol').children()[0].innnerText(mealChol.toString());
+        $(this).find('.meal-nutritions').find('.calories strong').text(mealCals)
+        $(this).find('.meal-nutritions').find('.total_fat strong').text(mealFat);
+        $(this).find('.meal-nutritions').find('.cholesterol strong').text(mealChol);
         dayCals += mealCals;
         dayFat += mealFat;
         dayChol += mealChol;
     });
-    $('.meals-total .items .calories').text(dayCals + " Cal");
+    $('.meals-total').find('.calories strong').text(dayCals)
+    $('.meals-total').find('.total_fat strong').text(dayFat);
+    $('.meals-total').find('.cholesterol strong').text(dayChol);
 }
 
 function calculateNumberOfMeals() {
