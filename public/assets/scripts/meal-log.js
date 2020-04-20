@@ -247,10 +247,10 @@ function calculateMealNutritions() {
         var mealChol = 0;
         var foods = $(this).find('.items').children();
         foods.each(function () {
-            mealCals += $(this).find('.calories strong').text();
-            mealFat += $(this).find('.total_fat strong').text();
-            mealChol += $(this).find('.cholesterol strong').text();
-            console.log(mealCals, mealFat, mealChol)
+            mealCals += int($(this).find('.calories strong').text());
+            mealFat += int($(this).find('.total_fat strong').text());
+            mealChol += int($(this).find('.cholesterol strong').text());
+            //console.log(mealCals, mealFat, mealChol)
         });
         $(this).find('.meal-nutritions').find('.calories strong').text(mealCals)
         $(this).find('.meal-nutritions').find('.total_fat strong').text(mealFat);
