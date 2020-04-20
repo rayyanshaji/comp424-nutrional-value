@@ -62,6 +62,7 @@ function postEntry() {
             }
         });
         weight.value = '';
+        location.reload();
     } else {
         // add visual 
         console.log('no')

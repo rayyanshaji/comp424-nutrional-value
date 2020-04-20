@@ -45,10 +45,6 @@ h1 {
     -webkit-appearance: none;
 }
 
-input:read-only {
-    color: gray;
-}
-
 .history-section {
     width: 300px;
     border: 1px solid #000;
