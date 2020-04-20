@@ -25,6 +25,7 @@ let months = ["January", "February", "March", "April", "May", "June", "July", "A
 
 let monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
+setTodayButton();
 
 setDateHeader();
 
@@ -36,6 +37,10 @@ function setDateHeader() {
     let dateHeader = document.getElementById('date-header');
     let dateValues = getUrlDate().split('-');
     dateHeader.innerHTML = months[dateValues[1]-1] + ' ' + dateValues[2] + ', ' + dateValues[0];
+}
+
+function setTodayButton() {
+    document.getElementById('today').href = '/log/' + todayYear + '-' + todayMonth + '-' + today.getDate();
 }
 
 function showLogDates() {
