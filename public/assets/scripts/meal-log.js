@@ -178,9 +178,9 @@ function addItem(method) {
                 }
             }
         }
-        calculateNumberOfMeals();
-        calculateMealNutritions();
     }
+    calculateNumberOfMeals();
+    calculateMealNutritions();
 }
 
 function postItem(item) {
